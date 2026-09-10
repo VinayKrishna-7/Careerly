@@ -1,0 +1,36 @@
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleTheme } from '../../store/slices/uiSlice.js';
+import { Sun, Moon } from 'lucide-react';
+import { cn } from '../../utils/cn.js';
+
+export const ThemeToggle = ({ className = '', size = 'md' }) => {
+  const dispatch = useDispatch();
+  const theme = useSelector((state) => state.ui.theme);
+  const isDark = theme === 'dark';
+
+  return (
+    <button
+      type="button"
+      onClick={() => dispatch(toggleTheme())}
+      aria-label={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+      title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+      className={cn(
+        'relative inline-flex items-center justify-center rounded-xl p-2 transition-all duration-200',
+        'border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 hover:text-slate-900',
+        'dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700 dark:hover:text-white',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 shadow-subtle',
+        size === 'sm' ? 'h-8 w-8 p-1.5' : 'h-9 w-9 p-2',
+        className
+      )}
+    >
+      {isDark ? (
+        <Sun className="h-4 w-4 text-amber-400 animate-in spin-in-90 duration-200" />
+      ) : (
+        <Moon className="h-4 w-4 text-slate-600 animate-in spin-in-90 duration-200" />
+      )}
+    </button>
+  );
+};
+
+export default ThemeToggle;
