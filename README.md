@@ -1,6 +1,6 @@
 <div align="center">
 
-# ✨ Careerly &bull; Next-Gen ATS Resume & Career Intelligence SaaS
+# ✨ Careerly — ATS Resume Builder & Career Tools
 
 > *"Your career deserves a resume that opens doors — precision-engineered for dream roles."*
 
@@ -13,7 +13,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
 <p align="center">
-  <b>Careerly</b> is a full-stack, enterprise-grade ATS resume builder, cover letter architect, and career suite designed to eliminate recruiter filtering hurdles with real-time formatting intelligence, 9 battle-tested industry templates, safety PIN authentication, and pixel-perfect high-DPI vector PDF exports.
+  <b>Careerly</b> is a full-stack resume and career application built with React, Node.js, Express, and MongoDB. It provides resume creation, ATS-oriented analysis, customizable templates, cover letter generation, and PDF export.
 </p>
 
 ---
@@ -23,7 +23,6 @@
 ## 🌟 Highlights & Key Value Points
 
 - 🎯 **ATS-Optimized Formatting**: Engineered to bypass automated filters (Workday, Greenhouse, Lever, Taleo) with 100% single-column semantic structures and standard font fallback hierarchies.
-- ⚡ **60 FPS Live Interactive Preview**: Sub-millisecond real-time DOM synchronization with intelligent proportional mathematical auto-fitting — guaranteeing zero bottom-page clipping.
 - 🎨 **9 Recruiter-Vetted Templates**: Instant 1-click layout switching (*Jake's Resume, MTeck, Anubhav, Knyte, Modern Accent, Professional, Minimal, Creative, Austere*) preserving all entered data seamlessly.
 - 🛡️ **Frictionless Safety PIN Auth**: Reset forgotten passwords instantly using your email and secure 4–6 digit Safety PIN — zero email waiting or expired verification tokens.
 - ✍️ **AI Job Description Cover Letter Engine**: Match job descriptions against your resume achievements to auto-generate customized, highly persuasive cover letters.
@@ -106,7 +105,7 @@ Create a `.env` file in the `server/` directory:
 PORT=5000
 NODE_ENV=development
 MONGODB_URI=mongodb://localhost:27017/careerly_db
-JWT_SECRET=your_super_secret_jwt_key_careerly_2026
+JWT_SECRET=JWT_SECRET=your_random_jwt_secret
 JWT_EXPIRES_IN=7d
 CLIENT_URL=http://localhost:5173
 ```
@@ -126,7 +125,7 @@ npm run dev
 ## 📂 Project Structure
 
 ```text
-Resume_builder/
+Careerly/
 ├── client/                     # Frontend Application
 │   ├── src/
 │   │   ├── components/         # Reusable UI primitives (Button, Modal, Input, Badge, etc.)
