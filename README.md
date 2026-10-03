@@ -8,7 +8,7 @@
 [![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
 
-**Careerly** is a modern, full-stack ATS Resume & Cover Letter Builder designed to help job seekers create professional, recruiter-ready resumes in minutes.
+**Careerly** is a clean, full-stack ATS Resume & Cover Letter Builder designed to help job seekers create professional, recruiter-ready resumes in minutes.
 
 Built with a fast, intuitive live editor, ATS compliance checker, and instant vector PDF downloads.
 
@@ -16,15 +16,17 @@ Built with a fast, intuitive live editor, ATS compliance checker, and instant ve
 
 ## 🚀 Key Features
 
-- **9 ATS-Friendly Resume Templates**: Includes popular industry standards like *Jake's Resume*, *Modern Accent*, *Executive Standard*, *MTeck's*, *Anubhav*, *Minimalist*, and more.
+- **Minimal & Clean Experience**: Distraction-free, centered interface built for focus and speed.
+- **Noir & Crème Aesthetic**: High-contrast, executive color system — Warm Cream (`#faf5eb`) canvas with Jet Black accents in bright mode, inverted to Pure Black (`#000000`) canvas with Warm Cream accents in dark mode.
+- **Dynamic Theme & Favicon**: Real-time theme switcher with an SVG favicon that automatically synchronizes with active theme preferences.
+- **9 ATS-Friendly Resume Templates**: Includes popular industry formats such as *Jake's Resume*, *Executive Standard*, *MTeck's*, *Anubhav*, *Creative*, *Minimalist*, and more.
 - **Real-Time Live Preview**: Watch your resume update instantly as you type with automatic saving.
-- **Custom Resume Sections**: Add your own unique sections (e.g., Publications, Volunteer Work, Open Source) and rename or reorder existing ones easily.
-- **Header Alignment Options**: Choose between **Left**, **Middle (Centered)**, or **Right** header positioning to match your style.
-- **Instant Vector PDF Export**: Download high-resolution, watermark-free PDFs powered by Puppeteer.
+- **Custom Sections & Order**: Add unique sections (e.g., Publications, Volunteer Work, Open Source) and freely reorder or rename them.
+- **Header Alignment Options**: Choose between **Left**, **Centered**, or **Right** header positioning.
+- **Instant Vector PDF Export**: Download high-resolution, watermark-free vector PDFs powered by headless Chromium (Puppeteer).
 - **ATS Match & Score Analyzer**: Evaluates your resume against key job keywords, action verbs, and quantifiable metrics to maximize interview callbacks.
-- **Cover Letter Suite**: Generate and customize job-specific cover letters that match your resume style.
-- **Dark & Light Mode**: Seamless dark and light themes with full visual contrast.
-- **Quick Safety PIN Recovery**: Reset your password easily using your email and a personal 4–6 digit Safety PIN.
+- **Cover Letter Suite**: Create and customize job-tailored cover letters that complement your resume design.
+- **Safety PIN Password Recovery**: Reset forgotten passwords safely using your verified email and personal 4–6 digit Safety PIN.
 
 ---
 
@@ -32,7 +34,7 @@ Built with a fast, intuitive live editor, ATS compliance checker, and instant ve
 
 - **Frontend**: React 18, Vite, Tailwind CSS, Redux Toolkit, Lucide Icons
 - **Backend**: Node.js, Express.js (ES Modules)
-- **Database**: MongoDB with Mongoose
+- **Database**: MongoDB with Mongoose (with automated in-memory fallback for zero-config local dev)
 - **PDF Engine**: Puppeteer (Headless Chromium)
 
 ---
