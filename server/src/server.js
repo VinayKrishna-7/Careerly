@@ -9,15 +9,6 @@ const startServer = async () => {
   try {
     await connectDB();
 
-    // Auto-seed demo data if database is empty
-    const User = (await import('./models/User.js')).default;
-    const userCount = await User.countDocuments();
-    if (userCount === 0) {
-      console.log('⚡ Empty database detected. Seeding demo accounts and resumes...');
-      const { seedDatabase } = await import('./utils/seeder.js');
-      await seedDatabase();
-    }
-
     const server = app.listen(PORT, () => {
       console.log(`🚀 Server running in ${process.env.NODE_ENV || 'development'} mode on http://localhost:${PORT}`);
     });
