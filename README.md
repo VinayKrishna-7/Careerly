@@ -1,83 +1,71 @@
-# Careerly 📄✨
+# Careerly
 
-[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
-[![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
-[![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
-[![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
+A clean, web-based resume and cover letter builder designed for ATS-friendly formatting and PDF export.
 
-**Careerly** is a clean, full-stack ATS Resume & Cover Letter Builder designed to help job seekers create professional, recruiter-ready resumes in minutes.
+## Features
 
-Built with a fast, intuitive live editor, ATS compliance checker, and instant vector PDF downloads.
+- **ATS-Compliant Templates**: Standardized single-page and multi-section layouts (Jake's, MTeck's, Minimal, Executive) designed for ATS parsers.
+- **Live Preview & Vector PDF Export**: Real-time rendering with high-resolution vector PDF downloads via Puppeteer.
+- **Section Customization**: Reorder, add, or rename sections with configurable header alignments.
+- **ATS Keyword & Score Checker**: Analyzes resumes for measurable impact, action verbs, and keyword density against job descriptions.
+- **Cover Letter Suite**: Compose and export matching cover letters.
+- **Dark & Light Mode**: High-contrast theme system with dynamic browser favicon synchronization.
+- **Zero-Config Local Dev**: Automatic in-memory database fallback if a local MongoDB instance is not running.
 
----
+## Tech Stack
 
-## 🚀 Key Features
+- **Frontend**: React 18, Vite, Tailwind CSS, Redux Toolkit
+- **Backend**: Node.js, Express (ES Modules)
+- **Database**: MongoDB, Mongoose
+- **Export**: Puppeteer (Headless Chromium)
 
-- **Minimal & Clean Experience**: Distraction-free, centered interface built for focus and speed.
-- **Noir & Crème Aesthetic**: High-contrast, executive color system — Warm Cream (`#faf5eb`) canvas with Jet Black accents in bright mode, inverted to Pure Black (`#000000`) canvas with Warm Cream accents in dark mode.
-- **Dynamic Theme & Favicon**: Real-time theme switcher with an SVG favicon that automatically synchronizes with active theme preferences.
-- **9 ATS-Friendly Resume Templates**: Includes popular industry formats such as *Jake's Resume*, *Executive Standard*, *MTeck's*, *Anubhav*, *Creative*, *Minimalist*, and more.
-- **Real-Time Live Preview**: Watch your resume update instantly as you type with automatic saving.
-- **Custom Sections & Order**: Add unique sections (e.g., Publications, Volunteer Work, Open Source) and freely reorder or rename them.
-- **Header Alignment Options**: Choose between **Left**, **Centered**, or **Right** header positioning.
-- **Instant Vector PDF Export**: Download high-resolution, watermark-free vector PDFs powered by headless Chromium (Puppeteer).
-- **ATS Match & Score Analyzer**: Evaluates your resume against key job keywords, action verbs, and quantifiable metrics to maximize interview callbacks.
-- **Cover Letter Suite**: Create and customize job-tailored cover letters that complement your resume design.
-- **Safety PIN Password Recovery**: Reset forgotten passwords safely using your verified email and personal 4–6 digit Safety PIN.
+## Getting Started
 
----
+### Prerequisites
 
-## 🛠️ Tech Stack
+- Node.js 18+
+- MongoDB (optional; defaults to in-memory MongoDB for local evaluation)
 
-- **Frontend**: React 18, Vite, Tailwind CSS, Redux Toolkit, Lucide Icons
-- **Backend**: Node.js, Express.js (ES Modules)
-- **Database**: MongoDB with Mongoose (with automated in-memory fallback for zero-config local dev)
-- **PDF Engine**: Puppeteer (Headless Chromium)
+### Installation
 
----
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/VinayKrishna-7/Careerly.git
+   cd Careerly
+   ```
 
-## 🏁 Quick Start
+2. Install dependencies:
+   ```bash
+   npm run install:all
+   ```
 
-### 1. Prerequisites
-- **Node.js** (v18 or higher)
-- **MongoDB** (running locally or MongoDB Atlas connection string)
+3. Configure environment variables in `server/.env`:
+   ```env
+   PORT=5001
+   NODE_ENV=development
+   MONGODB_URI=mongodb://127.0.0.1:27017/resumebuilder
+   JWT_SECRET=your_jwt_secret_here
+   JWT_EXPIRES_IN=7d
+   COOKIE_SECRET=your_cookie_secret_here
+   CLIENT_URL=http://localhost:5174
+   ```
 
-### 2. Installation
-Clone the repository and install all dependencies:
+4. Start development servers:
+   ```bash
+   npm run dev
+   ```
 
-```bash
-git clone https://github.com/VinayKrishna-7/Careerly.git
-cd Careerly
-npm run install:all
-```
+   - Client: http://localhost:5174
+   - API: http://localhost:5001
 
-### 3. Environment Setup
-Create a `.env` file in the `server/` directory:
+## Scripts
 
-```env
-PORT=5001
-NODE_ENV=development
-MONGODB_URI=mongodb://127.0.0.1:27017/resumebuilder
-JWT_SECRET=your_jwt_secret_key_here
-JWT_EXPIRES_IN=7d
-COOKIE_SECRET=your_cookie_secret_key_here
-CLIENT_URL=http://localhost:5174
-```
+- `npm run dev`: Runs both client and server concurrently
+- `npm run dev:client`: Runs Vite frontend only
+- `npm run dev:server`: Runs Express backend only
+- `npm run build`: Builds frontend production bundle
+- `npm run install:all`: Installs root, client, and server dependencies
 
-### 4. Run the Project
-Start both the backend server and frontend development server with a single command:
+## License
 
-```bash
-npm run dev
-```
-
-- **Frontend**: [http://localhost:5174](http://localhost:5174)
-- **Backend API**: [http://localhost:5001](http://localhost:5001)
-
----
-
-## 📄 License
-This project is open-source and available under the [MIT License](LICENSE).
+MIT
