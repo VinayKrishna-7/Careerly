@@ -19,8 +19,7 @@ import {
   Layers,
   ChevronDown,
   LogIn,
-  UserPlus,
-  Quote
+  UserPlus
 } from 'lucide-react';
 import { TEMPLATE_METADATA } from '../utils/constants.js';
 
@@ -70,12 +69,6 @@ export const LandingPage = () => {
       <section className="relative pt-12 sm:pt-20 lg:pt-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-6 max-w-4xl mx-auto">
-            {/* Quote / Strategic Highlight Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 px-4 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-300 shadow-sm backdrop-blur-md">
-              <Quote className="h-3.5 w-3.5 text-brand-600 dark:text-brand-400 rotate-180" />
-              <span>"Your career deserves a resume that opens doors — precision-engineered for dream roles."</span>
-            </div>
-
             {/* Main Headline */}
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-extrabold text-slate-950 dark:text-white tracking-tight leading-[1.12]">
               Land interviews faster with{' '}
