@@ -8,34 +8,34 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Modern Graphite & Obsidian Scale (Raycast / Resend style)
+        // Warm Cream for Bright Theme, Pure Jet Black for Dark Theme (from user image)
         slate: {
-          50: '#f9fafb',
-          100: '#f1f3f7',
-          200: '#e4e7ec',
-          300: '#d0d5dd',
-          400: '#98a2b3',
-          500: '#667085',
-          600: '#475467',
-          700: '#344054',
-          800: '#22242b',
-          850: '#191a20',
-          900: '#131418',
-          950: '#0c0d10',
+          50: '#fcfaf6',  // Warm Editorial Cream Canvas
+          100: '#f4f0e6', // Cream surface / input background / chip
+          200: '#e8e2d4', // Hairline cream card border
+          300: '#d7cec0', // Defined border & divider
+          400: '#9d9484', // Light mode placeholder / dark mode secondary text
+          500: '#6d6556', // Light mode subtle text
+          600: '#4a4338', // Light mode body secondary
+          700: '#2e3037', // Dark mode divider
+          800: '#1b1d22', // Dark mode card border & elevated input
+          850: '#121418', // Dark mode hover surface
+          900: '#0c0d10', // Dark mode card surface / Light mode crisp text
+          950: '#000000', // Pure Jet Black from user image
         },
-        // Refined Modern Deep Indigo (Raycast / Resend signature)
+        // Exact Sky Cyan (#9ad9ea) from user image, scaled for high visibility on cream
         brand: {
-          50: '#f5f3ff',
-          100: '#ede9fe',
-          200: '#ddd6fe',
-          300: '#c4b5fd',
-          400: '#818cf8',
-          500: '#6366f1',
-          600: '#4f46e5',
-          700: '#4338ca',
-          800: '#3730a3',
-          900: '#312e81',
-          950: '#1e1b4b',
+          50: '#f0f9ff',  // Soft ice cyan
+          100: '#e0f2fe',
+          200: '#bae6fd',
+          300: '#9ad9ea', // User's exact sky cyan (R=154 G=217 B=234)
+          400: '#38bdf8', // Luminous sky cyan
+          500: '#0ea5e9', // Vibrant cyan azure
+          600: '#0284c7', // Deep Ocean Cerulean — bold & clearly visible on cream
+          700: '#0369a1', // Deep Marine Navy — hover state
+          800: '#075985',
+          900: '#0c4a6e',
+          950: '#082f49',
         }
       },
       fontFamily: {
