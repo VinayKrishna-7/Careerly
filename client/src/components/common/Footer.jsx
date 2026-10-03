@@ -13,7 +13,7 @@ export const Footer = () => {
               to="/"
               className="flex items-center gap-2.5 font-display font-extrabold text-base sm:text-lg text-slate-900 dark:text-white hover:opacity-90 transition-opacity"
             >
-              <div className="flex h-7 w-7 items-center justify-center rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-600 text-white shadow-sm">
+              <div className="flex h-7 w-7 items-center justify-center rounded-xl bg-brand-600 text-white shadow-xs">
                 <Sparkles className="h-4 w-4" />
               </div>
               <span>

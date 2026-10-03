@@ -39,7 +39,7 @@ export const Navbar = () => {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand Logo */}
         <Link to="/" className="flex items-center gap-2.5 font-display font-extrabold text-slate-900 dark:text-white text-lg sm:text-xl tracking-tight">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-brand-600 via-indigo-600 to-purple-600 text-white shadow-md shadow-brand-500/20">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-600 text-white shadow-xs">
             <Sparkles className="h-5 w-5" />
           </div>
           <span>

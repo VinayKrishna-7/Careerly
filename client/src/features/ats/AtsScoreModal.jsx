@@ -206,7 +206,7 @@ export const AtsScoreModal = ({ isOpen, onClose, resumeId, resumeTitle, resume: 
                     </div>
                     <div className="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-indigo-600 rounded-full transition-all duration-500"
+                        className="h-full bg-brand-600 rounded-full transition-all duration-500"
                         style={{ width: `${scoreData.categoryScores?.impact}%` }}
                       />
                     </div>
@@ -232,7 +232,7 @@ export const AtsScoreModal = ({ isOpen, onClose, resumeId, resumeTitle, resume: 
                     </div>
                     <div className="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-purple-600 rounded-full transition-all duration-500"
+                        className="h-full bg-slate-700 dark:bg-slate-400 rounded-full transition-all duration-500"
                         style={{ width: `${scoreData.categoryScores?.brevity}%` }}
                       />
                     </div>
