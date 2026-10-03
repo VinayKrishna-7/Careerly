@@ -1,5 +1,7 @@
 import React from 'react';
 import { formatDate, ensureUrl, groupSkills, parseBulletPoints, formatCleanUrl } from '../utils/formatters.js';
+import CustomSectionRenderer from './common/CustomSectionRenderer.jsx';
+import { getHeaderAlignment } from '../utils/constants.js';
 
 export const KnyteTemplate = ({ resume }) => {
   const {
@@ -13,11 +15,12 @@ export const KnyteTemplate = ({ resume }) => {
     languages = [],
     achievements = [],
     interests = [],
+    customSections = [],
     sectionOrder = [],
     sectionTitles = {},
     sectionVisibility = {},
     settings = {}
-  } = resume;
+  } = resume || {};
 
   const primaryColor = settings.primaryColor || '#047857';
   const secondaryColor = settings.secondaryColor || '#065f46';
@@ -34,6 +37,7 @@ export const KnyteTemplate = ({ resume }) => {
   const linksFontSize = settings.linksFontSize || 12.5;
   const sectionTitleFontSize = settings.sectionTitleFontSize || 16;
   const bodyFontSize = settings.bodyFontSize || 13.5;
+  const headerAlign = getHeaderAlignment(settings.headerLayout, 'knyte');
 
   const renderSummary = () => {
     if (!summary || sectionVisibility.summary === false) return null;
@@ -427,16 +431,44 @@ export const KnyteTemplate = ({ resume }) => {
     interests: renderInterests
   };
 
-  const sectionsToRender = (sectionOrder || Object.keys(sectionMap)).map(
+  customSections.forEach((sec) => {
+    sectionMap[sec.id] = () => (
+      <CustomSectionRenderer
+        key={sec.id}
+        section={sec}
+        sectionTitles={sectionTitles}
+        sectionVisibility={sectionVisibility}
+        template="knyte"
+        styling={{
+          primaryColor,
+          sectionTitleColor,
+          textColor,
+          sectionTitleFontSize,
+          sectionTitleFontWeight,
+          bodyFontSize,
+          bodyFontWeight
+        }}
+      />
+    );
+  });
+
+  const allOrderedKeys = [...(sectionOrder || Object.keys(sectionMap))];
+  customSections.forEach((sec) => {
+    if (!allOrderedKeys.includes(sec.id)) {
+      allOrderedKeys.push(sec.id);
+    }
+  });
+
+  const sectionsToRender = allOrderedKeys.map(
     (name) => sectionMap[name] && sectionMap[name]()
   );
 
   return (
     <div className="space-y-4" style={{ color: textColor }}>
       {/* Resume Knyte Header */}
-      <div className="pb-3 border-b-2" style={{ borderColor: primaryColor }}>
-        <div className="flex justify-between items-start flex-wrap gap-2">
-          <div>
+      <div className={`pb-3 border-b-2 ${headerAlign.container}`} style={{ borderColor: primaryColor }}>
+        <div className={`flex items-start flex-wrap gap-2 ${headerAlign.contact}`}>
+          <div className={headerAlign.container}>
             <h1
               className="font-extrabold tracking-tight"
               style={{ fontSize: `${nameFontSize}px`, color: textColor }}
@@ -463,7 +495,7 @@ export const KnyteTemplate = ({ resume }) => {
 
           return (
             <div
-              className="flex flex-wrap items-center gap-x-3 gap-y-1 pt-2"
+              className={`flex flex-wrap items-center gap-x-3 gap-y-1 pt-2 ${headerAlign.contact}`}
               style={{ fontSize: `${contactFontSize}px`, fontWeight: contactFontWeight, color: textColor }}
             >
               {personalInfo.location && <span className="font-medium">{personalInfo.location}</span>}

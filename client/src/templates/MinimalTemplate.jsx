@@ -1,5 +1,7 @@
 import React from 'react';
 import { formatDate, ensureUrl, groupSkills, parseBulletPoints, formatCleanUrl } from '../utils/formatters.js';
+import CustomSectionRenderer from './common/CustomSectionRenderer.jsx';
+import { getHeaderAlignment } from '../utils/constants.js';
 
 export const MinimalTemplate = ({ resume }) => {
   const {
@@ -13,11 +15,12 @@ export const MinimalTemplate = ({ resume }) => {
     languages = [],
     achievements = [],
     interests = [],
+    customSections = [],
     sectionOrder = [],
     sectionTitles = {},
     sectionVisibility = {},
     settings = {}
-  } = resume;
+  } = resume || {};
 
   const primaryColor = settings.primaryColor || '#000000';
   const textColor = settings.textColor || '#171717';
@@ -33,6 +36,7 @@ export const MinimalTemplate = ({ resume }) => {
   const linksFontSize = settings.linksFontSize || 12.5;
   const sectionTitleFontSize = settings.sectionTitleFontSize || 16;
   const bodyFontSize = settings.bodyFontSize || 13.5;
+  const headerAlign = getHeaderAlignment(settings.headerLayout, 'minimal');
 
   const renderSummary = () => {
     if (!summary || sectionVisibility.summary === false) return null;
@@ -378,14 +382,42 @@ export const MinimalTemplate = ({ resume }) => {
     interests: renderInterests
   };
 
-  const sectionsToRender = (sectionOrder || Object.keys(sectionMap)).map(
+  customSections.forEach((sec) => {
+    sectionMap[sec.id] = () => (
+      <CustomSectionRenderer
+        key={sec.id}
+        section={sec}
+        sectionTitles={sectionTitles}
+        sectionVisibility={sectionVisibility}
+        template="minimal"
+        styling={{
+          primaryColor,
+          sectionTitleColor,
+          textColor,
+          sectionTitleFontSize,
+          sectionTitleFontWeight,
+          bodyFontSize,
+          bodyFontWeight
+        }}
+      />
+    );
+  });
+
+  const allOrderedKeys = [...(sectionOrder || Object.keys(sectionMap))];
+  customSections.forEach((sec) => {
+    if (!allOrderedKeys.includes(sec.id)) {
+      allOrderedKeys.push(sec.id);
+    }
+  });
+
+  const sectionsToRender = allOrderedKeys.map(
     (name) => sectionMap[name] && sectionMap[name]()
   );
 
   return (
     <div className="space-y-5" style={{ color: textColor }}>
       {/* Minimal Header */}
-      <div className="space-y-1 pb-3 border-b border-slate-200">
+      <div className={`space-y-1 pb-3 border-b border-slate-200 ${headerAlign.container}`}>
         <h1
           className="font-bold tracking-tight"
           style={{ fontSize: `${nameFontSize}px`, color: primaryColor }}
@@ -408,7 +440,7 @@ export const MinimalTemplate = ({ resume }) => {
 
           return (
             <div
-              className="flex flex-wrap items-center gap-x-3 pt-1"
+              className={`flex flex-wrap items-center gap-x-3 pt-1 ${headerAlign.contact}`}
               style={{ fontSize: `${contactFontSize}px`, fontWeight: contactFontWeight, color: textColor }}
             >
               {personalInfo.email && (

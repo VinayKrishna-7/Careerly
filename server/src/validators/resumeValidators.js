@@ -34,6 +34,7 @@ export const updateResumeSchema = z.object({
     languages: z.array(z.any()).optional(),
     achievements: z.array(z.any()).optional(),
     interests: z.array(z.any()).optional(),
+    customSections: z.array(z.any()).optional(),
     sectionOrder: z.array(z.string()).optional(),
     sectionTitles: z.record(z.string()).optional(),
     sectionVisibility: z.record(z.boolean()).optional(),

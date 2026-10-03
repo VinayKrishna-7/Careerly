@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateActiveResumeField, setActiveResumeSettings } from '../../../store/slices/resumeSlice.js';
 import Input from '../../../components/ui/Input.jsx';
+import HeaderPositionSelector from '../HeaderPositionSelector.jsx';
 import { User, Mail, Phone, MapPin, Globe, Linkedin, Github, Sparkles, Link2, ExternalLink } from 'lucide-react';
 
 export const PersonalInfoForm = () => {
@@ -27,6 +28,9 @@ export const PersonalInfoForm = () => {
           <p className="text-xs text-slate-500 dark:text-slate-400">Your core contact details shown at the top of your resume</p>
         </div>
       </div>
+
+      {/* Header Position / Alignment (Left, Middle, Right) */}
+      <HeaderPositionSelector />
 
       {/* Profile Links Display Format Switcher */}
       <div className="p-3.5 bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 rounded-xl space-y-2">

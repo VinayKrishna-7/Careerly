@@ -1,5 +1,7 @@
 import React from 'react';
 import { formatDate, ensureUrl, groupSkills, parseBulletPoints, formatCleanUrl } from '../utils/formatters.js';
+import CustomSectionRenderer from './common/CustomSectionRenderer.jsx';
+import { getHeaderAlignment } from '../utils/constants.js';
 
 export const AustereTemplate = ({ resume }) => {
   const {
@@ -13,11 +15,12 @@ export const AustereTemplate = ({ resume }) => {
     languages = [],
     achievements = [],
     interests = [],
+    customSections = [],
     sectionOrder = [],
     sectionTitles = {},
     sectionVisibility = {},
     settings = {}
-  } = resume;
+  } = resume || {};
 
   const primaryColor = settings.primaryColor || '#334155';
   const secondaryColor = settings.secondaryColor || '#64748b';
@@ -34,6 +37,7 @@ export const AustereTemplate = ({ resume }) => {
   const linksFontSize = settings.linksFontSize || 12;
   const sectionTitleFontSize = settings.sectionTitleFontSize || 15;
   const bodyFontSize = settings.bodyFontSize || 13;
+  const headerAlign = getHeaderAlignment(settings.headerLayout, 'austere');
 
   const renderSummary = () => {
     if (!summary || sectionVisibility.summary === false) return null;
@@ -362,14 +366,42 @@ export const AustereTemplate = ({ resume }) => {
     interests: renderInterests
   };
 
-  const sectionsToRender = (sectionOrder || Object.keys(sectionMap)).map(
+  customSections.forEach((sec) => {
+    sectionMap[sec.id] = () => (
+      <CustomSectionRenderer
+        key={sec.id}
+        section={sec}
+        sectionTitles={sectionTitles}
+        sectionVisibility={sectionVisibility}
+        template="austere"
+        styling={{
+          primaryColor,
+          sectionTitleColor,
+          textColor,
+          sectionTitleFontSize,
+          sectionTitleFontWeight,
+          bodyFontSize,
+          bodyFontWeight
+        }}
+      />
+    );
+  });
+
+  const allOrderedKeys = [...(sectionOrder || Object.keys(sectionMap))];
+  customSections.forEach((sec) => {
+    if (!allOrderedKeys.includes(sec.id)) {
+      allOrderedKeys.push(sec.id);
+    }
+  });
+
+  const sectionsToRender = allOrderedKeys.map(
     (name) => sectionMap[name] && sectionMap[name]()
   );
 
   return (
     <div className="space-y-4" style={{ color: textColor }}>
       {/* AustereCV Clean Header */}
-      <div className="pb-3 border-b border-slate-300">
+      <div className={`pb-3 border-b border-slate-300 ${headerAlign.container}`}>
         <h1
           className="font-semibold tracking-wider uppercase text-slate-900"
           style={{ fontSize: `${nameFontSize}px` }}
@@ -393,7 +425,7 @@ export const AustereTemplate = ({ resume }) => {
 
           return (
             <div
-              className="flex flex-wrap items-center gap-x-3 gap-y-1 pt-2 text-slate-600 text-xs"
+              className={`flex flex-wrap items-center gap-x-3 gap-y-1 pt-2 text-slate-600 text-xs ${headerAlign.contact}`}
               style={{ fontSize: `${contactFontSize}px`, fontWeight: contactFontWeight }}
             >
               {personalInfo.location && <span>{personalInfo.location}</span>}

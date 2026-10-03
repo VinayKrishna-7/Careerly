@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { Sparkles } from 'lucide-react';
-import Toast from '../components/ui/Toast.jsx';
 import ThemeToggle from '../components/ui/ThemeToggle.jsx';
 
 export const AuthLayout = () => {
@@ -32,8 +31,6 @@ export const AuthLayout = () => {
           <Outlet />
         </div>
       </div>
-
-      <Toast />
     </div>
   );
 };

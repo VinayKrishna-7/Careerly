@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 490" width="100%" height="100%">
+  <rect width="380" height="490" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+
+  <text x="24" y="34" font-family="system-ui, sans-serif" font-size="16" font-weight="800" fill="#78350f">ANUBHAV SHARMA</text>
+  <text x="24" y="47" font-family="system-ui, sans-serif" font-size="8.5" font-weight="600" fill="#b45309">Senior Backend Engineer @ FAANG</text>
+  <text x="24" y="58" font-family="system-ui, sans-serif" font-size="7" fill="#64748b">anubhav.sharma@iit.ac.in • +1 (555) 765-4321 • Seattle, WA • github.com/anubhav</text>
+
+  <line x1="24" y1="65" x2="356" y2="65" stroke="#b45309" stroke-width="1.5"/>
+
+  <!-- Experience -->
+  <text x="24" y="80" font-family="system-ui, sans-serif" font-size="8.5" font-weight="700" fill="#b45309">WORK EXPERIENCE</text>
+  <line x1="24" y1="84" x2="356" y2="84" stroke="#fde68a" stroke-width="1"/>
+
+  <text x="24" y="96" font-family="system-ui, sans-serif" font-size="8" font-weight="700" fill="#18181b">Senior Software Engineer <tspan font-weight="normal" fill="#78350f">| Meta</tspan></text>
+  <text x="356" y="96" text-anchor="end" font-family="system-ui, sans-serif" font-size="7" fill="#71717a">2021 – Present</text>
+  <circle cx="28" cy="106" r="1.5" fill="#b45309"/>
+  <text x="34" y="108" font-family="system-ui, sans-serif" font-size="6.8" fill="#27272a">Scaled notification pipeline to deliver <tspan font-weight="bold">2.4 billion</tspan> alerts daily at 99.99% SLA.</text>
+  <circle cx="28" cy="116" r="1.5" fill="#b45309"/>
+  <text x="34" y="118" font-family="system-ui, sans-serif" font-size="6.8" fill="#27272a">Reduced CPU consumption by <tspan font-weight="bold">32%</tspan> through SIMD vectorized data parsing in C++.</text>
+
+  <!-- Projects with Tech Brackets -->
+  <text x="24" y="140" font-family="system-ui, sans-serif" font-size="8.5" font-weight="700" fill="#b45309">FEATURED PROJECTS</text>
+  <line x1="24" y1="144" x2="356" y2="144" stroke="#fde68a" stroke-width="1"/>
+
+  <text x="24" y="156" font-family="system-ui, sans-serif" font-size="7.5" font-weight="bold" fill="#18181b">Distributed Log Streamer <tspan font-weight="normal" fill="#b45309">[Go, Kafka, RocksDB]</tspan></text>
+  <text x="356" y="156" text-anchor="end" font-family="system-ui, sans-serif" font-size="7" fill="#71717a">2022</text>
+  <circle cx="28" cy="166" r="1.5" fill="#b45309"/>
+  <text x="34" y="168" font-family="system-ui, sans-serif" font-size="6.8" fill="#27272a">Published open-source log aggregation engine gaining 1,200+ GitHub stars.</text>
+</svg>

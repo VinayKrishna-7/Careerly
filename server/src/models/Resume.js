@@ -89,6 +89,27 @@ const interestSchema = new mongoose.Schema(
   { _id: true }
 );
 
+const customSectionItemSchema = new mongoose.Schema(
+  {
+    title: { type: String, default: '' },
+    subtitle: { type: String, default: '' },
+    date: { type: String, default: '' },
+    location: { type: String, default: '' },
+    description: { type: String, default: '' },
+    link: { type: String, default: '' }
+  },
+  { _id: true }
+);
+
+const customSectionSchema = new mongoose.Schema(
+  {
+    id: { type: String, required: true },
+    title: { type: String, default: 'Custom Section' },
+    items: [customSectionItemSchema]
+  },
+  { _id: true }
+);
+
 const resumeSchema = new mongoose.Schema(
   {
     userId: {
@@ -131,31 +152,38 @@ const resumeSchema = new mongoose.Schema(
     languages: [languageSchema],
     achievements: [achievementSchema],
     interests: [interestSchema],
+    customSections: [customSectionSchema],
     sectionOrder: {
       type: [String],
       default: DEFAULT_SECTION_ORDER
     },
     sectionTitles: {
-      summary: { type: String, default: 'Professional summary' },
-      experience: { type: String, default: 'Experience' },
-      education: { type: String, default: 'Education' },
-      skills: { type: String, default: 'Skills' },
-      projects: { type: String, default: 'Projects' },
-      certifications: { type: String, default: 'Certifications' },
-      languages: { type: String, default: 'Languages' },
-      achievements: { type: String, default: 'Achievements & Activities' },
-      interests: { type: String, default: 'Interests' }
+      type: mongoose.Schema.Types.Mixed,
+      default: () => ({
+        summary: 'Professional summary',
+        experience: 'Experience',
+        education: 'Education',
+        skills: 'Skills',
+        projects: 'Projects',
+        certifications: 'Certifications',
+        languages: 'Languages',
+        achievements: 'Achievements & Activities',
+        interests: 'Interests'
+      })
     },
     sectionVisibility: {
-      summary: { type: Boolean, default: true },
-      experience: { type: Boolean, default: true },
-      education: { type: Boolean, default: true },
-      skills: { type: Boolean, default: true },
-      projects: { type: Boolean, default: true },
-      certifications: { type: Boolean, default: true },
-      languages: { type: Boolean, default: true },
-      achievements: { type: Boolean, default: true },
-      interests: { type: Boolean, default: true }
+      type: mongoose.Schema.Types.Mixed,
+      default: () => ({
+        summary: true,
+        experience: true,
+        education: true,
+        skills: true,
+        projects: true,
+        certifications: true,
+        languages: true,
+        achievements: true,
+        interests: true
+      })
     },
     settings: {
       type: new mongoose.Schema(
@@ -196,7 +224,7 @@ const resumeSchema = new mongoose.Schema(
           },
           headerLayout: {
             type: String,
-            enum: ['left', 'center', 'right', 'sidebar'],
+            enum: ['left', 'center', 'right', 'sidebar', 'middle'],
             default: 'left'
           },
           showIcons: { type: Boolean, default: true },

@@ -170,7 +170,7 @@ export const CoverLetterEditorPage = () => {
   const settings = activeLetter.settings || {};
 
   return (
-    <div className="flex flex-col h-[calc(100vh-64px)] bg-slate-50 dark:bg-slate-950 overflow-hidden transition-colors">
+    <div className="flex flex-col h-screen bg-slate-50 dark:bg-slate-950 overflow-hidden transition-colors">
       <CoverLetterHeader />
 
       {/* Mobile Bar */}

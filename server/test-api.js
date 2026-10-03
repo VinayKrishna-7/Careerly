@@ -32,7 +32,7 @@ const runTests = async () => {
       body: JSON.stringify({
         name: 'Jane Doe',
         email: testEmail,
-        password: 'password123'
+        password: 'Password@123'
       })
     });
     const regData = await regRes.json();

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logoutUser } from '../../store/slices/authSlice.js';
@@ -15,6 +15,18 @@ export const Navbar = () => {
   const { user, isAuthenticated } = useSelector((state) => state.auth);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const userMenuRef = useRef(null);
+
+  // Close user dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
+        setIsUserMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const handleLogout = async () => {
     await dispatch(logoutUser());
@@ -100,7 +112,7 @@ export const Navbar = () => {
           <ThemeToggle />
 
           {isAuthenticated ? (
-            <div className="relative">
+            <div className="relative" ref={userMenuRef}>
               <button
                 onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
                 className="flex items-center gap-2.5 rounded-full border border-slate-200 bg-slate-50 p-1.5 pr-3 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors focus:outline-none"
@@ -119,44 +131,36 @@ export const Navbar = () => {
 
               {isUserMenuOpen && (
                 <div
-                  className="absolute right-0 mt-2 w-52 rounded-xl bg-white dark:bg-slate-800 p-1.5 shadow-floating border border-slate-100 dark:border-slate-700 animate-in fade-in zoom-in-95 duration-100 z-50"
-                  onMouseLeave={() => setIsUserMenuOpen(false)}
+                  className="absolute right-0 mt-2 w-56 rounded-xl bg-white dark:bg-slate-800 p-1.5 shadow-floating border border-slate-100 dark:border-slate-700 animate-in fade-in zoom-in-95 duration-100 z-50"
                 >
-                  <div className="px-3 py-2 border-b border-slate-100 dark:border-slate-700">
+                  {/* User Identity Header */}
+                  <div className="px-3 py-2.5 border-b border-slate-100 dark:border-slate-700/80">
                     <p className="text-xs font-bold text-slate-900 dark:text-white truncate">{user?.name}</p>
-                    <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate">{user?.email}</p>
+                    <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate mt-0.5">{user?.email}</p>
                   </div>
-                  <Link
-                    to="/dashboard"
-                    onClick={() => setIsUserMenuOpen(false)}
-                    className="flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
-                  >
-                    <LayoutDashboard className="h-4 w-4 text-slate-400" />
-                    My Resumes
-                  </Link>
-                  <Link
-                    to="/cover-letters"
-                    onClick={() => setIsUserMenuOpen(false)}
-                    className="flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
-                  >
-                    <FileText className="h-4 w-4 text-slate-400" />
-                    Cover Letters
-                  </Link>
-                  <Link
-                    to="/profile"
-                    onClick={() => setIsUserMenuOpen(false)}
-                    className="flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
-                  >
-                    <User className="h-4 w-4 text-slate-400" />
-                    Profile & Settings
-                  </Link>
-                  <button
-                    onClick={handleLogout}
-                    className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs font-medium text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors"
-                  >
-                    <LogOut className="h-4 w-4 text-rose-500" />
-                    Log Out
-                  </button>
+
+                  {/* Account Actions */}
+                  <div className="py-1">
+                    <Link
+                      to="/profile"
+                      onClick={() => setIsUserMenuOpen(false)}
+                      className="flex items-center gap-2.5 rounded-lg px-3 py-2 text-xs font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700/60 transition-colors"
+                    >
+                      <User className="h-4 w-4 text-slate-400" />
+                      <span>Profile &amp; Settings</span>
+                    </Link>
+                  </div>
+
+                  {/* Sign Out */}
+                  <div className="border-t border-slate-100 dark:border-slate-700/80 pt-1 mt-0.5">
+                    <button
+                      onClick={handleLogout}
+                      className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-xs font-medium text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors"
+                    >
+                      <LogOut className="h-4 w-4 text-rose-500" />
+                      <span>Log Out</span>
+                    </button>
+                  </div>
                 </div>
               )}
             </div>

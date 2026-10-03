@@ -25,6 +25,7 @@ import CertificationsForm from '../features/editor/forms/CertificationsForm.jsx'
 import LanguagesForm from '../features/editor/forms/LanguagesForm.jsx';
 import AchievementsForm from '../features/editor/forms/AchievementsForm.jsx';
 import InterestsForm from '../features/editor/forms/InterestsForm.jsx';
+import CustomSectionForm from '../features/editor/forms/CustomSectionForm.jsx';
 
 import Spinner from '../components/ui/Spinner.jsx';
 import {
@@ -42,7 +43,9 @@ import {
   Trophy,
   Heart,
   Eye,
-  Edit3
+  Edit3,
+  Sparkles,
+  Plus
 } from 'lucide-react';
 
 const SECTIONS = [
@@ -107,7 +110,23 @@ export const ResumeEditorPage = () => {
     );
   }
 
+  const customSections = activeResume?.customSections || [];
+
+  const dynamicSections = [
+    ...SECTIONS,
+    ...customSections.map((cs) => ({
+      id: cs.id,
+      label: activeResume?.sectionTitles?.[cs.id] || cs.title || 'Custom Section',
+      icon: <Sparkles className="h-3.5 w-3.5 text-brand-500" />,
+      isCustom: true
+    }))
+  ];
+
   const renderSectionForm = () => {
+    if (activeSection?.startsWith('custom_') || customSections.some((s) => s.id === activeSection)) {
+      return <CustomSectionForm sectionId={activeSection} />;
+    }
+
     switch (activeSection) {
       case 'summary':
         return <SummaryForm />;
@@ -134,7 +153,7 @@ export const ResumeEditorPage = () => {
   };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-64px)] bg-slate-50 dark:bg-slate-950 overflow-hidden transition-colors">
+    <div className="flex flex-col h-screen bg-slate-50 dark:bg-slate-950 overflow-hidden transition-colors">
       {/* Editor Top Navigation & Action Controls */}
       <EditorHeader />
 
@@ -199,7 +218,7 @@ export const ResumeEditorPage = () => {
           {/* Sub-navigation for Sections (Only visible on 'content' tab) */}
           {activeEditorTab === 'content' && (
             <div className="border-b border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-2 flex items-center gap-1 overflow-x-auto shrink-0 scrollbar-none">
-              {SECTIONS.map((sec) => {
+              {dynamicSections.map((sec) => {
                 const isActive = activeSection === sec.id;
                 return (
                   <button
@@ -217,6 +236,16 @@ export const ResumeEditorPage = () => {
                   </button>
                 );
               })}
+
+              <button
+                type="button"
+                onClick={() => dispatch(setActiveEditorTab('sections'))}
+                className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-semibold text-brand-600 dark:text-brand-400 hover:bg-brand-50 dark:hover:bg-brand-950/40 border border-dashed border-brand-300 dark:border-brand-700 whitespace-nowrap transition-all shrink-0 ml-1"
+                title="Add and organize sections"
+              >
+                <Plus className="h-3 w-3" />
+                <span>+ Section</span>
+              </button>
             </div>
           )}
 

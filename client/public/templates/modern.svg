@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 490" width="100%" height="100%">
+  <rect width="380" height="490" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+  <rect width="380" height="7" fill="#2563eb"/>
+
+  <!-- Left Header -->
+  <text x="24" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="800" fill="#0f172a" letter-spacing="-0.3">ALEX MORGAN</text>
+  <text x="24" y="47" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="600" fill="#2563eb">Senior Full Stack Software Engineer</text>
+  <text x="24" y="59" font-family="system-ui, -apple-system, sans-serif" font-size="7" fill="#64748b">alex.morgan@email.com • (555) 234-5678 • San Francisco, CA • linkedin.com/in/alexmorgan</text>
+
+  <!-- Summary -->
+  <text x="24" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="700" fill="#2563eb" letter-spacing="0.5">PROFESSIONAL SUMMARY</text>
+  <line x1="24" y1="84" x2="356" y2="84" stroke="#dbeafe" stroke-width="1.5"/>
+  <text x="24" y="95" font-family="system-ui, -apple-system, sans-serif" font-size="7" fill="#334155" line-height="1.4">
+    Innovative engineer with 6+ years of experience leading distributed cloud platforms and high-traffic web applications.
+  </text>
+  <text x="24" y="105" font-family="system-ui, -apple-system, sans-serif" font-size="7" fill="#334155">
+    Specialized in scalable microservice architectures, real-time analytics, and developer productivity tooling.
+  </text>
+
+  <!-- Experience -->
+  <text x="24" y="127" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="700" fill="#2563eb" letter-spacing="0.5">WORK EXPERIENCE</text>
+  <line x1="24" y1="131" x2="356" y2="131" stroke="#dbeafe" stroke-width="1.5"/>
+
+  <text x="24" y="144" font-family="system-ui, -apple-system, sans-serif" font-size="8" font-weight="700" fill="#0f172a">Lead Full Stack Engineer</text>
+  <text x="356" y="144" text-anchor="end" font-family="system-ui, -apple-system, sans-serif" font-size="7" font-weight="600" fill="#2563eb">2022 – Present</text>
+  <text x="24" y="154" font-family="system-ui, -apple-system, sans-serif" font-size="7.5" fill="#475569">CloudScale Technologies • San Francisco, CA</text>
+  
+  <circle cx="28" cy="164" r="1.5" fill="#2563eb"/>
+  <text x="34" y="166" font-family="system-ui, -apple-system, sans-serif" font-size="7" fill="#334155">Architected real-time streaming dashboard processing 120,000+ events/sec with sub-100ms latency.</text>
+  <circle cx="28" cy="175" r="1.5" fill="#2563eb"/>
+  <text x="34" y="177" font-family="system-ui, -apple-system, sans-serif" font-size="7" fill="#334155">Spearheaded Kubernetes migration reducing monthly cloud infrastructure costs by 28%.</text>
+
+  <text x="24" y="196" font-family="system-ui, -apple-system, sans-serif" font-size="8" font-weight="700" fill="#0f172a">Senior Software Engineer</text>
+  <text x="356" y="196" text-anchor="end" font-family="system-ui, -apple-system, sans-serif" font-size="7" font-weight="600" fill="#2563eb">2019 – 2022</text>
+  <text x="24" y="206" font-family="system-ui, -apple-system, sans-serif" font-size="7.5" fill="#475569">StripeSync Inc • San Jose, CA</text>
+  
+  <circle cx="28" cy="216" r="1.5" fill="#2563eb"/>
+  <text x="34" y="218" font-family="system-ui, -apple-system, sans-serif" font-size="7" fill="#334155">Built high-volume payment checkout SDK utilized by 15,000+ merchant websites worldwide.</text>
+  <circle cx="28" cy="227" r="1.5" fill="#2563eb"/>
+  <text x="34" y="229" font-family="system-ui, -apple-system, sans-serif" font-size="7" fill="#334155">Mentored 8 engineers across frontend standards, TypeScript typing, and automated testing.</text>
+
+  <!-- Projects -->
+  <text x="24" y="250" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="700" fill="#2563eb" letter-spacing="0.5">KEY PROJECTS</text>
+  <line x1="24" y1="254" x2="356" y2="254" stroke="#dbeafe" stroke-width="1.5"/>
+
+  <text x="24" y="267" font-family="system-ui, -apple-system, sans-serif" font-size="8" font-weight="700" fill="#0f172a">Distributed Cache Engine</text>
+  <text x="356" y="267" text-anchor="end" font-family="system-ui, -apple-system, sans-serif" font-size="7" fill="#64748b">React, Go, Redis</text>
+  <text x="24" y="277" font-family="system-ui, -apple-system, sans-serif" font-size="7" fill="#334155">High performance in-memory caching system achieving 4.8x faster retrieval over legacy relational storage.</text>
+
+  <!-- Skills Pill Badges -->
+  <text x="24" y="302" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="700" fill="#2563eb" letter-spacing="0.5">TECHNICAL SKILLS</text>
+  <line x1="24" y1="306" x2="356" y2="306" stroke="#dbeafe" stroke-width="1.5"/>
+
+  <!-- Row 1 of Pills -->
+  <g transform="translate(24, 314)">
+    <rect width="44" height="15" rx="4" fill="#eff6ff" stroke="#bfdbfe" stroke-width="0.8"/>
+    <text x="22" y="10.5" text-anchor="middle" font-family="system-ui, sans-serif" font-size="6.5" font-weight="600" fill="#1d4ed8">React</text>
+
+    <rect x="48" width="56" height="15" rx="4" fill="#eff6ff" stroke="#bfdbfe" stroke-width="0.8"/>
+    <text x="76" y="10.5" text-anchor="middle" font-family="system-ui, sans-serif" font-size="6.5" font-weight="600" fill="#1d4ed8">TypeScript</text>
+
+    <rect x="108" width="46" height="15" rx="4" fill="#eff6ff" stroke="#bfdbfe" stroke-width="0.8"/>
+    <text x="131" y="10.5" text-anchor="middle" font-family="system-ui, sans-serif" font-size="6.5" font-weight="600" fill="#1d4ed8">Node.js</text>
+
+    <rect x="158" width="44" height="15" rx="4" fill="#eff6ff" stroke="#bfdbfe" stroke-width="0.8"/>
+    <text x="180" y="10.5" text-anchor="middle" font-family="system-ui, sans-serif" font-size="6.5" font-weight="600" fill="#1d4ed8">Python</text>
+
+    <rect x="206" width="44" height="15" rx="4" fill="#eff6ff" stroke="#bfdbfe" stroke-width="0.8"/>
+    <text x="228" y="10.5" text-anchor="middle" font-family="system-ui, sans-serif" font-size="6.5" font-weight="600" fill="#1d4ed8">Docker</text>
+
+    <rect x="254" width="38" height="15" rx="4" fill="#eff6ff" stroke="#bfdbfe" stroke-width="0.8"/>
+    <text x="273" y="10.5" text-anchor="middle" font-family="system-ui, sans-serif" font-size="6.5" font-weight="600" fill="#1d4ed8">AWS</text>
+
+    <rect x="296" width="36" height="15" rx="4" fill="#eff6ff" stroke="#bfdbfe" stroke-width="0.8"/>
+    <text x="314" y="10.5" text-anchor="middle" font-family="system-ui, sans-serif" font-size="6.5" font-weight="600" fill="#1d4ed8">GraphQL</text>
+  </g>
+</svg>

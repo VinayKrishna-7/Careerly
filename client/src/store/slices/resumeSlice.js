@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { resumeApi } from '../../services/resumeApi.js';
 import { authApi } from '../../services/authApi.js';
+import { DEFAULT_SECTION_ORDER } from '../../utils/constants.js';
 
 export const fetchResumes = createAsyncThunk('resume/fetchResumes', async (params, { rejectWithValue }) => {
   try {
@@ -171,6 +172,131 @@ const resumeSlice = createSlice({
         state.isDirty = true;
       }
     },
+    // Custom sections management
+    addCustomSection: (state, action) => {
+      if (!state.activeResume) return;
+      const { id, title, items } = action.payload || {};
+      const sectionId = id || `custom_${Date.now()}`;
+      const sectionTitle = title?.trim() || 'Custom Section';
+
+      if (!Array.isArray(state.activeResume.customSections)) {
+        state.activeResume.customSections = [];
+      }
+
+      state.activeResume.customSections.push({
+        id: sectionId,
+        title: sectionTitle,
+        items: items || []
+      });
+
+      if (!Array.isArray(state.activeResume.sectionOrder)) {
+        state.activeResume.sectionOrder = [...DEFAULT_SECTION_ORDER];
+      }
+      if (!state.activeResume.sectionOrder.includes(sectionId)) {
+        state.activeResume.sectionOrder.push(sectionId);
+      }
+
+      if (!state.activeResume.sectionTitles) {
+        state.activeResume.sectionTitles = {};
+      }
+      state.activeResume.sectionTitles[sectionId] = sectionTitle;
+
+      if (!state.activeResume.sectionVisibility) {
+        state.activeResume.sectionVisibility = {};
+      }
+      state.activeResume.sectionVisibility[sectionId] = true;
+
+      state.activeSection = sectionId;
+      state.isDirty = true;
+    },
+    removeCustomSection: (state, action) => {
+      const sectionId = action.payload;
+      if (!state.activeResume) return;
+
+      if (Array.isArray(state.activeResume.customSections)) {
+        state.activeResume.customSections = state.activeResume.customSections.filter(
+          (s) => s.id !== sectionId
+        );
+      }
+
+      if (Array.isArray(state.activeResume.sectionOrder)) {
+        state.activeResume.sectionOrder = state.activeResume.sectionOrder.filter(
+          (id) => id !== sectionId
+        );
+      }
+
+      if (state.activeResume.sectionTitles) {
+        delete state.activeResume.sectionTitles[sectionId];
+      }
+      if (state.activeResume.sectionVisibility) {
+        delete state.activeResume.sectionVisibility[sectionId];
+      }
+
+      if (state.activeSection === sectionId) {
+        state.activeSection = 'personalInfo';
+      }
+
+      state.isDirty = true;
+    },
+    updateCustomSectionTitle: (state, action) => {
+      const { sectionId, title } = action.payload;
+      if (!state.activeResume) return;
+      const trimmedTitle = title?.trim() || 'Custom Section';
+
+      if (Array.isArray(state.activeResume.customSections)) {
+        const sec = state.activeResume.customSections.find((s) => s.id === sectionId);
+        if (sec) {
+          sec.title = trimmedTitle;
+        }
+      }
+
+      if (!state.activeResume.sectionTitles) {
+        state.activeResume.sectionTitles = {};
+      }
+      state.activeResume.sectionTitles[sectionId] = trimmedTitle;
+
+      state.isDirty = true;
+    },
+    addCustomSectionItem: (state, action) => {
+      const { sectionId, item } = action.payload;
+      if (!state.activeResume || !Array.isArray(state.activeResume.customSections)) return;
+      const sec = state.activeResume.customSections.find((s) => s.id === sectionId);
+      if (sec) {
+        if (!Array.isArray(sec.items)) sec.items = [];
+        sec.items.push(item);
+        state.isDirty = true;
+      }
+    },
+    updateCustomSectionItem: (state, action) => {
+      const { sectionId, index, item } = action.payload;
+      if (!state.activeResume || !Array.isArray(state.activeResume.customSections)) return;
+      const sec = state.activeResume.customSections.find((s) => s.id === sectionId);
+      if (sec && Array.isArray(sec.items) && sec.items[index]) {
+        sec.items[index] = { ...sec.items[index], ...item };
+        state.isDirty = true;
+      }
+    },
+    removeCustomSectionItem: (state, action) => {
+      const { sectionId, index } = action.payload;
+      if (!state.activeResume || !Array.isArray(state.activeResume.customSections)) return;
+      const sec = state.activeResume.customSections.find((s) => s.id === sectionId);
+      if (sec && Array.isArray(sec.items)) {
+        sec.items.splice(index, 1);
+        state.isDirty = true;
+      }
+    },
+    reorderCustomSectionItems: (state, action) => {
+      const { sectionId, fromIndex, toIndex } = action.payload;
+      if (!state.activeResume || !Array.isArray(state.activeResume.customSections)) return;
+      const sec = state.activeResume.customSections.find((s) => s.id === sectionId);
+      if (sec && Array.isArray(sec.items)) {
+        const items = [...sec.items];
+        const [moved] = items.splice(fromIndex, 1);
+        items.splice(toIndex, 0, moved);
+        sec.items = items;
+        state.isDirty = true;
+      }
+    },
     clearActiveResume: (state) => {
       state.activeResume = null;
       state.isDirty = false;
@@ -282,6 +408,13 @@ export const {
   removeArrayItem,
   updateArrayItem,
   reorderArrayItem,
+  addCustomSection,
+  removeCustomSection,
+  updateCustomSectionTitle,
+  addCustomSectionItem,
+  updateCustomSectionItem,
+  removeCustomSectionItem,
+  reorderCustomSectionItems,
   clearActiveResume
 } = resumeSlice.actions;
 

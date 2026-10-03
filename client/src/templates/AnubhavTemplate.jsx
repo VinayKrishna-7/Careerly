@@ -1,5 +1,7 @@
 import React from 'react';
 import { formatDate, ensureUrl, groupSkills, parseBulletPoints, formatCleanUrl } from '../utils/formatters.js';
+import CustomSectionRenderer from './common/CustomSectionRenderer.jsx';
+import { getHeaderAlignment } from '../utils/constants.js';
 
 export const AnubhavTemplate = ({ resume }) => {
   const {
@@ -13,11 +15,12 @@ export const AnubhavTemplate = ({ resume }) => {
     languages = [],
     achievements = [],
     interests = [],
+    customSections = [],
     sectionOrder = [],
     sectionTitles = {},
     sectionVisibility = {},
     settings = {}
-  } = resume;
+  } = resume || {};
 
   const primaryColor = settings.primaryColor || '#b45309';
   const secondaryColor = settings.secondaryColor || '#475569';
@@ -34,6 +37,7 @@ export const AnubhavTemplate = ({ resume }) => {
   const linksFontSize = settings.linksFontSize || 12.5;
   const sectionTitleFontSize = settings.sectionTitleFontSize || 16;
   const bodyFontSize = settings.bodyFontSize || 13.5;
+  const headerAlign = getHeaderAlignment(settings.headerLayout, 'anubhav');
 
   const renderSummary = () => {
     if (!summary || sectionVisibility.summary === false) return null;
@@ -397,14 +401,42 @@ export const AnubhavTemplate = ({ resume }) => {
     interests: renderInterests
   };
 
-  const sectionsToRender = (sectionOrder || Object.keys(sectionMap)).map(
+  customSections.forEach((sec) => {
+    sectionMap[sec.id] = () => (
+      <CustomSectionRenderer
+        key={sec.id}
+        section={sec}
+        sectionTitles={sectionTitles}
+        sectionVisibility={sectionVisibility}
+        template="anubhav"
+        styling={{
+          primaryColor,
+          sectionTitleColor,
+          textColor,
+          sectionTitleFontSize,
+          sectionTitleFontWeight,
+          bodyFontSize,
+          bodyFontWeight
+        }}
+      />
+    );
+  });
+
+  const allOrderedKeys = [...(sectionOrder || Object.keys(sectionMap))];
+  customSections.forEach((sec) => {
+    if (!allOrderedKeys.includes(sec.id)) {
+      allOrderedKeys.push(sec.id);
+    }
+  });
+
+  const sectionsToRender = allOrderedKeys.map(
     (name) => sectionMap[name] && sectionMap[name]()
   );
 
   return (
     <div className="space-y-3.5" style={{ color: textColor }}>
       {/* Anubhav Header */}
-      <div className="pb-2.5 border-b-2" style={{ borderColor: primaryColor }}>
+      <div className={`pb-2.5 border-b-2 ${headerAlign.container}`} style={{ borderColor: primaryColor }}>
         <h1
           className="font-extrabold tracking-tight"
           style={{ fontSize: `${nameFontSize}px`, color: primaryColor }}
@@ -428,7 +460,7 @@ export const AnubhavTemplate = ({ resume }) => {
 
           return (
             <div
-              className="flex flex-wrap items-center gap-x-3 gap-y-1 pt-1.5"
+              className={`flex flex-wrap items-center gap-x-3 gap-y-1 pt-1.5 ${headerAlign.contact}`}
               style={{ fontSize: `${contactFontSize}px`, fontWeight: contactFontWeight, color: textColor }}
             >
               {personalInfo.email && (

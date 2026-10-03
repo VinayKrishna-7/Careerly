@@ -178,6 +178,18 @@ export const LoginPage = () => {
         >
           Sign In
         </Button>
+
+        <Button
+          type="button"
+          variant="outline"
+          className="w-full text-xs border-dashed border-brand-300 dark:border-brand-700 text-brand-700 dark:text-brand-300 hover:bg-brand-50/50"
+          onClick={() => {
+            setValue('email', 'alex.morgan@example.com');
+            setValue('password', 'password123');
+          }}
+        >
+          ⚡ Fill Demo Account (alex.morgan@example.com)
+        </Button>
       </form>
 
       <div className="text-center text-xs text-slate-500 dark:text-slate-400 pt-2 border-t border-slate-100 dark:border-slate-800">

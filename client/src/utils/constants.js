@@ -128,6 +128,7 @@ export const DEFAULT_STYLING_SETTINGS = {
     fontFamily: 'Inter',
     pageMargin: 'normal',
     lineSpacing: 'normal',
+    headerLayout: 'left',
     projectLinkStyle: 'name',
     contactLinkStyle: 'name'
   },
@@ -150,6 +151,7 @@ export const DEFAULT_STYLING_SETTINGS = {
     fontFamily: 'Times New Roman',
     pageMargin: 'normal',
     lineSpacing: 'normal',
+    headerLayout: 'center',
     projectLinkStyle: 'name',
     contactLinkStyle: 'name'
   },
@@ -172,6 +174,7 @@ export const DEFAULT_STYLING_SETTINGS = {
     fontFamily: 'Arial',
     pageMargin: 'normal',
     lineSpacing: 'normal',
+    headerLayout: 'left',
     projectLinkStyle: 'name',
     contactLinkStyle: 'name'
   },
@@ -194,6 +197,7 @@ export const DEFAULT_STYLING_SETTINGS = {
     fontFamily: 'Inter',
     pageMargin: 'normal',
     lineSpacing: 'normal',
+    headerLayout: 'left',
     projectLinkStyle: 'name',
     contactLinkStyle: 'name'
   },
@@ -216,6 +220,7 @@ export const DEFAULT_STYLING_SETTINGS = {
     fontFamily: 'Roboto',
     pageMargin: 'normal',
     lineSpacing: 'normal',
+    headerLayout: 'center',
     projectLinkStyle: 'name',
     contactLinkStyle: 'name'
   },
@@ -238,6 +243,7 @@ export const DEFAULT_STYLING_SETTINGS = {
     fontFamily: 'Inter',
     pageMargin: 'normal',
     lineSpacing: 'normal',
+    headerLayout: 'left',
     projectLinkStyle: 'name',
     contactLinkStyle: 'name'
   },
@@ -260,6 +266,7 @@ export const DEFAULT_STYLING_SETTINGS = {
     fontFamily: 'Times New Roman',
     pageMargin: 'normal',
     lineSpacing: 'compact',
+    headerLayout: 'center',
     projectLinkStyle: 'name',
     contactLinkStyle: 'name'
   },
@@ -282,6 +289,7 @@ export const DEFAULT_STYLING_SETTINGS = {
     fontFamily: 'Arial',
     pageMargin: 'normal',
     lineSpacing: 'normal',
+    headerLayout: 'left',
     projectLinkStyle: 'name',
     contactLinkStyle: 'name'
   },
@@ -304,9 +312,45 @@ export const DEFAULT_STYLING_SETTINGS = {
     fontFamily: 'Calibri',
     pageMargin: 'normal',
     lineSpacing: 'normal',
+    headerLayout: 'left',
     projectLinkStyle: 'name',
     contactLinkStyle: 'name'
   }
+};
+
+export const HEADER_ALIGNMENT_OPTIONS = [
+  { id: 'left', name: 'Left', label: 'Left Aligned', description: 'Classic left-aligned header' },
+  { id: 'center', name: 'Middle', label: 'Middle (Centered)', description: 'Balanced centered header' },
+  { id: 'right', name: 'Right', label: 'Right Aligned', description: 'Modern right-aligned header' }
+];
+
+export const getHeaderAlignment = (headerLayout, template = 'modern') => {
+  const defaultLayout =
+    template === 'jakes' || template === 'mteck' || template === 'professional' ? 'center' : 'left';
+  const layout = headerLayout === 'middle' ? 'center' : headerLayout || defaultLayout;
+
+  if (layout === 'center') {
+    return {
+      align: 'center',
+      container: 'text-center items-center',
+      contact: 'justify-center text-center',
+      items: 'items-center justify-center'
+    };
+  }
+  if (layout === 'right') {
+    return {
+      align: 'right',
+      container: 'text-right items-end',
+      contact: 'justify-end text-right',
+      items: 'items-end justify-end'
+    };
+  }
+  return {
+    align: 'left',
+    container: 'text-left items-start',
+    contact: 'justify-start text-left',
+    items: 'items-start justify-start'
+  };
 };
 
 export const getDefaultSettings = (templateId = 'modern') => {

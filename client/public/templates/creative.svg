@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 490" width="100%" height="100%">
+  <rect width="380" height="490" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- Left Sidebar (Width 116) -->
+  <rect width="116" height="490" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.5"/>
+  <rect width="4" height="490" fill="#7c3aed"/>
+
+  <!-- Avatar Circle -->
+  <circle cx="60" cy="46" r="22" fill="#7c3aed"/>
+  <text x="60" y="52" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#ffffff">CM</text>
+
+  <!-- Sidebar Contact -->
+  <text x="16" y="88" font-family="system-ui, sans-serif" font-size="7.5" font-weight="bold" fill="#7c3aed">CONTACT</text>
+  <line x1="16" y1="92" x2="104" y2="92" stroke="#ddd6fe" stroke-width="1"/>
+  <text x="16" y="103" font-family="system-ui, sans-serif" font-size="6" fill="#475569">clara@design.dev</text>
+  <text x="16" y="113" font-family="system-ui, sans-serif" font-size="6" fill="#475569">(555) 901-2345</text>
+  <text x="16" y="123" font-family="system-ui, sans-serif" font-size="6" fill="#475569">Austin, TX</text>
+  <text x="16" y="133" font-family="system-ui, sans-serif" font-size="6" fill="#475569">claradesign.io</text>
+
+  <!-- Sidebar Skills with Bars -->
+  <text x="16" y="156" font-family="system-ui, sans-serif" font-size="7.5" font-weight="bold" fill="#7c3aed">DESIGN &amp; CODE</text>
+  <line x1="16" y1="160" x2="104" y2="160" stroke="#ddd6fe" stroke-width="1"/>
+  
+  <text x="16" y="172" font-family="system-ui, sans-serif" font-size="6" font-weight="600" fill="#334155">UI/UX Design</text>
+  <rect x="16" y="175" width="88" height="3" rx="1.5" fill="#e2e8f0"/>
+  <rect x="16" y="175" width="80" height="3" rx="1.5" fill="#7c3aed"/>
+
+  <text x="16" y="188" font-family="system-ui, sans-serif" font-size="6" font-weight="600" fill="#334155">React &amp; Next.js</text>
+  <rect x="16" y="191" width="88" height="3" rx="1.5" fill="#e2e8f0"/>
+  <rect x="16" y="191" width="76" height="3" rx="1.5" fill="#7c3aed"/>
+
+  <text x="16" y="204" font-family="system-ui, sans-serif" font-size="6" font-weight="600" fill="#334155">Figma &amp; Prototyping</text>
+  <rect x="16" y="207" width="88" height="3" rx="1.5" fill="#e2e8f0"/>
+  <rect x="16" y="207" width="84" height="3" rx="1.5" fill="#7c3aed"/>
+
+  <text x="16" y="220" font-family="system-ui, sans-serif" font-size="6" font-weight="600" fill="#334155">Tailwind CSS</text>
+  <rect x="16" y="223" width="88" height="3" rx="1.5" fill="#e2e8f0"/>
+  <rect x="16" y="223" width="82" height="3" rx="1.5" fill="#7c3aed"/>
+
+  <!-- Right Main Area -->
+  <g transform="translate(132, 0)">
+    <text x="0" y="38" font-family="system-ui, sans-serif" font-size="16" font-weight="800" fill="#1e1b4b">CLARA MARTINEZ</text>
+    <text x="0" y="51" font-family="system-ui, sans-serif" font-size="8.5" font-weight="600" fill="#7c3aed">Creative Product Designer &amp; UI Engineer</text>
+    
+    <text x="0" y="74" font-family="system-ui, sans-serif" font-size="8.5" font-weight="700" fill="#1e1b4b">ABOUT ME</text>
+    <line x1="0" y1="78" x2="228" y2="78" stroke="#ede9fe" stroke-width="1.5"/>
+    <text x="0" y="90" font-family="system-ui, sans-serif" font-size="7" fill="#475569">Hybrid product builder crafting pixel-perfect web apps with modern aesthetic harmony.</text>
+
+    <text x="0" y="114" font-family="system-ui, sans-serif" font-size="8.5" font-weight="700" fill="#1e1b4b">EXPERIENCE</text>
+    <line x1="0" y1="118" x2="228" y2="118" stroke="#ede9fe" stroke-width="1.5"/>
+
+    <text x="0" y="132" font-family="system-ui, sans-serif" font-size="8" font-weight="700" fill="#0f172a">Senior Product Designer</text>
+    <text x="228" y="132" text-anchor="end" font-family="system-ui, sans-serif" font-size="7" fill="#7c3aed">2021 – Present</text>
+    <text x="0" y="142" font-family="system-ui, sans-serif" font-size="7" fill="#64748b">Studio Lumina • Austin, TX</text>
+    <circle cx="4" cy="151" r="1.5" fill="#7c3aed"/>
+    <text x="10" y="153" font-family="system-ui, sans-serif" font-size="6.8" fill="#334155">Led 0-to-1 design system adopted by 40+ cross-functional teams.</text>
+    <circle cx="4" cy="162" r="1.5" fill="#7c3aed"/>
+    <text x="10" y="164" font-family="system-ui, sans-serif" font-size="6.8" fill="#334155">Boosted product trial activation by 34% through checkout redesign.</text>
+
+    <text x="0" y="185" font-family="system-ui, sans-serif" font-size="8" font-weight="700" fill="#0f172a">Frontend UI Developer</text>
+    <text x="228" y="185" text-anchor="end" font-family="system-ui, sans-serif" font-size="7" fill="#7c3aed">2018 – 2021</text>
+    <text x="0" y="195" font-family="system-ui, sans-serif" font-size="7" fill="#64748b">PixelCraft Media • Denver, CO</text>
+    <circle cx="4" cy="204" r="1.5" fill="#7c3aed"/>
+    <text x="10" y="206" font-family="system-ui, sans-serif" font-size="6.8" fill="#334155">Developed 20+ responsive web platforms with Framer Motion animations.</text>
+  </g>
+</svg>

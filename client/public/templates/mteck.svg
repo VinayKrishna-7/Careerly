@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 490" width="100%" height="100%">
+  <rect width="380" height="490" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+
+  <text x="190" y="32" text-anchor="middle" font-family="'Courier New', monospace, sans-serif" font-size="16" font-weight="bold" fill="#1e3a8a">MICHAEL TECK</text>
+  <text x="190" y="45" text-anchor="middle" font-family="system-ui, sans-serif" font-size="7" fill="#334155">mteck@alumni.edu | (555) 432-1098 | linkedin.com/in/mteck | github.com/mteck</text>
+
+  <!-- EDUCATION -->
+  <text x="24" y="66" font-family="system-ui, sans-serif" font-size="9" font-weight="bold" fill="#1e3a8a">EDUCATION</text>
+  <line x1="24" y1="70" x2="356" y2="70" stroke="#1e3a8a" stroke-width="1.2"/>
+  
+  <text x="24" y="82" font-family="system-ui, sans-serif" font-size="7.5" font-weight="bold" fill="#0f172a">University of Waterloo</text>
+  <text x="356" y="82" text-anchor="end" font-family="system-ui, sans-serif" font-size="7" fill="#475569">Waterloo, ON</text>
+  <text x="24" y="92" font-family="system-ui, sans-serif" font-size="7" fill="#334155">Bachelor of Applied Science in Software Engineering, Honors</text>
+  <text x="356" y="92" text-anchor="end" font-family="system-ui, sans-serif" font-size="7" fill="#475569">Sept 2017 – Apr 2022</text>
+
+  <!-- EXPERIENCE -->
+  <text x="24" y="114" font-family="system-ui, sans-serif" font-size="9" font-weight="bold" fill="#1e3a8a">WORK EXPERIENCE</text>
+  <line x1="24" y1="118" x2="356" y2="118" stroke="#1e3a8a" stroke-width="1.2"/>
+
+  <text x="24" y="130" font-family="system-ui, sans-serif" font-size="7.5" font-weight="bold" fill="#0f172a">Software Engineer • Citadel Systems</text>
+  <text x="356" y="130" text-anchor="end" font-family="system-ui, sans-serif" font-size="7" fill="#475569">May 2022 – Present</text>
+  
+  <circle cx="28" cy="140" r="1.5" fill="#1e3a8a"/>
+  <text x="34" y="142" font-family="system-ui, sans-serif" font-size="6.8" fill="#334155">Engineered ultra-low latency algorithmic order matching engine in C++20.</text>
+  <circle cx="28" cy="151" r="1.5" fill="#1e3a8a"/>
+  <text x="34" y="153" font-family="system-ui, sans-serif" font-size="6.8" fill="#334155">Optimized lock-free ring buffers yielding 2.8 microsecond tick-to-trade speedup.</text>
+
+  <!-- PROJECTS -->
+  <text x="24" y="176" font-family="system-ui, sans-serif" font-size="9" font-weight="bold" fill="#1e3a8a">NOTABLE PROJECTS</text>
+  <line x1="24" y1="180" x2="356" y2="180" stroke="#1e3a8a" stroke-width="1.2"/>
+
+  <text x="24" y="192" font-family="system-ui, sans-serif" font-size="7.5" font-weight="bold" fill="#0f172a">Distributed KV Store</text>
+  <text x="356" y="192" text-anchor="end" font-family="system-ui, sans-serif" font-size="7" fill="#475569">Go, Raft, gRPC</text>
+  <circle cx="28" cy="202" r="1.5" fill="#1e3a8a"/>
+  <text x="34" y="204" font-family="system-ui, sans-serif" font-size="6.8" fill="#334155">Implemented Raft distributed consensus protocol resilient to network partition faults.</text>
+
+  <!-- SKILLS -->
+  <text x="24" y="228" font-family="system-ui, sans-serif" font-size="9" font-weight="bold" fill="#1e3a8a">SKILLS &amp; TOOLS</text>
+  <line x1="24" y1="232" x2="356" y2="232" stroke="#1e3a8a" stroke-width="1.2"/>
+  <text x="24" y="244" font-family="system-ui, sans-serif" font-size="7" fill="#334155"><tspan font-weight="bold">Languages:</tspan> C++, Rust, Python, Go, SQL, Bash</text>
+  <text x="24" y="255" font-family="system-ui, sans-serif" font-size="7" fill="#334155"><tspan font-weight="bold">Systems:</tspan> Linux Kernel, POSIX Threads, Docker, Valgrind, GDB</text>
+</svg>

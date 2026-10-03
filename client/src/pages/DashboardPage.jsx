@@ -30,7 +30,8 @@ import {
   Clock,
   Sparkles,
   Check,
-  Target
+  Target,
+  Briefcase
 } from 'lucide-react';
 import { TEMPLATE_METADATA } from '../utils/constants.js';
 import { timeAgo } from '../utils/formatters.js';
@@ -275,114 +276,170 @@ export const DashboardPage = () => {
           {resumesList.map((resume) => {
             const templateInfo =
               TEMPLATE_METADATA.find((t) => t.id === resume.template) || TEMPLATE_METADATA[0];
+            const primaryColor = resume.settings?.primaryColor || templateInfo.previewColor || '#2563eb';
 
             return (
               <div
                 key={resume._id}
-                className="group relative rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-card hover:shadow-floating transition-all duration-200 overflow-hidden flex flex-col justify-between"
+                className="group relative rounded-2xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm hover:shadow-xl transition-all duration-300 hover:border-brand-500/40 dark:hover:border-brand-500/40 overflow-hidden flex flex-col justify-between"
               >
-                {/* Visual Header / Mini Preview Accent Banner */}
-                <div
-                  className="h-28 p-4 relative overflow-hidden flex flex-col justify-between"
-                  style={{
-                    backgroundColor: resume.settings?.primaryColor || templateInfo.previewColor,
-                    opacity: 0.92
-                  }}
-                >
-                  <div className="flex items-center justify-between text-white">
-                    <Badge size="xs" className="bg-white/20 text-white border-white/30 backdrop-blur">
-                      {templateInfo.name}
-                    </Badge>
-                    <span className="text-[11px] text-white/90 font-medium">
-                      Updated {timeAgo(resume.updatedAt)}
+                {/* Visual Resume Template Preview Image Frame */}
+                <div className="relative h-56 bg-slate-100/80 dark:bg-slate-950/80 border-b border-slate-200/80 dark:border-slate-800/80 flex items-center justify-center p-4 overflow-hidden">
+                  {/* Subtle Ambient Accent Glow */}
+                  <div
+                    className="absolute -top-10 left-1/2 -translate-x-1/2 w-48 h-32 rounded-full blur-2xl opacity-15 pointer-events-none"
+                    style={{ backgroundColor: primaryColor }}
+                  />
+
+                  {/* Top Floating Badges */}
+                  <div className="absolute top-2.5 inset-x-2.5 flex items-center justify-between z-10 pointer-events-none">
+                    <span className="px-2.5 py-1 rounded-full text-[10.5px] font-bold bg-white/95 dark:bg-slate-900/95 backdrop-blur border border-slate-200/80 dark:border-slate-700/80 text-slate-800 dark:text-slate-200 shadow-sm flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full shrink-0 shadow-xs" style={{ backgroundColor: primaryColor }} />
+                      <span>{templateInfo.name}</span>
+                    </span>
+                    <span className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-white/95 dark:bg-slate-900/95 backdrop-blur border border-slate-200/80 dark:border-slate-700/80 text-slate-500 dark:text-slate-400 shadow-sm flex items-center gap-1">
+                      <Clock className="w-3 h-3 text-slate-400" />
+                      <span>{timeAgo(resume.updatedAt)}</span>
                     </span>
                   </div>
 
-                  <div className="text-white">
-                    <p className="text-xs font-semibold text-white/80 truncate">
-                      {resume.personalInfo?.jobTitle || 'Senior Software Engineer'}
-                    </p>
-                    <p className="text-[11px] text-white/70 truncate">
-                      {resume.personalInfo?.fullName || 'Alex Morgan'}
-                    </p>
+                  {/* Normal Resume Template Image in Paper Frame */}
+                  <div className="relative w-full max-w-[210px] h-[190px] mt-4 bg-white rounded-t-sm shadow-[0_6px_20px_-3px_rgba(0,0,0,0.18)] dark:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.6)] border border-slate-200/90 overflow-hidden transform group-hover:scale-[1.03] transition-transform duration-300">
+                    <img
+                      src={`/templates/${resume.template || 'modern'}.svg`}
+                      alt={`${templateInfo.name} template`}
+                      className="w-full h-full object-cover object-top select-none pointer-events-none"
+                      onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = '/templates/modern.svg';
+                      }}
+                    />
+                  </div>
+
+                  {/* Frosted Hover Action Overlay */}
+                  <div className="absolute inset-0 z-20 bg-slate-950/45 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center gap-2 px-4">
+                    <Link to={`/editor/${resume._id}`}>
+                      <Button
+                        variant="primary"
+                        size="sm"
+                        className="text-xs font-bold shadow-lg"
+                        leftIcon={<Edit3 className="h-3.5 w-3.5" />}
+                      >
+                        Edit Resume
+                      </Button>
+                    </Link>
+                    <Link to={`/preview/${resume._id}`}>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="text-xs font-semibold bg-white/95 text-slate-800 hover:bg-white border-white shadow-lg"
+                        leftIcon={<Eye className="h-3.5 w-3.5" />}
+                      >
+                        Preview
+                      </Button>
+                    </Link>
                   </div>
                 </div>
 
                 {/* Card Body */}
-                <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
+                <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-4">
                   <div>
                     <div className="flex items-start justify-between gap-2">
-                      <h3 className="font-bold text-slate-900 dark:text-white text-base leading-snug group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors truncate">
+                      <Link
+                        to={`/editor/${resume._id}`}
+                        className="font-bold text-slate-900 dark:text-white text-base leading-snug hover:text-brand-600 dark:hover:text-brand-400 transition-colors line-clamp-1"
+                        title={resume.title}
+                      >
                         {resume.title}
-                      </h3>
+                      </Link>
                       <button
                         onClick={() => {
                           setRenameTarget(resume);
                           setNewTitle(resume.title);
                         }}
-                        title="Rename"
-                        className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                        title="Rename resume"
+                        className="text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 p-1 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors shrink-0"
                       >
                         <Edit3 className="h-3.5 w-3.5" />
                       </button>
                     </div>
 
-                    <div className="flex flex-wrap gap-2 text-[11px] text-slate-500 dark:text-slate-400 mt-2">
-                      <span>{resume.experience?.length || 0} Experiences</span> &bull;{' '}
-                      <span>{resume.skills?.length || 0} Skills</span> &bull;{' '}
-                      <span>{resume.projects?.length || 0} Projects</span>
+                    {/* Metadata Stats Badges */}
+                    <div className="flex flex-wrap items-center gap-1.5 mt-2.5">
+                      <span className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/80 px-2 py-0.5 rounded-md">
+                        <Briefcase className="h-3 w-3 text-slate-400" />
+                        <span>{resume.experience?.length || 0} Exp</span>
+                      </span>
+                      <span className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/80 px-2 py-0.5 rounded-md">
+                        <Sparkles className="h-3 w-3 text-slate-400" />
+                        <span>{resume.skills?.length || 0} Skills</span>
+                      </span>
+                      <span className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/80 px-2 py-0.5 rounded-md">
+                        <FileText className="h-3 w-3 text-slate-400" />
+                        <span>{resume.projects?.length || 0} Projects</span>
+                      </span>
                     </div>
                   </div>
 
-                  {/* Actions Grid */}
-                  <div className="pt-3 border-t border-slate-100 dark:border-slate-800 grid grid-cols-2 gap-2">
-                    <Link to={`/editor/${resume._id}`} className="w-full">
-                      <Button variant="primary" size="sm" className="w-full text-xs" leftIcon={<Edit3 className="h-3.5 w-3.5" />}>
-                        Edit
-                      </Button>
-                    </Link>
-                    <Link to={`/preview/${resume._id}`} className="w-full">
-                      <Button variant="outline" size="sm" className="w-full text-xs" leftIcon={<Eye className="h-3.5 w-3.5" />}>
-                        Preview
-                      </Button>
-                    </Link>
-                  </div>
+                  {/* Primary Action Buttons */}
+                  <div className="pt-3 border-t border-slate-100 dark:border-slate-800/80 space-y-2.5">
+                    <div className="grid grid-cols-2 gap-2">
+                      <Link to={`/editor/${resume._id}`} className="w-full">
+                        <Button variant="primary" size="sm" className="w-full text-xs font-semibold" leftIcon={<Edit3 className="h-3.5 w-3.5" />}>
+                          Edit Resume
+                        </Button>
+                      </Link>
+                      <Link to={`/preview/${resume._id}`} className="w-full">
+                        <Button variant="outline" size="sm" className="w-full text-xs font-semibold" leftIcon={<Eye className="h-3.5 w-3.5" />}>
+                          Preview
+                        </Button>
+                      </Link>
+                    </div>
 
-                  {/* Secondary Quick Action Bar */}
-                  <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 pt-1">
-                    <button
-                      onClick={() => setAtsTarget(resume)}
-                      className="inline-flex items-center gap-1.5 hover:text-brand-600 dark:hover:text-brand-400 font-medium transition-colors"
-                      title="Analyze ATS match score"
-                    >
-                      <Target className="h-3.5 w-3.5 text-brand-600 dark:text-brand-400" />
-                      <span>ATS Score</span>
-                    </button>
+                    {/* Secondary Quick Action Bar */}
+                    <div className="flex items-center justify-between pt-1">
+                      <button
+                        type="button"
+                        onClick={() => setAtsTarget(resume)}
+                        className="inline-flex items-center gap-1 text-[11.5px] font-semibold text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 px-2 py-1 rounded-lg hover:bg-brand-50 dark:hover:bg-brand-950/50 transition-colors"
+                        title="Analyze ATS match score"
+                      >
+                        <Target className="h-3.5 w-3.5" />
+                        <span>ATS Score</span>
+                      </button>
 
-                    <button
-                      onClick={(e) => handleDownloadPdf(resume, e)}
-                      disabled={downloadingId === resume._id}
-                      className="inline-flex items-center gap-1.5 hover:text-brand-600 dark:hover:text-brand-400 font-medium transition-colors"
-                    >
-                      <Download className="h-3.5 w-3.5" />
-                      <span>{downloadingId === resume._id ? 'Exporting...' : 'PDF'}</span>
-                    </button>
-
-                    <button
-                      onClick={(e) => handleDuplicate(resume._id, e)}
-                      className="inline-flex items-center gap-1.5 hover:text-brand-600 dark:hover:text-brand-400 font-medium transition-colors"
-                    >
-                      <Copy className="h-3.5 w-3.5" />
-                      <span>Clone</span>
-                    </button>
-
-                    <button
-                      onClick={() => setDeleteTarget(resume)}
-                      className="inline-flex items-center gap-1.5 text-rose-500 hover:text-rose-700 dark:text-rose-400 dark:hover:text-rose-300 font-medium transition-colors"
-                    >
-                      <Trash2 className="h-3.5 w-3.5" />
-                      <span>Delete</span>
-                    </button>
+                      <div className="flex items-center gap-1 text-slate-500 dark:text-slate-400">
+                        <button
+                          type="button"
+                          onClick={(e) => handleDownloadPdf(resume, e)}
+                          disabled={downloadingId === resume._id}
+                          className="p-1.5 rounded-lg hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                          title="Download PDF"
+                        >
+                          {downloadingId === resume._id ? (
+                            <span className="text-[10px] font-semibold">...</span>
+                          ) : (
+                            <Download className="h-3.5 w-3.5" />
+                          )}
+                        </button>
+                        <button
+                          type="button"
+                          onClick={(e) => handleDuplicate(resume._id, e)}
+                          className="p-1.5 rounded-lg hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                          title="Clone / Duplicate Resume"
+                        >
+                          <Copy className="h-3.5 w-3.5" />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setDeleteTarget(resume)}
+                          className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors"
+                          title="Delete Resume"
+                        >
+                          <Trash2 className="h-3.5 w-3.5" />
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

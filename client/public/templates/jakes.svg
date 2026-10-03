@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 490" width="100%" height="100%">
+  <defs>
+    <filter id="paper-shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <!-- White Paper Base -->
+  <rect width="380" height="490" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- Centered Name & Contact -->
+  <text x="190" y="32" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="18" font-weight="bold" fill="#09090b" letter-spacing="1">JAKE RYAN</text>
+  <text x="190" y="47" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="7.5" fill="#4b5563">555-123-4567 | jake@example.com | linkedin.com/in/jake | github.com/jake</text>
+
+  <!-- EDUCATION -->
+  <text x="24" y="68" font-family="Georgia, 'Times New Roman', serif" font-size="10" font-weight="bold" fill="#09090b" letter-spacing="0.5">EDUCATION</text>
+  <line x1="24" y1="72" x2="356" y2="72" stroke="#09090b" stroke-width="1"/>
+  
+  <text x="24" y="84" font-family="Georgia, 'Times New Roman', serif" font-size="8" font-weight="bold" fill="#18181b">Southwestern University</text>
+  <text x="356" y="84" text-anchor="end" font-family="Georgia, 'Times New Roman', serif" font-size="7.5" fill="#52525b">Georgetown, TX</text>
+  <text x="24" y="94" font-family="Georgia, 'Times New Roman', serif" font-size="7.5" font-style="italic" fill="#3f3f46">Bachelor of Arts in Computer Science, Minor in Business</text>
+  <text x="356" y="94" text-anchor="end" font-family="Georgia, 'Times New Roman', serif" font-size="7.5" fill="#52525b">Aug 2018 – May 2021</text>
+
+  <!-- EXPERIENCE -->
+  <text x="24" y="115" font-family="Georgia, 'Times New Roman', serif" font-size="10" font-weight="bold" fill="#09090b" letter-spacing="0.5">EXPERIENCE</text>
+  <line x1="24" y1="119" x2="356" y2="119" stroke="#09090b" stroke-width="1"/>
+
+  <text x="24" y="131" font-family="Georgia, 'Times New Roman', serif" font-size="8" font-weight="bold" fill="#18181b">Undergraduate Research Assistant</text>
+  <text x="356" y="131" text-anchor="end" font-family="Georgia, 'Times New Roman', serif" font-size="7.5" fill="#52525b">June 2020 – Present</text>
+  <text x="24" y="141" font-family="Georgia, 'Times New Roman', serif" font-size="7.5" font-style="italic" fill="#3f3f46">Texas A&amp;M University</text>
+  <text x="356" y="141" text-anchor="end" font-family="Georgia, 'Times New Roman', serif" font-size="7.5" fill="#52525b">College Station, TX</text>
+  
+  <circle cx="28" cy="151" r="1.5" fill="#18181b"/>
+  <text x="34" y="153" font-family="Georgia, 'Times New Roman', serif" font-size="7" fill="#27272a"><tspan font-weight="bold">Developed</tspan> a REST API using FastAPI and PostgreSQL to store 25,000+ research samples.</text>
+  <circle cx="28" cy="162" r="1.5" fill="#18181b"/>
+  <text x="34" y="164" font-family="Georgia, 'Times New Roman', serif" font-size="7" fill="#27272a"><tspan font-weight="bold">Engineered</tspan> automated Python ETL pipeline reducing data collection latency by 35%.</text>
+
+  <text x="24" y="181" font-family="Georgia, 'Times New Roman', serif" font-size="8" font-weight="bold" fill="#18181b">Software Engineer Intern</text>
+  <text x="356" y="181" text-anchor="end" font-family="Georgia, 'Times New Roman', serif" font-size="7.5" fill="#52525b">May 2019 – Aug 2019</text>
+  <text x="24" y="191" font-family="Georgia, 'Times New Roman', serif" font-size="7.5" font-style="italic" fill="#3f3f46">CloudTech Labs</text>
+  <text x="356" y="191" text-anchor="end" font-family="Georgia, 'Times New Roman', serif" font-size="7.5" fill="#52525b">Austin, TX</text>
+
+  <circle cx="28" cy="201" r="1.5" fill="#18181b"/>
+  <text x="34" y="203" font-family="Georgia, 'Times New Roman', serif" font-size="7" fill="#27272a"><tspan font-weight="bold">Collaborated</tspan> with 6 senior engineers to migrate frontend architecture to React &amp; TypeScript.</text>
+  <circle cx="28" cy="212" r="1.5" fill="#18181b"/>
+  <text x="34" y="214" font-family="Georgia, 'Times New Roman', serif" font-size="7" fill="#27272a"><tspan font-weight="bold">Implemented</tspan> Dockerized testing environment decreasing deployment cycle time by 40%.</text>
+
+  <!-- PROJECTS -->
+  <text x="24" y="235" font-family="Georgia, 'Times New Roman', serif" font-size="10" font-weight="bold" fill="#09090b" letter-spacing="0.5">PROJECTS</text>
+  <line x1="24" y1="239" x2="356" y2="239" stroke="#09090b" stroke-width="1"/>
+
+  <text x="24" y="251" font-family="Georgia, 'Times New Roman', serif" font-size="8" font-weight="bold" fill="#18181b">Gitlytics <tspan font-weight="normal" fill="#52525b">| Python, Flask, React, PostgreSQL, Docker</tspan></text>
+  <text x="356" y="251" text-anchor="end" font-family="Georgia, 'Times New Roman', serif" font-size="7.5" fill="#52525b">June 2020 – Present</text>
+  <circle cx="28" cy="261" r="1.5" fill="#18181b"/>
+  <text x="34" y="263" font-family="Georgia, 'Times New Roman', serif" font-size="7" fill="#27272a"><tspan font-weight="bold">Developed</tspan> a full-stack web application with Flask serving 7,000+ GitHub repository insights.</text>
+  <circle cx="28" cy="272" r="1.5" fill="#18181b"/>
+  <text x="34" y="274" font-family="Georgia, 'Times New Roman', serif" font-size="7" fill="#27272a"><tspan font-weight="bold">Optimized</tspan> query performance with Redis caching, boosting page rendering by 50%.</text>
+
+  <text x="24" y="293" font-family="Georgia, 'Times New Roman', serif" font-size="8" font-weight="bold" fill="#18181b">SimplePaint <tspan font-weight="normal" fill="#52525b">| C++, Qt, OpenGL</tspan></text>
+  <text x="356" y="293" text-anchor="end" font-family="Georgia, 'Times New Roman', serif" font-size="7.5" fill="#52525b">May 2020</text>
+  <circle cx="28" cy="303" r="1.5" fill="#18181b"/>
+  <text x="34" y="305" font-family="Georgia, 'Times New Roman', serif" font-size="7" fill="#27272a"><tspan font-weight="bold">Architected</tspan> cross-platform raster graphics editor supporting multi-layer rendering.</text>
+
+  <!-- TECHNICAL SKILLS -->
+  <text x="24" y="328" font-family="Georgia, 'Times New Roman', serif" font-size="10" font-weight="bold" fill="#09090b" letter-spacing="0.5">TECHNICAL SKILLS</text>
+  <line x1="24" y1="332" x2="356" y2="332" stroke="#09090b" stroke-width="1"/>
+
+  <text x="24" y="345" font-family="Georgia, 'Times New Roman', serif" font-size="7.5" fill="#27272a"><tspan font-weight="bold">Languages:</tspan> Java, Python, C/C++, SQL (Postgres), JavaScript, HTML/CSS, Go</text>
+  <text x="24" y="357" font-family="Georgia, 'Times New Roman', serif" font-size="7.5" fill="#27272a"><tspan font-weight="bold">Frameworks:</tspan> React, Node.js, Express, Flask, JUnit, FastAPI, WordPress</text>
+  <text x="24" y="369" font-family="Georgia, 'Times New Roman', serif" font-size="7.5" fill="#27272a"><tspan font-weight="bold">Developer Tools:</tspan> Git, Docker, Kubernetes, AWS, VS Code, IntelliJ, PyCharm</text>
+  <text x="24" y="381" font-family="Georgia, 'Times New Roman', serif" font-size="7.5" fill="#27272a"><tspan font-weight="bold">Libraries:</tspan> Pandas, NumPy, Matplotlib, Tailwind CSS, Jest, GraphQL</text>
+</svg>

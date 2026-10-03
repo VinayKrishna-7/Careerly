@@ -1,5 +1,7 @@
 import React from 'react';
 import { formatDate, ensureUrl, groupSkills, parseBulletPoints, formatCleanUrl } from '../utils/formatters.js';
+import CustomSectionRenderer from './common/CustomSectionRenderer.jsx';
+import { getHeaderAlignment } from '../utils/constants.js';
 
 export const ModernTemplate = ({ resume }) => {
   const {
@@ -13,11 +15,12 @@ export const ModernTemplate = ({ resume }) => {
     languages = [],
     achievements = [],
     interests = [],
+    customSections = [],
     sectionOrder = [],
     sectionTitles = {},
     sectionVisibility = {},
     settings = {}
-  } = resume;
+  } = resume || {};
 
   const primaryColor = settings.primaryColor || '#2563eb';
   const secondaryColor = settings.secondaryColor || '#475569';
@@ -34,6 +37,7 @@ export const ModernTemplate = ({ resume }) => {
   const linksFontSize = settings.linksFontSize || 12.5;
   const sectionTitleFontSize = settings.sectionTitleFontSize || 16;
   const bodyFontSize = settings.bodyFontSize || 13.5;
+  const headerAlign = getHeaderAlignment(settings.headerLayout, 'modern');
 
   const renderSummary = () => {
     if (!summary || sectionVisibility.summary === false) return null;
@@ -401,14 +405,42 @@ export const ModernTemplate = ({ resume }) => {
     interests: renderInterests
   };
 
-  const sectionsToRender = (sectionOrder || Object.keys(sectionMap)).map(
+  customSections.forEach((sec) => {
+    sectionMap[sec.id] = () => (
+      <CustomSectionRenderer
+        key={sec.id}
+        section={sec}
+        sectionTitles={sectionTitles}
+        sectionVisibility={sectionVisibility}
+        template="modern"
+        styling={{
+          primaryColor,
+          sectionTitleColor,
+          textColor,
+          sectionTitleFontSize,
+          sectionTitleFontWeight,
+          bodyFontSize,
+          bodyFontWeight
+        }}
+      />
+    );
+  });
+
+  const allOrderedKeys = [...(sectionOrder || Object.keys(sectionMap))];
+  customSections.forEach((sec) => {
+    if (!allOrderedKeys.includes(sec.id)) {
+      allOrderedKeys.push(sec.id);
+    }
+  });
+
+  const sectionsToRender = allOrderedKeys.map(
     (name) => sectionMap[name] && sectionMap[name]()
   );
 
   return (
     <div className="space-y-5" style={{ color: textColor }}>
       {/* Header Section */}
-      <div className="space-y-1.5 border-b pb-4" style={{ borderColor: `${primaryColor}25` }}>
+      <div className={`space-y-1.5 border-b pb-4 ${headerAlign.container}`} style={{ borderColor: `${primaryColor}25` }}>
         <h1
           className="font-bold tracking-tight"
           style={{ fontSize: `${nameFontSize}px`, color: primaryColor }}
@@ -429,7 +461,7 @@ export const ModernTemplate = ({ resume }) => {
           const githubLabel = contactLinkStyle === 'url' ? formatCleanUrl(personalInfo.github) : 'GitHub';
 
           return (
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 pt-1" style={{ fontSize: `${contactFontSize}px`, color: textColor, fontWeight: contactFontWeight }}>
+            <div className={`flex flex-wrap items-center gap-x-3 gap-y-1 pt-1 ${headerAlign.contact}`} style={{ fontSize: `${contactFontSize}px`, color: textColor, fontWeight: contactFontWeight }}>
               {personalInfo.location && <span>{personalInfo.location}</span>}
               {personalInfo.phone && (
                 <span>

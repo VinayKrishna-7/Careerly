@@ -1,5 +1,7 @@
 import React from 'react';
 import { formatDate, ensureUrl, groupSkills, parseBulletPoints, formatCleanUrl } from '../utils/formatters.js';
+import CustomSectionRenderer from './common/CustomSectionRenderer.jsx';
+import { getHeaderAlignment } from '../utils/constants.js';
 
 export const CreativeTemplate = ({ resume }) => {
   const {
@@ -13,11 +15,12 @@ export const CreativeTemplate = ({ resume }) => {
     languages = [],
     achievements = [],
     interests = [],
+    customSections = [],
     sectionOrder = [],
     sectionTitles = {},
     sectionVisibility = {},
     settings = {}
-  } = resume;
+  } = resume || {};
 
   const primaryColor = settings.primaryColor || '#7c3aed';
   const secondaryColor = settings.secondaryColor || '#8b5cf6';
@@ -34,6 +37,7 @@ export const CreativeTemplate = ({ resume }) => {
   const linksFontSize = settings.linksFontSize || 12.5;
   const sectionTitleFontSize = settings.sectionTitleFontSize || 16;
   const bodyFontSize = settings.bodyFontSize || 13.5;
+  const headerAlign = getHeaderAlignment(settings.headerLayout, 'creative');
 
   const renderSummary = () => {
     if (!summary || sectionVisibility.summary === false) return null;
@@ -402,7 +406,35 @@ export const CreativeTemplate = ({ resume }) => {
     interests: renderInterests
   };
 
-  const sectionsToRender = (sectionOrder || Object.keys(sectionMap)).map(
+  customSections.forEach((sec) => {
+    sectionMap[sec.id] = () => (
+      <CustomSectionRenderer
+        key={sec.id}
+        section={sec}
+        sectionTitles={sectionTitles}
+        sectionVisibility={sectionVisibility}
+        template="creative"
+        styling={{
+          primaryColor,
+          sectionTitleColor,
+          textColor,
+          sectionTitleFontSize,
+          sectionTitleFontWeight,
+          bodyFontSize,
+          bodyFontWeight
+        }}
+      />
+    );
+  });
+
+  const allOrderedKeys = [...(sectionOrder || Object.keys(sectionMap))];
+  customSections.forEach((sec) => {
+    if (!allOrderedKeys.includes(sec.id)) {
+      allOrderedKeys.push(sec.id);
+    }
+  });
+
+  const sectionsToRender = allOrderedKeys.map(
     (name) => sectionMap[name] && sectionMap[name]()
   );
 
@@ -410,7 +442,7 @@ export const CreativeTemplate = ({ resume }) => {
     <div className="space-y-5" style={{ color: textColor }}>
       {/* Creative Header with accent banner */}
       <div
-        className="p-5 rounded-xl text-white space-y-2 shadow-sm"
+        className={`p-5 rounded-xl text-white space-y-2 shadow-sm ${headerAlign.container}`}
         style={{
           background: `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`
         }}
@@ -436,7 +468,7 @@ export const CreativeTemplate = ({ resume }) => {
 
           return (
             <div
-              className="flex flex-wrap items-center gap-x-3 gap-y-1 text-white/90 pt-1"
+              className={`flex flex-wrap items-center gap-x-3 gap-y-1 text-white/90 pt-1 ${headerAlign.contact}`}
               style={{ fontSize: `${contactFontSize}px`, fontWeight: contactFontWeight }}
             >
               {personalInfo.location && <span>{personalInfo.location}</span>}

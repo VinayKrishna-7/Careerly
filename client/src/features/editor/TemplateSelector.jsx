@@ -37,6 +37,21 @@ export const TemplateSelector = () => {
               }`}
             >
               <div>
+                {/* Normal Resume Template Image Preview */}
+                <div className="relative w-full h-36 bg-slate-100 dark:bg-slate-950 rounded-xl mb-3 overflow-hidden border border-slate-200/80 dark:border-slate-800 flex items-center justify-center p-2">
+                  <div className="h-full w-auto aspect-[380/490] bg-white rounded-xs shadow-sm overflow-hidden border border-slate-200/80">
+                    <img
+                      src={`/templates/${tmpl.id}.svg`}
+                      alt={tmpl.name}
+                      className="w-full h-full object-cover object-top select-none pointer-events-none"
+                      onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = '/templates/modern.svg';
+                      }}
+                    />
+                  </div>
+                </div>
+
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2">
                     <span

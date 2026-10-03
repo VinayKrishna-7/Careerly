@@ -14,6 +14,7 @@ import {
   BODY_FONT_SIZES,
   getDefaultSettings
 } from '../../utils/constants.js';
+import HeaderPositionSelector from './HeaderPositionSelector.jsx';
 import {
   Palette,
   Type,
@@ -562,6 +563,11 @@ export const StyleCustomizer = () => {
             );
           })}
         </div>
+      </div>
+
+      {/* HEADER POSITION / ALIGNMENT */}
+      <div className="pt-4 border-t border-slate-100 dark:border-slate-800">
+        <HeaderPositionSelector />
       </div>
 
       {/* PAGE MARGINS */}

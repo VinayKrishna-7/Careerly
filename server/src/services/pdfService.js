@@ -39,6 +39,7 @@ export const generateResumeHtml = (resume) => {
     languages = [],
     achievements = [],
     interests = [],
+    customSections = [],
     sectionOrder = [],
     sectionTitles = {},
     sectionVisibility = {},
@@ -341,6 +342,65 @@ export const generateResumeHtml = (resume) => {
     `;
   };
 
+  const renderCustomSection = (sec) => {
+    if (!sec || sectionVisibility[sec.id] === false) return '';
+    const items = sec.items || [];
+    if (!items.length) return '';
+    const title = sectionTitles[sec.id] || sec.title || 'Custom Section';
+
+    return `
+      <section class="section">
+        <h2 class="section-title">${escapeHtml(title)}</h2>
+        <div class="section-content">
+          ${items
+            .map((it) => {
+              const bullets = (it.description || '')
+                .split('\n')
+                .map((l) => l.replace(/^[-*•]\s*/, '').trim())
+                .filter(Boolean);
+
+              return `
+            <div class="entry-block">
+              <div class="entry-header">
+                <span class="entry-title">${escapeHtml(it.title || '')}${it.subtitle ? ` — ${escapeHtml(it.subtitle)}` : ''}</span>
+                ${it.date || it.location ? `<span class="entry-date">${escapeHtml(it.date || '')}${it.date && it.location ? ' | ' : ''}${escapeHtml(it.location || '')}</span>` : ''}
+              </div>
+              ${
+                it.link
+                  ? `
+                <div class="entry-links">
+                  <a href="${ensureUrl(it.link)}" class="entry-link" target="_blank">${escapeHtml(formatCleanUrl(it.link))}</a>
+                </div>
+              `
+                  : ''
+              }
+              ${
+                bullets.length > 0
+                  ? `
+                <ul class="bullet-list">
+                  ${bullets
+                    .map(
+                      (b) => `
+                    <li class="bullet-item">
+                      <span class="bullet-dot" style="color: ${primaryColor}">•</span>
+                      <span>${escapeHtml(b)}</span>
+                    </li>
+                  `
+                    )
+                    .join('')}
+                </ul>
+              `
+                  : ''
+              }
+            </div>
+          `;
+            })
+            .join('')}
+        </div>
+      </section>
+    `;
+  };
+
   const sectionMap = {
     summary: renderSummary,
     experience: renderExperience,
@@ -353,7 +413,18 @@ export const generateResumeHtml = (resume) => {
     interests: renderInterests
   };
 
-  const renderedSections = (sectionOrder || Object.keys(sectionMap))
+  customSections.forEach((sec) => {
+    sectionMap[sec.id] = () => renderCustomSection(sec);
+  });
+
+  const allOrderedKeys = [...(sectionOrder || Object.keys(sectionMap))];
+  customSections.forEach((sec) => {
+    if (!allOrderedKeys.includes(sec.id)) {
+      allOrderedKeys.push(sec.id);
+    }
+  });
+
+  const renderedSections = allOrderedKeys
     .map((secName) => (sectionMap[secName] ? sectionMap[secName]() : ''))
     .join('');
 
@@ -439,8 +510,8 @@ export const generateResumeHtml = (resume) => {
     .header {
       margin-bottom: 12px;
       ${template === 'professional' ? 'border-bottom: 2px solid ' + primaryColor + '; padding-bottom: 8px;' : ''}
-      ${template === 'mteck' ? 'text-align: center; border-bottom: 2px solid ' + primaryColor + '; padding-bottom: 8px;' : ''}
-      ${template === 'jakes' ? 'text-align: center; padding-bottom: 6px;' : ''}
+      ${template === 'mteck' ? 'border-bottom: 2px solid ' + primaryColor + '; padding-bottom: 8px;' : ''}
+      ${template === 'jakes' ? 'padding-bottom: 6px;' : ''}
       ${template === 'anubhav' ? 'border-bottom: 2px solid ' + primaryColor + '; padding-bottom: 8px;' : ''}
       ${template === 'knyte' ? 'border-bottom: 2px solid ' + primaryColor + '; padding-bottom: 8px;' : ''}
       ${template === 'austere' ? 'border-bottom: 1px solid #cbd5e1; padding-bottom: 8px;' : ''}
@@ -499,6 +570,44 @@ export const generateResumeHtml = (resume) => {
       justify-content: center !important;
       text-align: center !important;
       margin-left: auto !important;
+      margin-right: auto !important;
+    }
+    .header.right-aligned {
+      text-align: right !important;
+    }
+    .header.right-aligned .header-name {
+      text-align: right !important;
+      margin-left: auto !important;
+      margin-right: 0 !important;
+    }
+    .header.right-aligned .header-title {
+      text-align: right !important;
+      margin-left: auto !important;
+      margin-right: 0 !important;
+    }
+    .header.right-aligned .contact-info {
+      justify-content: flex-end !important;
+      text-align: right !important;
+      margin-left: auto !important;
+      margin-right: 0 !important;
+    }
+    .header.left-aligned {
+      text-align: left !important;
+    }
+    .header.left-aligned .header-name {
+      text-align: left !important;
+      margin-left: 0 !important;
+      margin-right: auto !important;
+    }
+    .header.left-aligned .header-title {
+      text-align: left !important;
+      margin-left: 0 !important;
+      margin-right: auto !important;
+    }
+    .header.left-aligned .contact-info {
+      justify-content: flex-start !important;
+      text-align: left !important;
+      margin-left: 0 !important;
       margin-right: auto !important;
     }
     .section {
@@ -663,7 +772,13 @@ export const generateResumeHtml = (resume) => {
 <body>
   <div class="page-container">
     <div class="page-content-wrapper">
-      <header class="header ${template === 'jakes' || template === 'mteck' ? 'center-aligned' : ''}">
+      ${(() => {
+        const defaultLayout = template === 'jakes' || template === 'mteck' || template === 'professional' ? 'center' : 'left';
+        const effectiveLayout = settings.headerLayout === 'middle' ? 'center' : settings.headerLayout || defaultLayout;
+        const alignClass = effectiveLayout === 'right' ? 'right-aligned' : effectiveLayout === 'center' ? 'center-aligned' : 'left-aligned';
+
+        return `<header class="header ${alignClass}">`;
+      })()}
         <h1 class="header-name">${escapeHtml(personalInfo.fullName || 'Your Name')}</h1>
         ${personalInfo.jobTitle ? `<div class="header-title">${escapeHtml(personalInfo.jobTitle)}</div>` : ''}
         ${(() => {

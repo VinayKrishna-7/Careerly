@@ -122,6 +122,7 @@ export const getDefaultResumeData = (title = 'Software Engineer Resume', templat
         keywords: ['Endurance Training', 'Trail Navigation']
       }
     ],
+    customSections: [],
     sectionOrder: DEFAULT_SECTION_ORDER,
     sectionTitles: {
       summary: 'Professional summary',

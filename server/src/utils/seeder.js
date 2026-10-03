@@ -72,7 +72,7 @@ export const seedDatabase = async () => {
 };
 
 // If run directly via CLI
-if (process.argv[1].endsWith('seeder.js')) {
+if (process.argv[1]?.endsWith('seeder.js')) {
   seedDatabase().then(async () => {
     await closeDB();
     process.exit(0);

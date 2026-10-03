@@ -3,8 +3,17 @@
 @tailwind utilities;
 
 @layer base {
+  html, body {
+    @apply min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100;
+  }
+  #root {
+    @apply min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950;
+  }
   * {
     border-color: #e2e8f0;
+  }
+  .dark * {
+    border-color: #334155;
   }
 }
 
@@ -22,6 +31,16 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
 }
 
 /* A4 Page Representation for Editor & Preview (Strict 1-Page Fit) */
