@@ -122,19 +122,6 @@ export const LandingPage = () => {
                 </>
               )}
             </div>
-
-            {/* Trust Badges Row */}
-            <div className="flex flex-wrap items-center justify-center gap-y-2 gap-x-6 pt-3 text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400">
-              <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="h-4 w-4 text-emerald-500" /> 98.6% ATS Pass Rate
-              </span>
-              <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="h-4 w-4 text-emerald-500" /> Instant Puppeteer Vector PDF
-              </span>
-              <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="h-4 w-4 text-emerald-500" /> Safety PIN Account Recovery
-              </span>
-            </div>
           </div>
 
           {/* INTERACTIVE HERO PLAYGROUND (LIVE TEMPLATE SWITCHER) */}
