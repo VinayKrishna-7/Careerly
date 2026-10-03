@@ -167,33 +167,33 @@ export const DashboardPage = () => {
 
       {/* Quick Summary Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-card flex items-center gap-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400">
+        <div className="rounded-2xl border border-black/15 dark:border-[#222225] bg-white dark:bg-[#0c0c0e] p-5 shadow-xs flex items-center gap-4">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-black text-[#faf5eb] dark:bg-[#faf5eb] dark:text-black shadow-xs">
             <FileText className="h-6 w-6" />
           </div>
           <div>
-            <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Total Resumes</p>
-            <p className="text-2xl font-bold text-slate-900 dark:text-white">{resumesList.length}</p>
+            <p className="text-xs text-[#5c5549] dark:text-[#a39b8e] font-medium">Total Resumes</p>
+            <p className="text-2xl font-bold text-black dark:text-[#faf5eb]">{resumesList.length}</p>
           </div>
         </div>
 
-        <div className="rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-card flex items-center gap-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400">
+        <div className="rounded-2xl border border-black/15 dark:border-[#222225] bg-white dark:bg-[#0c0c0e] p-5 shadow-xs flex items-center gap-4">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-black text-[#faf5eb] dark:bg-[#faf5eb] dark:text-black shadow-xs">
             <Sparkles className="h-6 w-6" />
           </div>
           <div>
-            <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Available Templates</p>
-            <p className="text-2xl font-bold text-slate-900 dark:text-white">{TEMPLATE_METADATA.length}</p>
+            <p className="text-xs text-[#5c5549] dark:text-[#a39b8e] font-medium">Available Templates</p>
+            <p className="text-2xl font-bold text-black dark:text-[#faf5eb]">{TEMPLATE_METADATA.length}</p>
           </div>
         </div>
 
-        <div className="rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-card flex items-center gap-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+        <div className="rounded-2xl border border-black/15 dark:border-[#222225] bg-white dark:bg-[#0c0c0e] p-5 shadow-xs flex items-center gap-4">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-black text-[#faf5eb] dark:bg-[#faf5eb] dark:text-black shadow-xs">
             <Clock className="h-6 w-6" />
           </div>
           <div>
-            <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Last Modified</p>
-            <p className="text-sm font-bold text-slate-900 dark:text-white">
+            <p className="text-xs text-[#5c5549] dark:text-[#a39b8e] font-medium">Last Modified</p>
+            <p className="text-sm font-bold text-black dark:text-[#faf5eb]">
               {stats.lastUpdated ? timeAgo(stats.lastUpdated) : 'Just now'}
             </p>
           </div>
@@ -201,15 +201,15 @@ export const DashboardPage = () => {
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 bg-white dark:bg-[#0c0c0e] p-4 rounded-2xl border border-black/15 dark:border-[#222225] shadow-xs">
         <div className="relative flex-1">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 dark:text-slate-500" />
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-black/40 dark:text-[#faf5eb]/40" />
           <input
             type="text"
             placeholder="Search resumes by title or job position..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 py-2 pl-10 pr-4 text-xs sm:text-sm text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:bg-white dark:focus:bg-slate-800 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-100 dark:focus:ring-brand-900/40 transition-all"
+            className="w-full rounded-xl border border-black/20 dark:border-[#333338] bg-[#faf5eb] dark:bg-[#000000] py-2 pl-10 pr-4 text-xs sm:text-sm text-black dark:text-[#faf5eb] placeholder-[#8c8476] dark:placeholder-[#6e685f] focus:bg-white dark:focus:bg-[#0c0c0e] focus:border-black dark:focus:border-[#faf5eb] focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-[#faf5eb] transition-all"
           />
         </div>
 
@@ -218,7 +218,7 @@ export const DashboardPage = () => {
           <select
             value={selectedTemplateFilter}
             onChange={(e) => setSelectedTemplateFilter(e.target.value)}
-            className="rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-3 py-2 text-xs font-medium text-slate-700 dark:text-slate-200 focus:bg-white dark:focus:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-100"
+            className="rounded-xl border border-black/20 dark:border-[#333338] bg-[#faf5eb] dark:bg-[#000000] px-3 py-2 text-xs font-semibold text-black dark:text-[#faf5eb] focus:bg-white dark:focus:bg-[#0c0c0e] focus:border-black dark:focus:border-[#faf5eb] focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-[#faf5eb]"
           >
             <option value="all">All Templates</option>
             {TEMPLATE_METADATA.map((t) => (
@@ -232,7 +232,7 @@ export const DashboardPage = () => {
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-3 py-2 text-xs font-medium text-slate-700 dark:text-slate-200 focus:bg-white dark:focus:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-100"
+            className="rounded-xl border border-black/20 dark:border-[#333338] bg-[#faf5eb] dark:bg-[#000000] px-3 py-2 text-xs font-semibold text-black dark:text-[#faf5eb] focus:bg-white dark:focus:bg-[#0c0c0e] focus:border-black dark:focus:border-[#faf5eb] focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-[#faf5eb]"
           >
             <option value="updatedAt">Recently Modified</option>
             <option value="createdAt">Date Created</option>
@@ -281,10 +281,10 @@ export const DashboardPage = () => {
             return (
               <div
                 key={resume._id}
-                className="group relative rounded-2xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm hover:shadow-xl transition-all duration-300 hover:border-brand-500/40 dark:hover:border-brand-500/40 overflow-hidden flex flex-col justify-between"
+                className="group relative rounded-2xl border border-black/15 dark:border-[#222225] bg-white dark:bg-[#0c0c0e] shadow-xs hover:border-black/30 dark:hover:border-white/30 transition-all duration-300 overflow-hidden flex flex-col justify-between"
               >
                 {/* Visual Resume Template Preview Image Frame */}
-                <div className="relative h-56 bg-slate-100/80 dark:bg-slate-950/80 border-b border-slate-200/80 dark:border-slate-800/80 flex items-center justify-center p-4 overflow-hidden">
+                <div className="relative h-56 bg-[#f3ecde]/60 dark:bg-black border-b border-black/10 dark:border-[#222225] flex items-center justify-center p-4 overflow-hidden">
                   {/* Subtle Ambient Accent Glow */}
                   <div
                     className="absolute -top-10 left-1/2 -translate-x-1/2 w-48 h-32 rounded-full blur-2xl opacity-15 pointer-events-none"
@@ -293,18 +293,18 @@ export const DashboardPage = () => {
 
                   {/* Top Floating Badges */}
                   <div className="absolute top-2.5 inset-x-2.5 flex items-center justify-between z-10 pointer-events-none">
-                    <span className="px-2.5 py-1 rounded-full text-[10.5px] font-bold bg-white/95 dark:bg-slate-900/95 backdrop-blur border border-slate-200/80 dark:border-slate-700/80 text-slate-800 dark:text-slate-200 shadow-sm flex items-center gap-1.5">
+                    <span className="px-2.5 py-1 rounded-full text-[10.5px] font-bold bg-white dark:bg-[#1a1a1d] border border-black/15 dark:border-[#2e2e33] text-black dark:text-[#faf5eb] shadow-xs flex items-center gap-1.5">
                       <span className="w-2 h-2 rounded-full shrink-0 shadow-xs" style={{ backgroundColor: primaryColor }} />
                       <span>{templateInfo.name}</span>
                     </span>
-                    <span className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-white/95 dark:bg-slate-900/95 backdrop-blur border border-slate-200/80 dark:border-slate-700/80 text-slate-500 dark:text-slate-400 shadow-sm flex items-center gap-1">
-                      <Clock className="w-3 h-3 text-slate-400" />
+                    <span className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-white dark:bg-[#1a1a1d] border border-black/15 dark:border-[#2e2e33] text-[#5c5549] dark:text-[#a39b8e] shadow-xs flex items-center gap-1">
+                      <Clock className="w-3 h-3 text-black/50 dark:text-[#faf5eb]/50" />
                       <span>{timeAgo(resume.updatedAt)}</span>
                     </span>
                   </div>
 
                   {/* Normal Resume Template Image in Paper Frame */}
-                  <div className="relative w-full max-w-[210px] h-[190px] mt-4 bg-white rounded-t-sm shadow-[0_6px_20px_-3px_rgba(0,0,0,0.18)] dark:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.6)] border border-slate-200/90 overflow-hidden transform group-hover:scale-[1.03] transition-transform duration-300">
+                  <div className="relative w-full max-w-[210px] h-[190px] mt-4 bg-white rounded-t-sm shadow-[0_6px_20px_-3px_rgba(0,0,0,0.18)] dark:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.6)] border border-black/15 dark:border-[#2e2e33] overflow-hidden transform group-hover:scale-[1.03] transition-transform duration-300">
                     <img
                       src={`/templates/${resume.template || 'modern'}.svg`}
                       alt={`${templateInfo.name} template`}
@@ -317,12 +317,12 @@ export const DashboardPage = () => {
                   </div>
 
                   {/* Frosted Hover Action Overlay */}
-                  <div className="absolute inset-0 z-20 bg-slate-950/45 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center gap-2 px-4">
+                  <div className="absolute inset-0 z-20 bg-black/50 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center gap-2 px-4">
                     <Link to={`/editor/${resume._id}`}>
                       <Button
                         variant="primary"
                         size="sm"
-                        className="text-xs font-bold shadow-lg"
+                        className="text-xs font-bold shadow-md"
                         leftIcon={<Edit3 className="h-3.5 w-3.5" />}
                       >
                         Edit Resume
@@ -332,7 +332,7 @@ export const DashboardPage = () => {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="text-xs font-semibold bg-white/95 text-slate-800 hover:bg-white border-white shadow-lg"
+                        className="text-xs font-semibold bg-white text-black dark:bg-black dark:text-[#faf5eb] border border-black dark:border-[#faf5eb] shadow-md"
                         leftIcon={<Eye className="h-3.5 w-3.5" />}
                       >
                         Preview
@@ -347,7 +347,7 @@ export const DashboardPage = () => {
                     <div className="flex items-start justify-between gap-2">
                       <Link
                         to={`/editor/${resume._id}`}
-                        className="font-bold text-slate-900 dark:text-white text-base leading-snug hover:text-brand-600 dark:hover:text-brand-400 transition-colors line-clamp-1"
+                        className="font-bold text-black dark:text-[#faf5eb] text-base leading-snug hover:opacity-80 transition-opacity line-clamp-1"
                         title={resume.title}
                       >
                         {resume.title}
@@ -358,7 +358,7 @@ export const DashboardPage = () => {
                           setNewTitle(resume.title);
                         }}
                         title="Rename resume"
-                        className="text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 p-1 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors shrink-0"
+                        className="text-black/60 hover:text-black dark:text-[#faf5eb]/60 dark:hover:text-[#faf5eb] p-1 rounded-md hover:bg-black/5 dark:hover:bg-white/10 transition-colors shrink-0"
                       >
                         <Edit3 className="h-3.5 w-3.5" />
                       </button>
@@ -366,23 +366,23 @@ export const DashboardPage = () => {
 
                     {/* Metadata Stats Badges */}
                     <div className="flex flex-wrap items-center gap-1.5 mt-2.5">
-                      <span className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/80 px-2 py-0.5 rounded-md">
-                        <Briefcase className="h-3 w-3 text-slate-400" />
+                      <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-black dark:text-[#faf5eb] bg-[#faf5eb] dark:bg-[#1a1a1d] border border-black/10 dark:border-[#2e2e33] px-2 py-0.5 rounded-md">
+                        <Briefcase className="h-3 w-3 text-black/60 dark:text-[#faf5eb]/60" />
                         <span>{resume.experience?.length || 0} Exp</span>
                       </span>
-                      <span className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/80 px-2 py-0.5 rounded-md">
-                        <Sparkles className="h-3 w-3 text-slate-400" />
+                      <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-black dark:text-[#faf5eb] bg-[#faf5eb] dark:bg-[#1a1a1d] border border-black/10 dark:border-[#2e2e33] px-2 py-0.5 rounded-md">
+                        <Sparkles className="h-3 w-3 text-black/60 dark:text-[#faf5eb]/60" />
                         <span>{resume.skills?.length || 0} Skills</span>
                       </span>
-                      <span className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/80 px-2 py-0.5 rounded-md">
-                        <FileText className="h-3 w-3 text-slate-400" />
+                      <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-black dark:text-[#faf5eb] bg-[#faf5eb] dark:bg-[#1a1a1d] border border-black/10 dark:border-[#2e2e33] px-2 py-0.5 rounded-md">
+                        <FileText className="h-3 w-3 text-black/60 dark:text-[#faf5eb]/60" />
                         <span>{resume.projects?.length || 0} Projects</span>
                       </span>
                     </div>
                   </div>
 
                   {/* Primary Action Buttons */}
-                  <div className="pt-3 border-t border-slate-100 dark:border-slate-800/80 space-y-2.5">
+                  <div className="pt-3 border-t border-black/10 dark:border-[#222225] space-y-2.5">
                     <div className="grid grid-cols-2 gap-2">
                       <Link to={`/editor/${resume._id}`} className="w-full">
                         <Button variant="primary" size="sm" className="w-full text-xs font-semibold" leftIcon={<Edit3 className="h-3.5 w-3.5" />}>
@@ -401,19 +401,19 @@ export const DashboardPage = () => {
                       <button
                         type="button"
                         onClick={() => setAtsTarget(resume)}
-                        className="inline-flex items-center gap-1 text-[11.5px] font-semibold text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 px-2 py-1 rounded-lg hover:bg-brand-50 dark:hover:bg-brand-950/50 transition-colors"
+                        className="inline-flex items-center gap-1 text-[11.5px] font-bold text-black dark:text-[#faf5eb] hover:bg-black/5 dark:hover:bg-white/10 px-2 py-1 rounded-lg transition-colors"
                         title="Analyze ATS match score"
                       >
                         <Target className="h-3.5 w-3.5" />
                         <span>ATS Score</span>
                       </button>
 
-                      <div className="flex items-center gap-1 text-slate-500 dark:text-slate-400">
+                      <div className="flex items-center gap-1 text-black/60 dark:text-[#faf5eb]/60">
                         <button
                           type="button"
                           onClick={(e) => handleDownloadPdf(resume, e)}
                           disabled={downloadingId === resume._id}
-                          className="p-1.5 rounded-lg hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                          className="p-1.5 rounded-lg hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
                           title="Download PDF"
                         >
                           {downloadingId === resume._id ? (

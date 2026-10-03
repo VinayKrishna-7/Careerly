@@ -4,19 +4,19 @@ import { Loader2 } from 'lucide-react';
 
 const variants = {
   primary:
-    'bg-brand-600 text-white hover:bg-brand-700 active:bg-brand-800 shadow-sm focus-visible:ring-brand-500 dark:bg-brand-600 dark:hover:bg-brand-500',
+    'bg-black text-[#faf5eb] hover:bg-neutral-800 active:bg-neutral-900 shadow-sm focus-visible:ring-black dark:bg-[#faf5eb] dark:text-black dark:hover:bg-white dark:active:bg-[#ede6d8] dark:focus-visible:ring-[#faf5eb] font-bold transition-all',
   secondary:
-    'bg-slate-800 text-white hover:bg-slate-900 active:bg-slate-950 focus-visible:ring-slate-700 shadow-sm dark:bg-slate-700 dark:hover:bg-slate-600',
+    'bg-[#f3ecde] text-black hover:bg-[#e8dfce] active:bg-[#ded3be] shadow-sm dark:bg-[#1c1c1f] dark:text-[#faf5eb] dark:hover:bg-[#28282d] font-semibold transition-all',
   outline:
-    'border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 hover:text-slate-900 active:bg-slate-100 focus-visible:ring-slate-400 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700 dark:hover:text-white',
+    'border border-black bg-transparent text-black hover:bg-black hover:text-[#faf5eb] active:bg-neutral-900 dark:border-[#faf5eb] dark:bg-transparent dark:text-[#faf5eb] dark:hover:bg-[#faf5eb] dark:hover:text-black font-semibold transition-all',
   ghost:
-    'text-slate-600 hover:bg-slate-100 hover:text-slate-900 active:bg-slate-200 focus-visible:ring-slate-400 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white',
+    'text-black hover:bg-black/10 active:bg-black/20 dark:text-[#faf5eb] dark:hover:bg-white/10 dark:active:bg-white/20 font-semibold transition-all',
   danger:
     'bg-rose-600 text-white hover:bg-rose-700 active:bg-rose-800 shadow-sm focus-visible:ring-rose-500',
   dangerOutline:
-    'border border-rose-200 text-rose-600 bg-rose-50 hover:bg-rose-100 dark:border-rose-900/40 dark:bg-rose-950/30 dark:text-rose-400 dark:hover:bg-rose-950/60 focus-visible:ring-rose-400',
+    'border border-rose-300 text-rose-600 bg-rose-50 hover:bg-rose-100 dark:border-rose-900/40 dark:bg-rose-950/30 dark:text-rose-400 dark:hover:bg-rose-950/60 focus-visible:ring-rose-400',
   subtle:
-    'bg-brand-50 text-brand-700 hover:bg-brand-100 active:bg-brand-200 dark:bg-brand-950/40 dark:text-brand-300 dark:hover:bg-brand-900/50 focus-visible:ring-brand-400'
+    'bg-black/10 text-black hover:bg-black/15 dark:bg-white/10 dark:text-[#faf5eb] dark:hover:bg-white/20 font-semibold transition-all'
 };
 
 const sizes = {

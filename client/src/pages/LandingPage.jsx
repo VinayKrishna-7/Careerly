@@ -59,51 +59,51 @@ export const LandingPage = () => {
       {/* CORE FEATURES (SIMPLE 4-CARD GRID) */}
       <section id="features" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center space-y-3 max-w-2xl mx-auto mb-12">
-          <h2 className="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-white">
+          <h2 className="text-2xl sm:text-3xl font-display font-bold text-black dark:text-[#faf5eb]">
             Everything you need to apply with confidence
           </h2>
-          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400">
+          <p className="text-sm sm:text-base text-[#5c5549] dark:text-[#a39b8e]">
             Straightforward tools designed to get your resume ready for applications.
           </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3 shadow-xs">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400">
+          <div className="p-6 rounded-2xl bg-white dark:bg-[#0c0c0e] border border-black/15 dark:border-[#222225] space-y-3 shadow-xs">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-black text-[#faf5eb] dark:bg-[#faf5eb] dark:text-black shadow-xs">
               <ShieldCheck className="h-5 w-5" />
             </div>
-            <h3 className="text-base font-bold text-slate-900 dark:text-white">ATS-Optimized</h3>
-            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            <h3 className="text-base font-bold text-black dark:text-[#faf5eb]">ATS-Optimized</h3>
+            <p className="text-xs text-[#5c5549] dark:text-[#a39b8e] leading-relaxed">
               Clean semantic structures and universal fonts that applicant tracking systems parse without errors.
             </p>
           </div>
 
-          <div className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3 shadow-xs">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400">
+          <div className="p-6 rounded-2xl bg-white dark:bg-[#0c0c0e] border border-black/15 dark:border-[#222225] space-y-3 shadow-xs">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-black text-[#faf5eb] dark:bg-[#faf5eb] dark:text-black shadow-xs">
               <Sparkles className="h-5 w-5" />
             </div>
-            <h3 className="text-base font-bold text-slate-900 dark:text-white">Live Real-Time Preview</h3>
-            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            <h3 className="text-base font-bold text-black dark:text-[#faf5eb]">Live Real-Time Preview</h3>
+            <p className="text-xs text-[#5c5549] dark:text-[#a39b8e] leading-relaxed">
               Watch your resume update as you type. Switch between all 9 layouts anytime with zero loss of content.
             </p>
           </div>
 
-          <div className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3 shadow-xs">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400">
+          <div className="p-6 rounded-2xl bg-white dark:bg-[#0c0c0e] border border-black/15 dark:border-[#222225] space-y-3 shadow-xs">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-black text-[#faf5eb] dark:bg-[#faf5eb] dark:text-black shadow-xs">
               <Layers className="h-5 w-5" />
             </div>
-            <h3 className="text-base font-bold text-slate-900 dark:text-white">Custom Sections &amp; Order</h3>
-            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            <h3 className="text-base font-bold text-black dark:text-[#faf5eb]">Custom Sections &amp; Order</h3>
+            <p className="text-xs text-[#5c5549] dark:text-[#a39b8e] leading-relaxed">
               Add custom sections, align your header (Left, Center, Right), and drag-and-drop to reorder sections.
             </p>
           </div>
 
-          <div className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3 shadow-xs">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400">
+          <div className="p-6 rounded-2xl bg-white dark:bg-[#0c0c0e] border border-black/15 dark:border-[#222225] space-y-3 shadow-xs">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-black text-[#faf5eb] dark:bg-[#faf5eb] dark:text-black shadow-xs">
               <Download className="h-5 w-5" />
             </div>
-            <h3 className="text-base font-bold text-slate-900 dark:text-white">Vector PDF Export</h3>
-            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            <h3 className="text-base font-bold text-black dark:text-[#faf5eb]">Vector PDF Export</h3>
+            <p className="text-xs text-[#5c5549] dark:text-[#a39b8e] leading-relaxed">
               Download clean, high-resolution vector PDFs with selectable text and zero watermarks.
             </p>
           </div>
@@ -113,41 +113,41 @@ export const LandingPage = () => {
       {/* HOW IT WORKS */}
       <section className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div className="text-center space-y-3 mb-12">
-          <h2 className="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-white">
+          <h2 className="text-2xl sm:text-3xl font-display font-bold text-black dark:text-[#faf5eb]">
             How it works
           </h2>
-          <p className="text-sm text-slate-600 dark:text-slate-400">
+          <p className="text-sm text-[#5c5549] dark:text-[#a39b8e]">
             Three simple steps to your new resume.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center space-y-3">
-            <div className="w-9 h-9 rounded-full bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto">
+          <div className="p-6 rounded-2xl bg-white dark:bg-[#0c0c0e] border border-black/15 dark:border-[#222225] text-center space-y-3 shadow-xs">
+            <div className="w-9 h-9 rounded-full bg-black text-[#faf5eb] dark:bg-[#faf5eb] dark:text-black font-bold text-sm flex items-center justify-center mx-auto shadow-xs">
               1
             </div>
-            <h3 className="text-base font-bold text-slate-900 dark:text-white">Choose a Template</h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+            <h3 className="text-base font-bold text-black dark:text-[#faf5eb]">Choose a Template</h3>
+            <p className="text-xs text-[#5c5549] dark:text-[#a39b8e] leading-relaxed">
               Pick from 9 clean formats including Jake's Resume, MTeck's, or Modern Accent.
             </p>
           </div>
 
-          <div className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center space-y-3">
-            <div className="w-9 h-9 rounded-full bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto">
+          <div className="p-6 rounded-2xl bg-white dark:bg-[#0c0c0e] border border-black/15 dark:border-[#222225] text-center space-y-3 shadow-xs">
+            <div className="w-9 h-9 rounded-full bg-black text-[#faf5eb] dark:bg-[#faf5eb] dark:text-black font-bold text-sm flex items-center justify-center mx-auto shadow-xs">
               2
             </div>
-            <h3 className="text-base font-bold text-slate-900 dark:text-white">Fill in Your Details</h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+            <h3 className="text-base font-bold text-black dark:text-[#faf5eb]">Fill in Your Details</h3>
+            <p className="text-xs text-[#5c5549] dark:text-[#a39b8e] leading-relaxed">
               Enter your experience, education, and skills with real-time preview and auto-saving.
             </p>
           </div>
 
-          <div className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center space-y-3">
-            <div className="w-9 h-9 rounded-full bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto">
+          <div className="p-6 rounded-2xl bg-white dark:bg-[#0c0c0e] border border-black/15 dark:border-[#222225] text-center space-y-3 shadow-xs">
+            <div className="w-9 h-9 rounded-full bg-black text-[#faf5eb] dark:bg-[#faf5eb] dark:text-black font-bold text-sm flex items-center justify-center mx-auto shadow-xs">
               3
             </div>
-            <h3 className="text-base font-bold text-slate-900 dark:text-white">Download PDF</h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+            <h3 className="text-base font-bold text-black dark:text-[#faf5eb]">Download PDF</h3>
+            <p className="text-xs text-[#5c5549] dark:text-[#a39b8e] leading-relaxed">
               Export an ATS-friendly, high-resolution vector PDF ready to submit with applications.
             </p>
           </div>
@@ -156,11 +156,11 @@ export const LandingPage = () => {
 
       {/* CLEAN BOTTOM CTA CARD */}
       <section className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 sm:p-12 text-center shadow-xs space-y-4">
-          <h2 className="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-white">
+        <div className="rounded-2xl border border-black/15 dark:border-[#222225] bg-white dark:bg-[#0c0c0e] p-8 sm:p-12 text-center shadow-xs space-y-4">
+          <h2 className="text-2xl sm:text-3xl font-display font-bold text-black dark:text-[#faf5eb]">
             Ready to create your resume?
           </h2>
-          <p className="text-sm text-slate-600 dark:text-slate-400 max-w-md mx-auto">
+          <p className="text-sm text-[#5c5549] dark:text-[#a39b8e] max-w-md mx-auto">
             Get started in seconds. No credit card required, free forever.
           </p>
           <div className="pt-2">

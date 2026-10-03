@@ -117,13 +117,13 @@ export const CoverLetterDashboardPage = () => {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       {/* Header Banner */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-800">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pb-6 border-b border-black/10 dark:border-white/10">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 dark:text-white flex items-center gap-2.5">
-            <Mail className="h-7 w-7 text-brand-600 dark:text-brand-400" />
+          <h1 className="text-2xl sm:text-3xl font-display font-extrabold text-black dark:text-[#faf5eb] flex items-center gap-2.5">
+            <Mail className="h-7 w-7 text-black dark:text-[#faf5eb]" />
             <span>Targeted Cover Letters</span>
           </h1>
-          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
+          <p className="text-xs sm:text-sm text-[#5c5549] dark:text-[#a39b8e] mt-1">
             Generate and customize tailored cover letters optimized for specific job descriptions.
           </p>
         </div>
@@ -139,15 +139,15 @@ export const CoverLetterDashboardPage = () => {
       </div>
 
       {/* Search Bar */}
-      <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex items-center gap-4">
+      <div className="bg-white dark:bg-[#0c0c0e] p-4 rounded-2xl border border-black/15 dark:border-[#222225] shadow-xs flex items-center gap-4">
         <div className="relative flex-1">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 dark:text-slate-500" />
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-black/40 dark:text-[#faf5eb]/40" />
           <input
             type="text"
             placeholder="Search by company, job title, or letter name..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 py-2 pl-10 pr-4 text-xs sm:text-sm text-slate-900 dark:text-slate-100 placeholder:text-slate-400 focus:bg-white dark:focus:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-100"
+            className="w-full rounded-xl border border-black/20 dark:border-[#333338] bg-[#faf5eb] dark:bg-[#000000] py-2 pl-10 pr-4 text-xs sm:text-sm text-black dark:text-[#faf5eb] placeholder-[#8c8476] dark:placeholder-[#6e685f] focus:bg-white dark:focus:bg-[#0c0c0e] focus:outline-none focus:border-black dark:focus:border-[#faf5eb] focus:ring-1 focus:ring-black dark:focus:ring-[#faf5eb]"
           />
         </div>
       </div>
@@ -184,26 +184,26 @@ export const CoverLetterDashboardPage = () => {
           {filteredLetters.map((letter) => (
             <div
               key={letter._id}
-              className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-card hover:shadow-floating transition-all flex flex-col justify-between space-y-4"
+              className="rounded-2xl border border-black/15 dark:border-[#222225] bg-white dark:bg-[#0c0c0e] p-5 shadow-xs hover:border-black/30 dark:hover:border-white/30 transition-all flex flex-col justify-between space-y-4"
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
                   <Badge variant="brand" size="xs">
                     {letter.template || 'Modern'}
                   </Badge>
-                  <span className="text-[11px] text-slate-400">
+                  <span className="text-[11px] text-black/50 dark:text-[#faf5eb]/50">
                     Updated {timeAgo(letter.updatedAt)}
                   </span>
                 </div>
 
-                <h3 className="font-bold text-slate-900 dark:text-white text-base leading-snug truncate">
+                <h3 className="font-bold text-black dark:text-[#faf5eb] text-base leading-snug truncate">
                   {letter.title}
                 </h3>
 
-                <div className="mt-2 space-y-1 text-xs text-slate-600 dark:text-slate-400">
+                <div className="mt-2 space-y-1 text-xs text-[#5c5549] dark:text-[#a39b8e]">
                   {letter.companyName && (
-                    <p className="flex items-center gap-1.5 font-medium text-slate-800 dark:text-slate-200">
-                      <Building className="h-3.5 w-3.5 text-brand-600" />
+                    <p className="flex items-center gap-1.5 font-medium text-black dark:text-[#faf5eb]">
+                      <Building className="h-3.5 w-3.5 text-black dark:text-[#faf5eb]" />
                       <span>{letter.companyName}</span>
                     </p>
                   )}

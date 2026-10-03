@@ -35,15 +35,15 @@ export const Navbar = () => {
   };
 
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/90 backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/90 transition-colors">
+    <header className="sticky top-0 z-40 border-b border-black/10 bg-[#faf5eb]/90 backdrop-blur-md dark:border-white/10 dark:bg-black/90 transition-colors">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand Logo */}
-        <Link to="/" className="flex items-center gap-2.5 font-display font-extrabold text-slate-900 dark:text-white text-lg sm:text-xl tracking-tight">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-600 text-white shadow-xs">
+        <Link to="/" className="flex items-center gap-2.5 font-display font-extrabold text-black dark:text-[#faf5eb] text-lg sm:text-xl tracking-tight">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-black text-[#faf5eb] dark:bg-[#faf5eb] dark:text-black shadow-xs">
             <Sparkles className="h-5 w-5" />
           </div>
           <span>
-            Career<span className="text-brand-600 dark:text-brand-400">ly</span>
+            Career<span>ly</span>
           </span>
         </Link>
 
@@ -53,30 +53,30 @@ export const Navbar = () => {
             <>
               <Link
                 to="/dashboard"
-                className={`text-sm font-medium transition-colors ${
+                className={`text-sm transition-colors ${
                   location.pathname === '/dashboard'
-                    ? 'text-brand-600 dark:text-brand-400 font-semibold'
-                    : 'text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white'
+                    ? 'text-black dark:text-[#faf5eb] font-bold'
+                    : 'text-[#756d61] hover:text-black dark:text-[#a39b8e] dark:hover:text-[#faf5eb] font-medium'
                 }`}
               >
                 Resumes
               </Link>
               <Link
                 to="/cover-letters"
-                className={`text-sm font-medium transition-colors ${
+                className={`text-sm transition-colors ${
                   location.pathname.startsWith('/cover-letters')
-                    ? 'text-brand-600 dark:text-brand-400 font-semibold'
-                    : 'text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white'
+                    ? 'text-black dark:text-[#faf5eb] font-bold'
+                    : 'text-[#756d61] hover:text-black dark:text-[#a39b8e] dark:hover:text-[#faf5eb] font-medium'
                 }`}
               >
                 Cover Letters
               </Link>
               <Link
                 to="/profile"
-                className={`text-sm font-medium transition-colors ${
+                className={`text-sm transition-colors ${
                   location.pathname === '/profile'
-                    ? 'text-brand-600 dark:text-brand-400 font-semibold'
-                    : 'text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white'
+                    ? 'text-black dark:text-[#faf5eb] font-bold'
+                    : 'text-[#756d61] hover:text-black dark:text-[#a39b8e] dark:hover:text-[#faf5eb] font-medium'
                 }`}
               >
                 Account Settings
@@ -86,19 +86,19 @@ export const Navbar = () => {
             <>
               <a
                 href="#features"
-                className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors"
+                className="text-sm font-medium text-[#756d61] hover:text-black dark:text-[#a39b8e] dark:hover:text-[#faf5eb] transition-colors"
               >
                 Features
               </a>
               <a
                 href="#templates"
-                className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors"
+                className="text-sm font-medium text-[#756d61] hover:text-black dark:text-[#a39b8e] dark:hover:text-[#faf5eb] transition-colors"
               >
                 Templates
               </a>
               <a
                 href="#pricing"
-                className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors"
+                className="text-sm font-medium text-[#756d61] hover:text-black dark:text-[#a39b8e] dark:hover:text-[#faf5eb] transition-colors"
               >
                 Free Forever
               </a>
@@ -115,16 +115,16 @@ export const Navbar = () => {
             <div className="relative" ref={userMenuRef}>
               <button
                 onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                className="flex items-center gap-2.5 rounded-full border border-slate-200 bg-slate-50 p-1.5 pr-3 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors focus:outline-none"
+                className="flex items-center gap-2.5 rounded-full border border-black/15 bg-white p-1.5 pr-3 hover:bg-black/5 dark:border-white/15 dark:bg-[#0c0c0e] dark:hover:bg-white/10 transition-colors focus:outline-none"
               >
-                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-600 text-xs font-bold text-white shadow-subtle">
+                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-black text-[#faf5eb] dark:bg-[#faf5eb] dark:text-black text-xs font-bold shadow-xs">
                   {user?.avatar ? (
                     <img src={user.avatar} alt={user.name} className="h-full w-full rounded-full object-cover" />
                   ) : (
                     getInitials(user?.name)
                   )}
                 </div>
-                <span className="text-xs font-semibold text-slate-800 dark:text-slate-200 max-w-[120px] truncate">
+                <span className="text-xs font-semibold text-black dark:text-[#faf5eb] max-w-[120px] truncate">
                   {user?.name}
                 </span>
               </button>

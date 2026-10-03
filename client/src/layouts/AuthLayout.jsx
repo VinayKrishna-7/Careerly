@@ -12,18 +12,18 @@ export const AuthLayout = () => {
       </div>
 
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center z-10">
-        <Link to="/" className="inline-flex items-center gap-2.5 font-display font-extrabold text-slate-900 dark:text-white text-2xl tracking-tight">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-600 text-white shadow-xs">
+        <Link to="/" className="inline-flex items-center gap-2.5 font-display font-extrabold text-black dark:text-[#faf5eb] text-2xl tracking-tight">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-black text-[#faf5eb] dark:bg-[#faf5eb] dark:text-black shadow-xs">
             <Sparkles className="h-6 w-6" />
           </div>
           <span>
-            Career<span className="text-brand-600 dark:text-brand-400">ly</span>
+            Career<span>ly</span>
           </span>
         </Link>
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md z-10 px-4 sm:px-0">
-        <div className="bg-white dark:bg-slate-900 py-8 px-6 sm:px-10 shadow-floating rounded-2xl border border-slate-100 dark:border-slate-800 transition-colors">
+        <div className="bg-white dark:bg-[#0c0c0e] py-8 px-6 sm:px-10 shadow-floating rounded-2xl border border-black/15 dark:border-[#222225] transition-colors">
           <Outlet />
         </div>
       </div>
