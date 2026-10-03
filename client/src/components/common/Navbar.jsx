@@ -5,8 +5,7 @@ import { logoutUser } from '../../store/slices/authSlice.js';
 import { showToast } from '../../store/slices/uiSlice.js';
 import Button from '../ui/Button.jsx';
 import ThemeToggle from '../ui/ThemeToggle.jsx';
-import { FileText, LayoutDashboard, User, LogOut, Menu, X, Sparkles } from 'lucide-react';
-import { getInitials } from '../../utils/formatters.js';
+import { FileText, LayoutDashboard, User, LogOut, Menu, X, Sparkles, ChevronDown } from 'lucide-react';
 
 export const Navbar = () => {
   const navigate = useNavigate();
@@ -92,18 +91,12 @@ export const Navbar = () => {
             <div className="relative" ref={userMenuRef}>
               <button
                 onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                className="flex items-center gap-2.5 rounded-full border border-black/15 bg-white p-1.5 pr-3 hover:bg-black/5 dark:border-white/15 dark:bg-[#0c0c0e] dark:hover:bg-white/10 transition-colors focus:outline-none"
+                className="flex h-9 items-center gap-2 rounded-xl border border-black/20 bg-white px-3.5 hover:bg-black/5 dark:border-[#faf5eb]/25 dark:bg-[#0c0c0e] dark:hover:bg-white/10 transition-colors focus:outline-none"
               >
-                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-black text-[#faf5eb] dark:bg-[#faf5eb] dark:text-black text-xs font-bold shadow-xs">
-                  {user?.avatar ? (
-                    <img src={user.avatar} alt={user.name} className="h-full w-full rounded-full object-cover" />
-                  ) : (
-                    getInitials(user?.name)
-                  )}
-                </div>
-                <span className="text-xs font-semibold text-black dark:text-[#faf5eb] max-w-[120px] truncate">
+                <span className="text-xs font-semibold text-black dark:text-[#faf5eb] max-w-[140px] truncate">
                   {user?.name}
                 </span>
+                <ChevronDown className={`h-3.5 w-3.5 text-[#756d61] dark:text-[#a39b8e] transition-transform duration-200 ${isUserMenuOpen ? 'rotate-180' : ''}`} />
               </button>
 
               {isUserMenuOpen && (
@@ -174,14 +167,9 @@ export const Navbar = () => {
         <div className="border-b border-black/10 bg-[#faf5eb] dark:border-white/10 dark:bg-black px-4 py-4 md:hidden animate-in slide-in-from-top-2">
           {isAuthenticated ? (
             <div className="space-y-2">
-              <div className="flex items-center gap-3 px-2 py-2 border-b border-black/10 dark:border-white/10">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-black text-[#faf5eb] dark:bg-[#faf5eb] dark:text-black text-xs font-bold shadow-xs">
-                  {getInitials(user?.name)}
-                </div>
-                <div>
-                  <p className="text-xs font-bold text-black dark:text-[#faf5eb]">{user?.name}</p>
-                  <p className="text-[10px] text-[#756d61] dark:text-[#a39b8e]">{user?.email}</p>
-                </div>
+              <div className="px-2 py-2 border-b border-black/10 dark:border-white/10">
+                <p className="text-xs font-bold text-black dark:text-[#faf5eb]">{user?.name}</p>
+                <p className="text-[10px] text-[#756d61] dark:text-[#a39b8e]">{user?.email}</p>
               </div>
               <Link
                 to="/dashboard"
