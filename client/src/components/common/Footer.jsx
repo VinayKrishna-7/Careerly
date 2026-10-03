@@ -22,7 +22,7 @@ export const Footer = () => {
             </Link>
             <span className="text-black/30 dark:text-white/30 hidden sm:inline">•</span>
             <span className="text-xs sm:text-sm text-[#756d61] dark:text-[#a39b8e] font-medium">
-              Modern ATS Resume &amp; Career Builder
+              ATS Resume &amp; Career Builder
             </span>
           </div>
 
