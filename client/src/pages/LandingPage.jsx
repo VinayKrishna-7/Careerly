@@ -302,23 +302,6 @@ export const LandingPage = () => {
         </div>
       </section>
 
-      {/* HIRING LOGOS MARQUEE */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-        <p className="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-6">
-          Candidates hired by leading engineering teams worldwide
-        </p>
-        <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-14 opacity-70 dark:opacity-40 grayscale hover:grayscale-0 transition-all">
-          <span className="font-display font-extrabold text-lg tracking-wider text-slate-700 dark:text-slate-300">Google</span>
-          <span className="font-display font-extrabold text-lg tracking-wider text-slate-700 dark:text-slate-300">Microsoft</span>
-          <span className="font-display font-extrabold text-lg tracking-wider text-slate-700 dark:text-slate-300">Amazon</span>
-          <span className="font-display font-extrabold text-lg tracking-wider text-slate-700 dark:text-slate-300">Meta</span>
-          <span className="font-display font-extrabold text-lg tracking-wider text-slate-700 dark:text-slate-300">Apple</span>
-          <span className="font-display font-extrabold text-lg tracking-wider text-slate-700 dark:text-slate-300">Stripe</span>
-          <span className="font-display font-extrabold text-lg tracking-wider text-slate-700 dark:text-slate-300">Netflix</span>
-          <span className="font-display font-extrabold text-lg tracking-wider text-slate-700 dark:text-slate-300">Uber</span>
-        </div>
-      </section>
-
       {/* INTERACTIVE ATS SCANNER SHOWCASE */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 sm:p-12 shadow-floating relative overflow-hidden">
