@@ -10,10 +10,10 @@
     @apply min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950;
   }
   * {
-    border-color: #e5e7eb;
+    border-color: #e4e7ec;
   }
   .dark * {
-    border-color: #1f2227;
+    border-color: #22242b;
   }
 }
 
@@ -23,24 +23,24 @@
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1f3f5;
+  background: #f1f3f7;
 }
 ::-webkit-scrollbar-thumb {
-  background: #d1d5db;
+  background: #d0d5dd;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #9ca3af;
+  background: #98a2b3;
 }
 
 .dark ::-webkit-scrollbar-track {
-  background: #111317;
+  background: #131418;
 }
 .dark ::-webkit-scrollbar-thumb {
-  background: #20242e;
+  background: #22242b;
 }
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: #333741;
+  background: #344054;
 }
 
 /* A4 Page Representation for Editor & Preview (Strict 1-Page Fit) */
