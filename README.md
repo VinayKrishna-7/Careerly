@@ -2,6 +2,25 @@
 
 A clean, web-based resume and cover letter builder designed for ATS-friendly formatting and PDF export.
 
+---
+
+### What is Careerly?
+
+When you apply for jobs online, company hiring software (Applicant Tracking Systems, or ATS) scans your resume before a human recruiter ever sees it. If your resume uses complex columns, tables, graphics, or unsupported fonts, the software can scramble your text and automatically reject your application.
+
+**Careerly** solves this problem by giving you a simple, guided editor to build clean, recruiter-friendly resumes that pass ATS filters every time.
+
+Instead of fighting with word processors or paying for subscriptions, you fill in your details through straightforward forms, see your changes update on screen in real time, and download a crisp, professional vector PDF with selectable text.
+
+### How it works
+
+1. **Fill in your experience**: Add your contact information, work history, education, projects, and skills through guided forms.
+2. **Choose your layout**: Switch between different industry-standard templates (such as Jake's Resume, Minimalist, or Executive) with one click without losing any content.
+3. **Score against the job description**: Paste the job posting into the built-in ATS checker to see keyword matches, action verbs, and areas to improve before you apply.
+4. **Download your PDF**: Export a clean, high-resolution vector PDF with zero watermarks, ready to send with your job application.
+
+---
+
 ## Features
 
 - **ATS-Compliant Templates**: Standardized single-page and multi-section layouts (Jake's, MTeck's, Minimal, Executive) designed for ATS parsers.
