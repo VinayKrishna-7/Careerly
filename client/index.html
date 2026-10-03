@@ -2,7 +2,8 @@
 <html lang="en" class="h-full">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'><path d='m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z'/></svg>" />
+    <link rel="icon" type="image/svg+xml" id="app-favicon" href="/favicon.svg" />
+    <link rel="alternate icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Careerly — Modern ATS Resume & Career Builder</title>
     <!-- Google Fonts -->
@@ -13,10 +14,18 @@
       (function() {
         try {
           var saved = localStorage.getItem('theme');
-          if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          var isDark = saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          if (isDark) {
             document.documentElement.classList.add('dark');
           } else {
             document.documentElement.classList.remove('dark');
+          }
+          var link = document.getElementById('app-favicon');
+          if (link) {
+            var bg = isDark ? '%23faf5eb' : '%23000000';
+            var star = isDark ? '%23000000' : '%23faf5eb';
+            var stroke = isDark ? '%23d5ccba' : '%23333333';
+            link.href = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='1' y='1' width='30' height='30' rx='8' fill='" + bg + "' stroke='" + stroke + "' stroke-width='1.5'/><g transform='translate(4,4)' fill='" + star + "'><path d='m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z'/></g></svg>";
           }
         } catch (e) {}
       })();

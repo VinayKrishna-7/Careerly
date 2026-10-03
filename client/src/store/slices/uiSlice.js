@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { updateFavicon } from '../../utils/favicon.js';
 
 const getInitialTheme = () => {
   if (typeof window !== 'undefined') {
@@ -9,13 +10,16 @@ const getInitialTheme = () => {
       } else {
         document.documentElement.classList.remove('dark');
       }
+      updateFavicon(saved);
       return saved;
     }
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     if (prefersDark) {
       document.documentElement.classList.add('dark');
+      updateFavicon('dark');
       return 'dark';
     }
+    updateFavicon('light');
   }
   return 'light';
 };
@@ -48,6 +52,7 @@ const uiSlice = createSlice({
         } else {
           document.documentElement.classList.remove('dark');
         }
+        updateFavicon(nextTheme);
       }
     },
     setTheme: (state, action) => {
@@ -60,6 +65,7 @@ const uiSlice = createSlice({
         } else {
           document.documentElement.classList.remove('dark');
         }
+        updateFavicon(newTheme);
       }
     },
     showToast: (state, action) => {

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    :root {
+      --bg: #000000;
+      --star: #faf5eb;
+      --border: #333333;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #faf5eb;
+        --star: #000000;
+        --border: #d5ccba;
+      }
+    }
+    .badge {
+      fill: var(--bg);
+      stroke: var(--border);
+      stroke-width: 1.5px;
+    }
+    .star {
+      fill: var(--star);
+    }
+  </style>
+  <rect class="badge" x="1" y="1" width="30" height="30" rx="8" />
+  <g transform="translate(4, 4)">
+    <path class="star" d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+  </g>
+</svg>
