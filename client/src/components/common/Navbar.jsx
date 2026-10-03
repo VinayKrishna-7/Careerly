@@ -33,6 +33,8 @@ export const Navbar = () => {
     navigate('/login');
   };
 
+  const shortName = user?.name ? user.name.trim().split(/\s+/)[0] : 'Account';
+
   return (
     <header className="sticky top-0 z-40 border-b border-black/10 bg-[#faf5eb]/90 backdrop-blur-md dark:border-white/10 dark:bg-black/90 transition-colors">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -93,8 +95,8 @@ export const Navbar = () => {
                 onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
                 className="flex h-9 items-center gap-2 rounded-xl border border-black/20 bg-white px-3.5 hover:bg-black/5 dark:border-[#faf5eb]/25 dark:bg-[#0c0c0e] dark:hover:bg-white/10 transition-colors focus:outline-none"
               >
-                <span className="text-xs font-semibold text-black dark:text-[#faf5eb] max-w-[140px] truncate">
-                  {user?.name}
+                <span className="text-xs font-semibold text-black dark:text-[#faf5eb] max-w-[120px] truncate">
+                  {shortName}
                 </span>
                 <ChevronDown className={`h-3.5 w-3.5 text-[#756d61] dark:text-[#a39b8e] transition-transform duration-200 ${isUserMenuOpen ? 'rotate-180' : ''}`} />
               </button>
