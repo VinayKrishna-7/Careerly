@@ -4,19 +4,21 @@ import Resume from '../models/Resume.js';
 import { sendError } from '../utils/apiResponse.js';
 import { COOKIE_NAME } from '../config/constants.js';
 
+const JWT_SECRET = process.env.JWT_SECRET || 'careerly_jwt_super_secure_production_secret_key_2026';
+
 export const protect = async (req, res, next) => {
   let token = null;
 
-  // 1. Check cookies first
-  if (req.cookies && req.cookies[COOKIE_NAME]) {
-    token = req.cookies[COOKIE_NAME];
-  }
-  // 2. Check Authorization header fallback (Bearer <token>)
-  else if (
+  // 1. Check Authorization header first (Bearer <token>)
+  if (
     req.headers.authorization &&
     req.headers.authorization.startsWith('Bearer')
   ) {
     token = req.headers.authorization.split(' ')[1];
+  }
+  // 2. Check cookies fallback
+  else if (req.cookies && req.cookies[COOKIE_NAME]) {
+    token = req.cookies[COOKIE_NAME];
   }
 
   if (!token) {
@@ -24,7 +26,7 @@ export const protect = async (req, res, next) => {
   }
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, JWT_SECRET);
     const user = await User.findById(decoded.id).select('-passwordHash');
 
     if (!user) {

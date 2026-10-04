@@ -44,10 +44,15 @@ export const RegisterPage = () => {
   const enteredConfirmPassword = watch('confirmPassword') || '';
 
   useEffect(() => {
+    dispatch(clearAuthError());
+    try {
+      localStorage.removeItem('saved_user_email');
+    } catch (e) {}
+
     if (location.state?.email) {
       setValue('email', location.state.email);
     }
-  }, [location.state, setValue]);
+  }, [dispatch, location.state, setValue]);
 
   // Strict password strength criteria checks
   const hasMinLength = enteredPassword.length >= 8;

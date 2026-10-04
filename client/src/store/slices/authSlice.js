@@ -16,9 +16,6 @@ export const registerUser = createAsyncThunk('auth/registerUser', async (userDat
     if (data.data?.token) {
       localStorage.setItem('token', data.data.token);
     }
-    if (userData.email) {
-      localStorage.setItem('saved_user_email', userData.email);
-    }
     return data.data.user;
   } catch (error) {
     return rejectWithValue(error.message || 'Registration failed');
@@ -30,9 +27,6 @@ export const loginUser = createAsyncThunk('auth/loginUser', async (credentials, 
     const data = await authApi.login(credentials);
     if (data.data?.token) {
       localStorage.setItem('token', data.data.token);
-    }
-    if (credentials.email) {
-      localStorage.setItem('saved_user_email', credentials.email);
     }
     return data.data.user;
   } catch (error) {

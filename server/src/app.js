@@ -23,6 +23,9 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
+// Trust reverse proxy (Render, Cloudflare, etc.)
+app.set('trust proxy', 1);
+
 // Security middleware
 app.use(
   helmet({

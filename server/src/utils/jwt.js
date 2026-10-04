@@ -1,8 +1,10 @@
 import jwt from 'jsonwebtoken';
 import { COOKIE_NAME } from '../config/constants.js';
 
+const JWT_SECRET = process.env.JWT_SECRET || 'careerly_jwt_super_secure_production_secret_key_2026';
+
 export const generateToken = (userId) => {
-  return jwt.sign({ id: userId }, process.env.JWT_SECRET, {
+  return jwt.sign({ id: userId }, JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN || '7d'
   });
 };
@@ -14,7 +16,7 @@ export const setTokenCookie = (res, token) => {
   res.cookie(COOKIE_NAME, token, {
     httpOnly: true,
     secure: isProduction,
-    sameSite: isProduction ? 'strict' : 'lax',
+    sameSite: 'lax',
     maxAge
   });
 };
@@ -25,7 +27,7 @@ export const clearTokenCookie = (res) => {
   res.cookie(COOKIE_NAME, '', {
     httpOnly: true,
     secure: isProduction,
-    sameSite: isProduction ? 'strict' : 'lax',
+    sameSite: 'lax',
     expires: new Date(0)
   });
 };
