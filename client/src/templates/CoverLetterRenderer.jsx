@@ -68,7 +68,7 @@ export const CoverLetterRenderer = ({ letter }) => {
         style={{ borderColor: primaryColor }}
       >
         <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight" style={{ color: primaryColor }}>
-          {senderInfo.fullName || 'Alex Morgan'}
+          {senderInfo.fullName || 'Your Name'}
         </h1>
 
         {senderInfo.location && (
@@ -146,7 +146,7 @@ export const CoverLetterRenderer = ({ letter }) => {
         <div className="text-xs text-slate-700">{signoff}</div>
         <div>
           <div className="font-bold text-sm" style={{ color: primaryColor }}>
-            {senderInfo.fullName || 'Alex Morgan'}
+            {senderInfo.fullName || 'Your Name'}
           </div>
         </div>
       </div>

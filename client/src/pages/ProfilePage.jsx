@@ -149,7 +149,7 @@ export const ProfilePage = () => {
 
                 <Input
                   label="Full Name"
-                  placeholder="e.g. Alex Morgan"
+                  placeholder="e.g. John Doe"
                   leftIcon={<User className="h-4 w-4" />}
                   error={errors.name?.message}
                   {...register('name')}

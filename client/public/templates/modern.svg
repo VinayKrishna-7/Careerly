@@ -3,9 +3,9 @@
   <rect width="380" height="7" fill="#2563eb"/>
 
   <!-- Left Header -->
-  <text x="24" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="800" fill="#0f172a" letter-spacing="-0.3">ALEX MORGAN</text>
+  <text x="24" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="800" fill="#0f172a" letter-spacing="-0.3">JANE DOE</text>
   <text x="24" y="47" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="600" fill="#2563eb">Senior Full Stack Software Engineer</text>
-  <text x="24" y="59" font-family="system-ui, -apple-system, sans-serif" font-size="7" fill="#64748b">alex.morgan@email.com • (555) 234-5678 • San Francisco, CA • linkedin.com/in/alexmorgan</text>
+  <text x="24" y="59" font-family="system-ui, -apple-system, sans-serif" font-size="7" fill="#64748b">jane.doe@email.com • (555) 234-5678 • San Francisco, CA • linkedin.com/in/janedoe</text>
 
   <!-- Summary -->
   <text x="24" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="700" fill="#2563eb" letter-spacing="0.5">PROFESSIONAL SUMMARY</text>

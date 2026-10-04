@@ -65,7 +65,7 @@ export const PersonalInfoForm = () => {
                 : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100'
             }`}
           >
-            <span>By URL (e.g. linkedin.com/in/alexmorgan, github.com/alexmorgan)</span>
+            <span>By URL (e.g. linkedin.com/in/username, github.com/username)</span>
             <ExternalLink className="h-3 w-3 opacity-60" />
           </button>
         </div>
@@ -75,7 +75,7 @@ export const PersonalInfoForm = () => {
         <Input
           label="Full Name"
           required
-          placeholder="e.g. Alex Morgan"
+          placeholder="e.g. John Doe"
           value={personalInfo.fullName || ''}
           onChange={(e) => handleChange('fullName', e.target.value)}
           leftIcon={<User className="h-4 w-4" />}
@@ -92,7 +92,7 @@ export const PersonalInfoForm = () => {
         <Input
           label="Email Address"
           type="email"
-          placeholder="e.g. alex.morgan@example.com"
+          placeholder="e.g. user@example.com"
           value={personalInfo.email || ''}
           onChange={(e) => handleChange('email', e.target.value)}
           leftIcon={<Mail className="h-4 w-4" />}

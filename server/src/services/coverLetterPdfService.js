@@ -186,7 +186,7 @@ export const generateCoverLetterHtml = (letter) => {
 <body>
   <div class="a4-page">
     <div class="header">
-      <h1 class="sender-name">${escapeHtml(senderInfo.fullName || 'Alex Morgan')}</h1>
+      <h1 class="sender-name">${escapeHtml(senderInfo.fullName || 'Candidate')}</h1>
       ${senderInfo.location ? `<div class="sender-title">${escapeHtml(senderInfo.location)}</div>` : ''}
       <div class="sender-contact">
         ${senderInfo.email ? `<span>✉ ${escapeHtml(senderInfo.email)}</span>` : ''}
@@ -216,7 +216,7 @@ export const generateCoverLetterHtml = (letter) => {
 
     <div class="signoff-section">
       <div class="signoff-text">${escapeHtml(signoff)}</div>
-      <div class="signature-name">${escapeHtml(senderInfo.fullName || 'Alex Morgan')}</div>
+      <div class="signature-name">${escapeHtml(senderInfo.fullName || 'Candidate')}</div>
     </div>
   </div>
 </body>

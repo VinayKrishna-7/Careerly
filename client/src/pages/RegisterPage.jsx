@@ -92,13 +92,13 @@ export const RegisterPage = () => {
   return (
     <div className="space-y-6">
       <div className="text-center space-y-1">
-        <h2 className="text-2xl font-display font-bold text-slate-900 dark:text-white">Create your account</h2>
-        <p className="text-xs text-slate-500 dark:text-slate-400">Get started with free unlimited resumes and instant PDF export</p>
+        <h2 className="text-2xl font-display font-bold text-black dark:text-[#faf5eb]">Create your account</h2>
+        <p className="text-xs text-[#756d61] dark:text-[#a39b8e]">Get started with free unlimited resumes and instant PDF export</p>
       </div>
 
       {isEmailAlreadyRegistered ? (
-        <div className="rounded-lg bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 p-4 space-y-2.5 animate-in fade-in">
-          <p className="text-xs font-semibold text-amber-800 dark:text-amber-200">
+        <div className="rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 p-4 space-y-2.5 animate-in fade-in">
+          <p className="text-xs font-semibold text-amber-900 dark:text-amber-200">
             This email address is already in use / registered!
           </p>
           <button
@@ -111,7 +111,7 @@ export const RegisterPage = () => {
                 }
               })
             }
-            className="w-full flex items-center justify-center gap-2 rounded-md bg-brand-600 hover:bg-brand-700 text-white p-2 text-xs font-semibold shadow-sm transition-colors"
+            className="w-full flex items-center justify-center gap-2 rounded-lg bg-black text-[#faf5eb] dark:bg-[#faf5eb] dark:text-black p-2.5 text-xs font-bold shadow-xs hover:opacity-90 transition-opacity"
           >
             <LogIn className="h-4 w-4" />
             <span>Go to Sign In with this Email</span>
@@ -130,7 +130,7 @@ export const RegisterPage = () => {
         <Input
           label="Full Name"
           type="text"
-          placeholder="Alex Morgan"
+          placeholder="Enter your full name"
           leftIcon={<User className="h-4 w-4" />}
           error={errors.name?.message}
           {...register('name')}

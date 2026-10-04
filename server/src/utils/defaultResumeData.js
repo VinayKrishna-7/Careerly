@@ -5,14 +5,14 @@ export const getDefaultResumeData = (title = 'Software Engineer Resume', templat
     title,
     template,
     personalInfo: {
-      fullName: user?.name || 'Alex Morgan',
-      jobTitle: 'Senior Full Stack Software Engineer',
-      email: user?.email || 'alex.morgan@example.com',
-      phone: '+1 (555) 234-5678',
-      location: 'San Francisco, CA',
-      website: 'https://alexmorgan.dev',
-      linkedin: 'https://linkedin.com/in/alexmorgan',
-      github: 'https://github.com/alexmorgan',
+      fullName: user?.name || '',
+      jobTitle: user?.jobTitle || '',
+      email: user?.email || '',
+      phone: '',
+      location: '',
+      website: '',
+      linkedin: '',
+      github: '',
       photoUrl: ''
     },
     summary:

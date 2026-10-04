@@ -95,7 +95,7 @@ const getRoleDefaultSkills = (jobTitle = '') => {
 };
 
 export const generateCoverLetterContent = ({
-  candidateName = 'Alex Morgan',
+  candidateName = 'Candidate',
   jobTitle = 'Software Engineer',
   companyName = 'Innovate Tech',
   recipientName = '',
