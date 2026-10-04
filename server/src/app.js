@@ -12,7 +12,14 @@ import coverLetterRoutes from './routes/coverLetterRoutes.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { apiLimiter } from './middleware/rateLimiter.js';
 
+import path from 'path';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
+
 dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
@@ -81,6 +88,16 @@ app.use('/api/*', (req, res) => {
     message: `API endpoint not found: ${req.method} ${req.originalUrl}`
   });
 });
+
+// Serve frontend static files if client/dist exists (single-service production deployment)
+const clientDistPath = path.resolve(__dirname, '../../client/dist');
+if (fs.existsSync(clientDistPath)) {
+  app.use(express.static(clientDistPath));
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api')) return next();
+    res.sendFile(path.join(clientDistPath, 'index.html'));
+  });
+}
 
 // Centralized Error Handler
 app.use(errorHandler);
