@@ -70,7 +70,6 @@ export const registerUser = async ({ name, email, password, safetyPin }) => {
       email: user.email,
       avatar: user.avatar,
       jobTitle: user.jobTitle,
-      safetyPin: user.safetyPin,
       createdAt: user.createdAt
     },
     token
@@ -85,7 +84,7 @@ export const resetPasswordWithSafetyPin = async ({ email, safetyPin, newPassword
     throw error;
   }
 
-  const user = await User.findOne({ email: normalizedEmail });
+  const user = await User.findOne({ email: normalizedEmail }).select('+safetyPin');
   if (!user) {
     const error = new Error('No account found with this email address. Please check the email.');
     error.statusCode = 404;
@@ -115,7 +114,6 @@ export const resetPasswordWithSafetyPin = async ({ email, safetyPin, newPassword
       email: user.email,
       avatar: user.avatar,
       jobTitle: user.jobTitle,
-      safetyPin: user.safetyPin,
       createdAt: user.createdAt
     },
     token
@@ -191,19 +189,21 @@ export const requestPasswordReset = async (email) => {
   const resetToken = user.generateResetPasswordToken();
   await user.save({ validateBeforeSave: false });
 
-  // In production, send email via nodemailer/SendGrid. For local dev/demo, we return the token info in log.
+  const isDev = process.env.NODE_ENV !== 'production';
   const resetUrl = `${process.env.CLIENT_URL || 'http://localhost:5173'}/reset-password/${resetToken}`;
-  console.log(`\n======================================================`);
-  console.log(`[PASSWORD RESET SIMULATOR]`);
-  console.log(`To: ${email}`);
-  console.log(`Reset Token: ${resetToken}`);
-  console.log(`Reset URL: ${resetUrl}`);
-  console.log(`======================================================\n`);
+  
+  if (isDev) {
+    console.log(`\n======================================================`);
+    console.log(`[PASSWORD RESET SIMULATOR]`);
+    console.log(`To: ${email}`);
+    console.log(`Reset Token: ${resetToken}`);
+    console.log(`Reset URL: ${resetUrl}`);
+    console.log(`======================================================\n`);
+  }
 
   return {
-    message: 'Password reset link sent to your email.',
-    resetToken,
-    resetUrl
+    message: 'If that email address is registered, a password reset link has been dispatched.',
+    ...(isDev ? { resetToken, resetUrl } : {})
   };
 };
 

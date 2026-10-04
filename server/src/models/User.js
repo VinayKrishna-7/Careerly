@@ -41,7 +41,8 @@ const userSchema = new mongoose.Schema(
       trim: true,
       minlength: [4, 'Safety PIN must be at least 4 digits'],
       maxlength: [6, 'Safety PIN cannot exceed 6 digits'],
-      default: '1234'
+      default: '1234',
+      select: false
     },
     resetPasswordToken: {
       type: String,
@@ -57,6 +58,7 @@ const userSchema = new mongoose.Schema(
     toJSON: {
       transform(doc, ret) {
         delete ret.passwordHash;
+        delete ret.safetyPin;
         delete ret.resetPasswordToken;
         delete ret.resetPasswordExpire;
         return ret;

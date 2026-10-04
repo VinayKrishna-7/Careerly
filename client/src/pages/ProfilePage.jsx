@@ -8,7 +8,7 @@ import { profileSchema } from '../schemas/authSchemas.js';
 import Input from '../components/ui/Input.jsx';
 import Button from '../components/ui/Button.jsx';
 import ThemeToggle from '../components/ui/ThemeToggle.jsx';
-import { User, Mail, Lock, Shield, Sparkles, Sun, Moon, KeyRound } from 'lucide-react';
+import { User, Mail, Lock, Shield, Sparkles, Sun, Moon, KeyRound, Eye, EyeOff } from 'lucide-react';
 import { getInitials } from '../utils/formatters.js';
 
 export const ProfilePage = () => {
@@ -16,6 +16,7 @@ export const ProfilePage = () => {
   const { user } = useSelector((state) => state.auth);
   const currentTheme = useSelector((state) => state.ui.theme);
   const [isUpdating, setIsUpdating] = useState(false);
+  const [showPin, setShowPin] = useState(false);
 
   const {
     register,
@@ -28,7 +29,7 @@ export const ProfilePage = () => {
       name: user?.name || '',
       jobTitle: user?.jobTitle || '',
       avatar: user?.avatar || '',
-      safetyPin: user?.safetyPin || '',
+      safetyPin: '',
       currentPassword: '',
       newPassword: ''
     }
@@ -60,7 +61,7 @@ export const ProfilePage = () => {
         name: action.payload.name,
         jobTitle: action.payload.jobTitle || '',
         avatar: action.payload.avatar || '',
-        safetyPin: action.payload.safetyPin || data.safetyPin || '',
+        safetyPin: '',
         currentPassword: '',
         newPassword: ''
       });
@@ -206,11 +207,20 @@ export const ProfilePage = () => {
 
                 <Input
                   label="Safety PIN Code (4-6 Digits)"
-                  type="text"
+                  type={showPin ? 'text' : 'password'}
                   inputMode="numeric"
                   maxLength={6}
-                  placeholder="e.g. 1234 or 849201"
+                  placeholder="Leave blank to keep unchanged"
                   leftIcon={<KeyRound className="h-4 w-4" />}
+                  rightIcon={
+                    <button
+                      type="button"
+                      onClick={() => setShowPin(!showPin)}
+                      className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+                    >
+                      {showPin ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                    </button>
+                  }
                   helperText="Your 4-6 digit recovery PIN for instant password resets without email."
                   error={errors.safetyPin?.message}
                   {...register('safetyPin')}

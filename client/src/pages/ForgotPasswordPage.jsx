@@ -20,6 +20,7 @@ export const ForgotPasswordPage = () => {
   const [errorMsg, setErrorMsg] = useState('');
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [showPin, setShowPin] = useState(false);
 
   const initialEmail = location.state?.email || localStorage.getItem('saved_user_email') || '';
 
@@ -116,11 +117,20 @@ export const ForgotPasswordPage = () => {
 
         <Input
           label="Your Safety PIN Code (4-6 Digits)"
-          type="text"
+          type={showPin ? 'text' : 'password'}
           inputMode="numeric"
           maxLength={6}
-          placeholder="e.g. 1234 or 849201"
+          placeholder="••••"
           leftIcon={<KeyRound className="h-4 w-4" />}
+          rightIcon={
+            <button
+              type="button"
+              onClick={() => setShowPin(!showPin)}
+              className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+            >
+              {showPin ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+            </button>
+          }
           helperText="Enter the 4 to 6 digit Safety PIN code you selected when creating your account."
           error={errors.safetyPin?.message}
           {...register('safetyPin')}
