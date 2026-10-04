@@ -1,0 +1,6 @@
+# Client secrets & build artifacts
+.env
+.env.*
+.env.local
+dist/
+node_modules/

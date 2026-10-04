@@ -11,8 +11,12 @@ client/dist/
 # Environment variables & secrets
 .env
 .env.*
+*.env
+*.env.*
+**/.env
+**/.env.*
 !.env.example
-server/.env
+!server/.env.example
 
 # Logs and runtime data
 npm-debug.log*
