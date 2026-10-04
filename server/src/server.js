@@ -42,6 +42,19 @@ const startServer = async () => {
       console.log(`🚀 Server running in ${process.env.NODE_ENV || 'development'} mode on http://localhost:${PORT}`);
     });
 
+    // Render Free-Tier Anti-Sleep Self-Ping Heartbeat (Every 13 minutes)
+    const pingTarget = process.env.RENDER_EXTERNAL_URL || process.env.CLIENT_URL;
+    if (pingTarget && pingTarget.startsWith('http')) {
+      const healthEndpoint = `${pingTarget.replace(/\/+$/, '')}/api/health`;
+      setInterval(async () => {
+        try {
+          await fetch(healthEndpoint);
+        } catch {
+          // Ignore network ping errors in background
+        }
+      }, 13 * 60 * 1000);
+    }
+
     // Graceful Shutdown
     const handleShutdown = async (signal) => {
       console.log(`\n🛑 Received ${signal}. Gracefully terminating server...`);

@@ -3,6 +3,10 @@ import { authApi } from '../../services/authApi.js';
 
 export const checkAuth = createAsyncThunk('auth/checkAuth', async (_, { rejectWithValue }) => {
   try {
+    const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+    if (!token) {
+      return rejectWithValue('No token stored');
+    }
     const data = await authApi.getMe();
     return data.data.user;
   } catch (error) {
@@ -54,10 +58,12 @@ export const updateUserProfile = createAsyncThunk('auth/updateUserProfile', asyn
   }
 });
 
+const hasInitialToken = typeof window !== 'undefined' && Boolean(localStorage.getItem('token'));
+
 const initialState = {
   user: null,
   isAuthenticated: false,
-  isLoading: true,
+  isLoading: hasInitialToken,
   error: null
 };
 
