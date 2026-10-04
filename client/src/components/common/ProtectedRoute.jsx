@@ -9,20 +9,22 @@ export const ProtectedRoute = () => {
 
   const hasToken = typeof window !== 'undefined' && Boolean(localStorage.getItem('token'));
 
-  // If there is no token stored, don't wait on a spinner—redirect to login immediately
-  if (!hasToken && !isAuthenticated && !isLoading) {
+  // If user has no token and is not authenticated, immediately redirect to login
+  if (!hasToken && !isAuthenticated) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
-  if (isLoading && hasToken) {
+  // If user has a token and is currently authenticating, show loader
+  if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-950">
+      <div className="min-h-screen flex items-center justify-center bg-[#faf5eb] dark:bg-[#000000]">
         <Spinner size="lg" message="Authenticating session..." />
       </div>
     );
   }
 
-  if (!isAuthenticated && !isLoading) {
+  // If verification failed or ended without auth, redirect to login
+  if (!isAuthenticated) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 

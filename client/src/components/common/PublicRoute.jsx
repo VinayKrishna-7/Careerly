@@ -10,7 +10,7 @@ export const PublicRoute = () => {
 
   if (isLoading && hasToken) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-950">
+      <div className="min-h-screen flex items-center justify-center bg-[#faf5eb] dark:bg-[#000000]">
         <Spinner size="lg" message="Loading..." />
       </div>
     );

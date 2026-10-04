@@ -41,7 +41,11 @@ export const DashboardPage = () => {
   const dispatch = useDispatch();
 
   const { user } = useSelector((state) => state.auth);
-  const { resumesList, isLoadingList, stats } = useSelector((state) => state.resume);
+  const rawResumes = useSelector((state) => state.resume.resumesList);
+  const resumesList = Array.isArray(rawResumes) ? rawResumes : [];
+  const rawStats = useSelector((state) => state.resume.stats);
+  const stats = rawStats && typeof rawStats === 'object' ? rawStats : {};
+  const { isLoadingList } = useSelector((state) => state.resume);
 
   // Filters & Search
   const [searchQuery, setSearchQuery] = useState('');
@@ -194,7 +198,7 @@ export const DashboardPage = () => {
           <div>
             <p className="text-xs text-[#5c5549] dark:text-[#a39b8e] font-medium">Last Modified</p>
             <p className="text-sm font-bold text-black dark:text-[#faf5eb]">
-              {stats.lastUpdated ? timeAgo(stats.lastUpdated) : 'Just now'}
+              {stats?.lastUpdated ? timeAgo(stats.lastUpdated) : 'Just now'}
             </p>
           </div>
         </div>
