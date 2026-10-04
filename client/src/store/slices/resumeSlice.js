@@ -75,6 +75,12 @@ export const fetchDashboardStats = createAsyncThunk('resume/fetchDashboardStats'
   }
 });
 
+const markDirty = (state) => {
+  state.isDirty = true;
+  state.editVersion = (state.editVersion || 0) + 1;
+  state.saveStatus = 'idle';
+};
+
 const initialState = {
   resumesList: [],
   pagination: { total: 0, page: 1, limit: 50, totalPages: 1 },
@@ -86,6 +92,8 @@ const initialState = {
   saveStatus: 'idle', // 'idle' | 'saving' | 'saved' | 'error'
   lastSaved: null,
   isDirty: false,
+  editVersion: 0,
+  savingVersion: 0,
   activeSection: 'personalInfo',
   error: null
 };
@@ -109,25 +117,25 @@ const resumeSlice = createSlice({
         current = current[keys[i]];
       }
       current[keys[keys.length - 1]] = value;
-      state.isDirty = true;
+      markDirty(state);
       state.saveStatus = 'idle';
     },
     setActiveResumeTemplate: (state, action) => {
       if (state.activeResume) {
         state.activeResume.template = action.payload;
-        state.isDirty = true;
+        markDirty(state);
       }
     },
     setActiveResumeSettings: (state, action) => {
       if (state.activeResume) {
         state.activeResume.settings = { ...state.activeResume.settings, ...action.payload };
-        state.isDirty = true;
+        markDirty(state);
       }
     },
     setSectionOrder: (state, action) => {
       if (state.activeResume) {
         state.activeResume.sectionOrder = action.payload;
-        state.isDirty = true;
+        markDirty(state);
       }
     },
     toggleSectionVisibility: (state, action) => {
@@ -137,7 +145,7 @@ const resumeSlice = createSlice({
           state.activeResume.sectionVisibility = {};
         }
         state.activeResume.sectionVisibility[section] = !state.activeResume.sectionVisibility[section];
-        state.isDirty = true;
+        markDirty(state);
       }
     },
     // Array entry managers
@@ -145,21 +153,21 @@ const resumeSlice = createSlice({
       const { section, item } = action.payload;
       if (state.activeResume && Array.isArray(state.activeResume[section])) {
         state.activeResume[section].push(item);
-        state.isDirty = true;
+        markDirty(state);
       }
     },
     removeArrayItem: (state, action) => {
       const { section, index } = action.payload;
       if (state.activeResume && Array.isArray(state.activeResume[section])) {
         state.activeResume[section].splice(index, 1);
-        state.isDirty = true;
+        markDirty(state);
       }
     },
     updateArrayItem: (state, action) => {
       const { section, index, item } = action.payload;
       if (state.activeResume && Array.isArray(state.activeResume[section])) {
         state.activeResume[section][index] = { ...state.activeResume[section][index], ...item };
-        state.isDirty = true;
+        markDirty(state);
       }
     },
     reorderArrayItem: (state, action) => {
@@ -169,7 +177,7 @@ const resumeSlice = createSlice({
         const [moved] = items.splice(fromIndex, 1);
         items.splice(toIndex, 0, moved);
         state.activeResume[section] = items;
-        state.isDirty = true;
+        markDirty(state);
       }
     },
     // Custom sections management
@@ -207,7 +215,7 @@ const resumeSlice = createSlice({
       state.activeResume.sectionVisibility[sectionId] = true;
 
       state.activeSection = sectionId;
-      state.isDirty = true;
+      markDirty(state);
     },
     removeCustomSection: (state, action) => {
       const sectionId = action.payload;
@@ -236,7 +244,7 @@ const resumeSlice = createSlice({
         state.activeSection = 'personalInfo';
       }
 
-      state.isDirty = true;
+      markDirty(state);
     },
     updateCustomSectionTitle: (state, action) => {
       const { sectionId, title } = action.payload;
@@ -255,7 +263,7 @@ const resumeSlice = createSlice({
       }
       state.activeResume.sectionTitles[sectionId] = trimmedTitle;
 
-      state.isDirty = true;
+      markDirty(state);
     },
     addCustomSectionItem: (state, action) => {
       const { sectionId, item } = action.payload;
@@ -264,7 +272,7 @@ const resumeSlice = createSlice({
       if (sec) {
         if (!Array.isArray(sec.items)) sec.items = [];
         sec.items.push(item);
-        state.isDirty = true;
+        markDirty(state);
       }
     },
     updateCustomSectionItem: (state, action) => {
@@ -273,7 +281,7 @@ const resumeSlice = createSlice({
       const sec = state.activeResume.customSections.find((s) => s.id === sectionId);
       if (sec && Array.isArray(sec.items) && sec.items[index]) {
         sec.items[index] = { ...sec.items[index], ...item };
-        state.isDirty = true;
+        markDirty(state);
       }
     },
     removeCustomSectionItem: (state, action) => {
@@ -282,7 +290,7 @@ const resumeSlice = createSlice({
       const sec = state.activeResume.customSections.find((s) => s.id === sectionId);
       if (sec && Array.isArray(sec.items)) {
         sec.items.splice(index, 1);
-        state.isDirty = true;
+        markDirty(state);
       }
     },
     reorderCustomSectionItems: (state, action) => {
@@ -294,7 +302,7 @@ const resumeSlice = createSlice({
         const [moved] = items.splice(fromIndex, 1);
         items.splice(toIndex, 0, moved);
         sec.items = items;
-        state.isDirty = true;
+        markDirty(state);
       }
     },
     clearActiveResume: (state) => {
@@ -328,6 +336,8 @@ const resumeSlice = createSlice({
         state.isLoadingActive = false;
         state.activeResume = action.payload;
         state.isDirty = false;
+        state.editVersion = 0;
+        state.savingVersion = 0;
         state.saveStatus = 'saved';
         state.lastSaved = action.payload.updatedAt;
       })
@@ -340,19 +350,36 @@ const resumeSlice = createSlice({
       .addCase(createNewResume.fulfilled, (state, action) => {
         state.resumesList.unshift(action.payload);
         state.activeResume = action.payload;
+        state.isDirty = false;
+        state.editVersion = 0;
+        state.savingVersion = 0;
       })
 
       // saveResume
       .addCase(saveResume.pending, (state) => {
         state.isSaving = true;
         state.saveStatus = 'saving';
+        state.savingVersion = state.editVersion || 0;
       })
       .addCase(saveResume.fulfilled, (state, action) => {
         state.isSaving = false;
-        state.isDirty = false;
         state.saveStatus = 'saved';
         state.lastSaved = new Date().toISOString();
-        state.activeResume = action.payload;
+
+        const wasSavedVersion = state.savingVersion || 0;
+        const currentVersion = state.editVersion || 0;
+
+        if (state.activeResume && action.payload) {
+          state.activeResume.updatedAt = action.payload.updatedAt;
+          if (action.payload.atsScore !== undefined) {
+            state.activeResume.atsScore = action.payload.atsScore;
+          }
+          // Only overwrite local activeResume if NO new keystrokes occurred while save was in flight
+          if (currentVersion === wasSavedVersion) {
+            state.activeResume = action.payload;
+            state.isDirty = false;
+          }
+        }
 
         // update list entry if present
         const index = state.resumesList.findIndex((r) => r._id === action.payload._id);

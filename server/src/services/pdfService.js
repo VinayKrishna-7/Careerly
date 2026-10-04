@@ -882,9 +882,12 @@ export const generateResumePdf = async (resume) => {
 
   try {
     await page.setContent(html, {
-      waitUntil: ['domcontentloaded', 'networkidle0'],
-      timeout: 30000
+      waitUntil: 'domcontentloaded',
+      timeout: 15000
     });
+
+    // Fast-path: wait for document fonts to load without network idling delay
+    await page.evaluateHandle('document.fonts.ready');
 
     // Auto-fit dynamic content scaling to strictly fit within 1 A4 page
     await page.evaluate(() => {

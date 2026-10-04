@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setPreviewZoom } from '../../store/slices/uiSlice.js';
 import ResumeRenderer from '../../templates/ResumeRenderer.jsx';
@@ -9,6 +9,10 @@ export const LivePreviewPane = () => {
   const activeResume = useSelector((state) => state.resume.activeResume);
   const previewZoom = useSelector((state) => state.ui.previewZoom);
   const [autoFitScale, setAutoFitScale] = useState(1);
+
+  const handleScaleChange = useCallback((scale) => {
+    setAutoFitScale(scale);
+  }, []);
 
   const handleZoomChange = (delta) => {
     const newZoom = Math.min(150, Math.max(50, previewZoom + delta));
@@ -80,7 +84,7 @@ export const LivePreviewPane = () => {
             }}
             className="shrink-0"
           >
-            <ResumeRenderer resume={activeResume} onScaleChange={setAutoFitScale} />
+            <ResumeRenderer resume={activeResume} onScaleChange={handleScaleChange} />
           </div>
         </div>
       </div>

@@ -55,10 +55,14 @@ export const EditorHeader = () => {
     if (!activeResume) return;
     setIsDownloadingPdf(true);
     try {
+      // If there are unsaved edits, save first so the PDF reflects exactly what's on screen
+      if (isDirty) {
+        await dispatch(saveResume({ id: activeResume._id, data: activeResume })).unwrap();
+      }
       await resumeApi.downloadPdf(activeResume._id, `${activeResume.title || 'Resume'}.pdf`);
       dispatch(showToast({ message: 'PDF generated & downloaded!', type: 'success' }));
     } catch (err) {
-      dispatch(showToast({ message: 'PDF Generation failed: ' + err.message, type: 'error' }));
+      dispatch(showToast({ message: 'PDF Generation failed: ' + (err.message || 'Error'), type: 'error' }));
     } finally {
       setIsDownloadingPdf(false);
     }

@@ -61,6 +61,12 @@ export const deleteCoverLetter = createAsyncThunk(
   }
 );
 
+const markLetterDirty = (state) => {
+  state.isDirty = true;
+  state.editVersion = (state.editVersion || 0) + 1;
+  state.saveStatus = 'idle';
+};
+
 const initialState = {
   coverLettersList: [],
   activeLetter: null,
@@ -68,6 +74,8 @@ const initialState = {
   isLoadingActive: false,
   isSaving: false,
   isDirty: false,
+  editVersion: 0,
+  savingVersion: 0,
   saveStatus: 'idle', // 'idle' | 'saving' | 'saved' | 'error'
   lastSaved: null,
   error: null
@@ -88,8 +96,7 @@ const coverLetterSlice = createSlice({
         current = current[keys[i]];
       }
       current[keys[keys.length - 1]] = value;
-      state.isDirty = true;
-      state.saveStatus = 'idle';
+      markLetterDirty(state);
     },
     updateBodyParagraph: (state, action) => {
       if (!state.activeLetter) return;
@@ -98,7 +105,7 @@ const coverLetterSlice = createSlice({
         state.activeLetter.bodyParagraphs = [];
       }
       state.activeLetter.bodyParagraphs[index] = text;
-      state.isDirty = true;
+      markLetterDirty(state);
     },
     addBodyParagraph: (state) => {
       if (!state.activeLetter) return;
@@ -106,17 +113,17 @@ const coverLetterSlice = createSlice({
         state.activeLetter.bodyParagraphs = [];
       }
       state.activeLetter.bodyParagraphs.push('New paragraph detailing your relevant background and fit.');
-      state.isDirty = true;
+      markLetterDirty(state);
     },
     removeBodyParagraph: (state, action) => {
       if (!state.activeLetter || !Array.isArray(state.activeLetter.bodyParagraphs)) return;
       state.activeLetter.bodyParagraphs.splice(action.payload, 1);
-      state.isDirty = true;
+      markLetterDirty(state);
     },
     setLetterTemplate: (state, action) => {
       if (!state.activeLetter) return;
       state.activeLetter.template = action.payload;
-      state.isDirty = true;
+      markLetterDirty(state);
     },
     setLetterSettings: (state, action) => {
       if (!state.activeLetter) return;
@@ -124,11 +131,13 @@ const coverLetterSlice = createSlice({
         ...(state.activeLetter.settings || {}),
         ...action.payload
       };
-      state.isDirty = true;
+      markLetterDirty(state);
     },
     clearActiveLetter: (state) => {
       state.activeLetter = null;
       state.isDirty = false;
+      state.editVersion = 0;
+      state.savingVersion = 0;
     }
   },
   extraReducers: (builder) => {
@@ -173,13 +182,23 @@ const coverLetterSlice = createSlice({
       .addCase(saveCoverLetter.pending, (state) => {
         state.isSaving = true;
         state.saveStatus = 'saving';
+        state.savingVersion = state.editVersion || 0;
       })
       .addCase(saveCoverLetter.fulfilled, (state, action) => {
         state.isSaving = false;
         state.saveStatus = 'saved';
-        state.isDirty = false;
         state.lastSaved = new Date().toISOString();
-        state.activeLetter = action.payload;
+
+        const wasSavedVersion = state.savingVersion || 0;
+        const currentVersion = state.editVersion || 0;
+
+        if (state.activeLetter && action.payload) {
+          state.activeLetter.updatedAt = action.payload.updatedAt;
+          if (currentVersion === wasSavedVersion) {
+            state.activeLetter = action.payload;
+            state.isDirty = false;
+          }
+        }
 
         const idx = state.coverLettersList.findIndex((c) => c._id === action.payload._id);
         if (idx !== -1) {

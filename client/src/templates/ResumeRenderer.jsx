@@ -52,17 +52,13 @@ export const ResumeRenderer = ({ resume, className = '', onScaleChange }) => {
     }
   };
 
+  const lastScaleRef = useRef(1);
+
   useLayoutEffect(() => {
-    let isCalculating = false;
-    let rafScheduled = false;
+    let timeoutId = null;
 
     const calculateScale = () => {
-      if (isCalculating || !pageRef.current || !contentRef.current) return;
-      isCalculating = true;
-
-      // Temporarily remove transform to measure natural unscaled content height accurately
-      contentRef.current.style.transform = 'none';
-      contentRef.current.style.width = '100%';
+      if (!pageRef.current || !contentRef.current) return;
 
       const style = window.getComputedStyle(pageRef.current);
       const paddingTop = parseFloat(style.paddingTop) || 0;
@@ -73,13 +69,9 @@ export const ResumeRenderer = ({ resume, className = '', onScaleChange }) => {
       if (availableHeight > 0 && contentHeight > 0) {
         let calculatedScale = 1;
         if (contentHeight > availableHeight) {
-          // Precision proportional auto-fit so that every section and the bottom-most line fits with ZERO cut-off
           calculatedScale = Math.max(0.50, Math.floor(((availableHeight - 6) / contentHeight) * 1000) / 1000);
-        } else {
-          calculatedScale = 1;
         }
 
-        setScaleFactor(calculatedScale);
         contentRef.current.style.transformOrigin = 'top left';
         if (calculatedScale !== 1) {
           contentRef.current.style.transform = `scale(${calculatedScale})`;
@@ -88,35 +80,31 @@ export const ResumeRenderer = ({ resume, className = '', onScaleChange }) => {
           contentRef.current.style.transform = 'none';
           contentRef.current.style.width = '100%';
         }
-        if (onScaleChange) onScaleChange(calculatedScale);
+
+        if (Math.abs(calculatedScale - lastScaleRef.current) > 0.005) {
+          lastScaleRef.current = calculatedScale;
+          setScaleFactor(calculatedScale);
+          if (onScaleChange) onScaleChange(calculatedScale);
+        }
       }
-      isCalculating = false;
-      rafScheduled = false;
     };
 
-    const scheduleCalculation = () => {
-      if (rafScheduled) return;
-      rafScheduled = true;
-      requestAnimationFrame(calculateScale);
+    const debouncedCalculate = () => {
+      if (timeoutId) clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        requestAnimationFrame(calculateScale);
+      }, 40);
     };
 
-    scheduleCalculation();
+    debouncedCalculate();
 
-    const resizeObserver = new ResizeObserver(scheduleCalculation);
+    const resizeObserver = new ResizeObserver(debouncedCalculate);
     if (pageRef.current) resizeObserver.observe(pageRef.current);
-
-    const mutationObserver = new MutationObserver(scheduleCalculation);
-    if (contentRef.current) {
-      mutationObserver.observe(contentRef.current, {
-        childList: true,
-        subtree: true,
-        characterData: true
-      });
-    }
+    if (contentRef.current) resizeObserver.observe(contentRef.current);
 
     return () => {
+      if (timeoutId) clearTimeout(timeoutId);
       resizeObserver.disconnect();
-      mutationObserver.disconnect();
     };
   }, [resume, settings, templateId, marginConfig, fontSizeConfig, onScaleChange]);
 

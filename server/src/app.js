@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
+import compression from 'compression';
 
 import authRoutes from './routes/authRoutes.js';
 import userRoutes from './routes/userRoutes.js';
@@ -57,6 +58,9 @@ app.use(
   })
 );
 
+// Gzip & Deflate Compression
+app.use(compression());
+
 // Body and cookie parsing
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
@@ -92,12 +96,26 @@ app.use('/api/*', (req, res) => {
   });
 });
 
-// Serve frontend static files if client/dist exists (single-service production deployment)
+// Serve frontend static files with high-performance caching if client/dist exists
 const clientDistPath = path.resolve(__dirname, '../../client/dist');
 if (fs.existsSync(clientDistPath)) {
-  app.use(express.static(clientDistPath));
+  app.use(
+    express.static(clientDistPath, {
+      maxAge: '1d',
+      setHeaders: (res, filePath) => {
+        // Fingerprinted assets (dist/assets/*.js, *.css) can be cached forever
+        if (filePath.includes(path.sep + 'assets' + path.sep)) {
+          res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+        } else if (filePath.endsWith('.html')) {
+          // HTML must never be cached so users always get fresh app updates
+          res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+        }
+      }
+    })
+  );
   app.get('*', (req, res, next) => {
     if (req.path.startsWith('/api')) return next();
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
     res.sendFile(path.join(clientDistPath, 'index.html'));
   });
 }

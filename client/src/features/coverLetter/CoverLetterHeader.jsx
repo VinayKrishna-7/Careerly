@@ -57,10 +57,13 @@ export const CoverLetterHeader = () => {
     if (!activeLetter) return;
     setIsDownloadingPdf(true);
     try {
+      if (isDirty) {
+        await dispatch(saveCoverLetter({ id: activeLetter._id, data: activeLetter })).unwrap();
+      }
       await coverLetterApi.downloadPdf(activeLetter._id, `${activeLetter.title || 'CoverLetter'}.pdf`);
       dispatch(showToast({ message: 'PDF generated & downloaded!', type: 'success' }));
     } catch (err) {
-      dispatch(showToast({ message: 'PDF Generation failed: ' + err.message, type: 'error' }));
+      dispatch(showToast({ message: 'PDF Generation failed: ' + (err.message || 'Error'), type: 'error' }));
     } finally {
       setIsDownloadingPdf(false);
     }
