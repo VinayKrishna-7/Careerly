@@ -1,31 +1,30 @@
 # Careerly
 
-A full-stack resume and cover letter builder with ATS-friendly templates and PDF export.
+A web application to create, customize, and export ATS-friendly resumes and cover letters to PDF.
 
-## Features
+## What's Inside
 
-- ATS-friendly resume templates (Jake's, Modern, Minimal, Executive)
-- Live preview with PDF export
-- Section customization and reordering
-- ATS keyword analysis and scoring
-- Cover letter builder with matching styles
-- Light and dark themes
+- Multiple resume templates (Jake's, MTeck, Minimal, Modern, Executive)
+- Live preview while editing
+- Custom sections, reordering, and layout adjustments
+- ATS score and keyword analysis against job descriptions
+- Matching cover letter builder
+- One-click PDF export
 
 ## Tech Stack
 
 - **Frontend:** React, Vite, Tailwind CSS, Redux Toolkit
-- **Backend:** Node.js, Express
+- **Backend:** Node.js, Express, Puppeteer
 - **Database:** MongoDB
-- **PDF Generation:** Puppeteer
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js 18+
-- MongoDB (optional, in-memory database used as local fallback)
+- Node.js (v18+)
+- MongoDB (optional — uses an in-memory database fallback for local testing if MongoDB isn't running)
 
-### Installation
+### Setup
 
 1. Clone the repository:
    ```bash
@@ -38,28 +37,32 @@ A full-stack resume and cover letter builder with ATS-friendly templates and PDF
    npm run install:all
    ```
 
-3. Set up environment variables in `server/.env`:
+3. Create a `.env` file in the `server` folder:
    ```env
    PORT=5001
-   MONGODB_URI=mongodb://127.0.0.1:27017/careerly
+   NODE_ENV=development
+   MONGODB_URI=mongodb://127.0.0.1:27017/resumebuilder
    JWT_SECRET=your_jwt_secret
+   JWT_EXPIRES_IN=7d
    COOKIE_SECRET=your_cookie_secret
    CLIENT_URL=http://localhost:5174
    ```
 
-4. Start development servers:
+4. Run the app:
    ```bash
    npm run dev
    ```
 
-   - Frontend: `http://localhost:5174`
-   - Backend: `http://localhost:5001`
+   - Client: `http://localhost:5174`
+   - Server: `http://localhost:5001`
 
 ## Scripts
 
-- `npm run dev` - Runs frontend and backend concurrently
-- `npm run build` - Builds frontend for production
-- `npm run install:all` - Installs dependencies across root, server, and client
+- `npm run dev` — Starts both client and backend
+- `npm run dev:client` — Starts frontend only
+- `npm run dev:server` — Starts backend only
+- `npm run build` — Builds frontend for production
+- `npm run install:all` — Installs dependencies for all packages
 
 ## License
 
