@@ -6,7 +6,7 @@ A web application to create, customize, and export ATS-friendly resumes and cove
 
 > Note: The demo is hosted on Render's free tier. If the service has been idle, the server automatically sleeps to conserve resources—please allow 30–50 seconds for the initial wake-up on your first visit. Once loaded, all features run normally.
 
-## What's Inside
+## Features
 
 - Multiple resume templates (Jake's, MTeck, Minimal, Modern, Executive)
 - Live preview while editing
@@ -59,14 +59,6 @@ A web application to create, customize, and export ATS-friendly resumes and cove
 
    - Client: `http://localhost:5174`
    - Server: `http://localhost:5001`
-
-## Scripts
-
-- `npm run dev` — Starts both client and backend
-- `npm run dev:client` — Starts frontend only
-- `npm run dev:server` — Starts backend only
-- `npm run build` — Builds frontend for production
-- `npm run install:all` — Installs dependencies for all packages
 
 ## License
 
