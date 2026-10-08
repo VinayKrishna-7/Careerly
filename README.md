@@ -2,12 +2,9 @@
 
 A web application to create, customize, and export ATS-friendly resumes and cover letters to PDF.
 
-## Live Demo
+[Live Demo](https://careerly-9q76.onrender.com/)
 
-You can test the application live at:
-**[https://careerly-9q76.onrender.com](https://careerly-9q76.onrender.com/)**
-
-> **Note:** The demo is hosted on Render's free tier. If the service has been idle, the server automatically sleeps to conserve resources—please allow 30–50 seconds for the initial wake-up on your first visit. Once loaded, all features run normally.
+> **Note:** The demo is hosted on Render's free tier. If the service has been idle, please allow 30–50 seconds for the server to spin up on your first visit.
 
 ## What's Inside
 
