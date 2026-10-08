@@ -1,6 +1,6 @@
 # Careerly
 
-A web application to create, customize, and export ATS-friendly resumes and cover letters to PDF.
+Careerly is a web application for building ATS-friendly resumes with customizable templates, resume analysis, cover letters, and PDF export.
 
 [Live Demo](https://careerly-9q76.onrender.com/)
 
